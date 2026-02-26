@@ -228,7 +228,9 @@ function renderPage() {
     const goURL = item.doiUrl || (item.doi ? `https://doi.org/${item.doi}` : "") || item.pdfUrl || "";
     const goHTML = goURL
       ? `<a class="act-btn act-btn--go" href="${esc(goURL)}" target="_blank" rel="noopener">
-           <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M7 3H4a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V9" stroke="white" stroke-width="1.6" stroke-linecap="round"/><path d="M10 2h4v4" stroke="white" stroke-width="1.6" stroke-linecap="round"/><path d="M14 2L8 8" stroke="white" stroke-width="1.6" stroke-linecap="round"/></svg>
+           <svg width="13" height="13" viewBox="0 0 16 16" fill="none" style="flex-shrink:0">
+             <path d="M3 8h9M8 4l4 4-4 4" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+           </svg>
            Yayına Git
          </a>`
       : `<span class="act-btn act-btn--go act-btn--disabled">DOI yok</span>`;
