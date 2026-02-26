@@ -4,46 +4,55 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SCI Yayınlar | MANYETAM</title>
-  <meta name="description" content="MANYETAM SCI yayınlar listesi" />
+  <meta name="description" content="MANYETAM SCI yayınlar listesi (filtrelenebilir, güncellenebilir)." />
+
+  <!-- Cryo White typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
-  <div class="bg-pattern"></div>
+  <div class="bg"></div>
 
   <header class="hero">
-    <div class="container hero-inner">
-      <div class="hero-accent"></div>
-      <div>
-        <p class="eyebrow">MANYETAM</p>
-        <h1>SCI Yayınlar</h1>
-        <p class="hero-sub">
-          Kurumsal yayın listesi • filtrelenebilir • güncellenebilir • GitHub Pages uyumlu
-        </p>
+    <div class="container hero__inner">
+      <div class="kicker">
+        <span class="kdot"></span>
+        <span>MANYETAM • Bilimsel Çıktılar</span>
       </div>
+
+      <div class="hero__titleRow">
+        <div class="hero__accent"></div>
+        <div class="hero__titles">
+          <h1>SCI Yayınlar</h1>
+          <p class="hero__sub">Kurumsal yayın listesi • filtrelenebilir • güncellenebilir • GitHub Pages uyumlu</p>
+        </div>
+      </div>
+
+      <div class="hero__rule"></div>
     </div>
   </header>
 
   <main class="container">
-    <section class="toolbar card">
-      <div class="toolbar-row">
-        <div class="field grow">
-          <label for="searchInput">Ara</label>
-          <input id="searchInput" type="text" placeholder="Başlık, yazar, dergi, etiket..." />
+    <section class="panel card" aria-label="Filtreler">
+      <div class="panel__grid">
+        <div class="field field--grow">
+          <label for="qSearch">Ara</label>
+          <input id="qSearch" type="text" placeholder="Başlık, yazar, dergi, etiket, DOI..." autocomplete="off" />
         </div>
 
         <div class="field">
-          <label for="yearFilter">Yıl</label>
-          <select id="yearFilter">
+          <label for="qYear">Yıl</label>
+          <select id="qYear">
             <option value="">Tümü</option>
           </select>
         </div>
 
         <div class="field">
-          <label for="quartileFilter">Q Sınıfı</label>
-          <select id="quartileFilter">
+          <label for="qQuartile">Q Sınıfı</label>
+          <select id="qQuartile">
             <option value="">Tümü</option>
             <option value="Q1">Q1</option>
             <option value="Q2">Q2</option>
@@ -53,42 +62,53 @@
         </div>
 
         <div class="field">
-          <label for="sortSelect">Sırala</label>
-          <select id="sortSelect">
+          <label for="qSort">Sırala</label>
+          <select id="qSort">
             <option value="year-desc">Yıl (Yeni → Eski)</option>
             <option value="year-asc">Yıl (Eski → Yeni)</option>
-            <option value="title-asc">Başlık (A-Z)</option>
-            <option value="journal-asc">Dergi (A-Z)</option>
+            <option value="title-asc">Başlık (A–Z)</option>
+            <option value="journal-asc">Dergi (A–Z)</option>
           </select>
         </div>
       </div>
 
-      <div class="toolbar-footer">
-        <div id="resultCount" class="result-count">Yükleniyor...</div>
-        <button id="clearBtn" class="btn btn-ghost" type="button">Filtreleri Temizle</button>
+      <div class="panel__footer">
+        <div class="meta">
+          <span id="countText" class="meta__count">Yükleniyor...</span>
+          <span class="meta__dot"></span>
+          <span id="lastUpdated" class="meta__muted"></span>
+        </div>
+
+        <div class="actions">
+          <button id="btnClear" class="btn btn--ghost" type="button">Filtreleri Temizle</button>
+        </div>
       </div>
     </section>
 
-    <section id="list" class="pub-grid" aria-live="polite"></section>
+    <section id="list" class="grid" aria-live="polite"></section>
 
-    <template id="emptyState">
-      <div class="empty card">
+    <template id="tplEmpty">
+      <div class="card empty">
         <h3>Sonuç bulunamadı</h3>
         <p>Filtreleri değiştirip tekrar deneyebilirsin.</p>
       </div>
     </template>
 
-    <template id="errorState">
-      <div class="empty card error">
+    <template id="tplError">
+      <div class="card empty empty--error">
         <h3>Veri yüklenemedi</h3>
         <p><code>publications.json</code> dosyasını ve JSON formatını kontrol et.</p>
       </div>
     </template>
+
+    <div class="foot">
+      <div class="foot__line"></div>
+      <p>© MANYETAM • SCI Publications</p>
+    </div>
   </main>
 
-  <footer class="container footer">
-    <p>© MANYETAM • SCI Publications</p>
-  </footer>
+  <!-- Toast -->
+  <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
   <script src="./app.js" defer></script>
 </body>
