@@ -1,17 +1,26 @@
-const listEl = document.getElementById("list");
-const searchInput = document.getElementById("searchInput");
-const yearFilter = document.getElementById("yearFilter");
-const quartileFilter = document.getElementById("quartileFilter");
-const sortSelect = document.getElementById("sortSelect");
-const resultCount = document.getElementById("resultCount");
-const clearBtn = document.getElementById("clearBtn");
+const elList = document.getElementById("list");
+const elSearch = document.getElementById("qSearch");
+const elYear = document.getElementById("qYear");
+const elQuartile = document.getElementById("qQuartile");
+const elSort = document.getElementById("qSort");
+const elCount = document.getElementById("countText");
+const elLastUpdated = document.getElementById("lastUpdated");
+const btnClear = document.getElementById("btnClear");
 
-let publications = [];
+const toast = document.getElementById("toast");
+
+let DATA = [];
+let META = {};
 let filtered = [];
 
-function safe(value) {
-  return (value ?? "").toString();
+function showToast(msg) {
+  toast.textContent = msg;
+  toast.classList.add("show");
+  clearTimeout(showToast._t);
+  showToast._t = setTimeout(() => toast.classList.remove("show"), 1500);
 }
+
+function safe(v){ return (v ?? "").toString(); }
 
 function escapeHtml(str) {
   return safe(str)
@@ -22,174 +31,268 @@ function escapeHtml(str) {
     .replace(/'/g, "&#039;");
 }
 
-function buildSearchBlob(item) {
-  return [
-    item.title,
-    item.authors,
-    item.journal,
-    item.abstract,
-    ...(Array.isArray(item.tags) ? item.tags : [])
-  ].join(" ").toLowerCase();
+function normalize(s){
+  return safe(s).toLowerCase().trim();
 }
 
-function populateYearOptions(data) {
-  const years = [...new Set(data.map(x => Number(x.year)).filter(Boolean))]
-    .sort((a, b) => b - a);
-
-  yearFilter.innerHTML = `<option value="">Tümü</option>` +
-    years.map(y => `<option value="${y}">${y}</option>`).join("");
+function buildBlob(item){
+  const tags = Array.isArray(item.tags) ? item.tags.join(" ") : "";
+  return normalize([item.title, item.authors, item.journal, item.abstract, item.doi, tags].join(" "));
 }
 
-function sortPublications(arr, mode) {
-  const cloned = [...arr];
+function buildMetaLine(item){
+  const parts = [];
+  if (item.volume) parts.push(`Cilt ${item.volume}`);
+  if (item.issue) parts.push(`Sayı ${item.issue}`);
+  if (item.pages) parts.push(`s. ${item.pages}`);
+  return parts.join(" • ");
+}
 
-  switch (mode) {
-    case "year-asc":
-      return cloned.sort((a, b) => (Number(a.year) || 0) - (Number(b.year) || 0));
+/**
+ * Basit APA benzeri citation:
+ * Authors. (Year). Title. Journal, Volume(Issue), pages. https://doi.org/...
+ * Not: İstersen bunu kurum standardına göre güncelleriz.
+ */
+function buildCitationAPA(item){
+  const authors = safe(item.authors);
+  const year = item.year ? `(${item.year}).` : "";
+  const title = safe(item.title);
+  const journal = safe(item.journal);
+  const vol = safe(item.volume);
+  const issue = safe(item.issue);
+  const pages = safe(item.pages);
+  const doiUrl = item.doiUrl ? item.doiUrl : (item.doi ? `https://doi.org/${item.doi}` : "");
 
-    case "title-asc":
-      return cloned.sort((a, b) => safe(a.title).localeCompare(safe(b.title), "tr"));
+  let volIssue = "";
+  if (vol && issue) volIssue = `${vol}(${issue})`;
+  else if (vol) volIssue = `${vol}`;
 
-    case "journal-asc":
-      return cloned.sort((a, b) => safe(a.journal).localeCompare(safe(b.journal), "tr"));
+  const pagesPart = pages ? `, ${pages}` : "";
+  const doiPart = doiUrl ? ` ${doiUrl}` : "";
 
-    case "year-desc":
-    default:
-      return cloned.sort((a, b) => (Number(b.year) || 0) - (Number(a.year) || 0));
+  // Journal, vol(issue), pages.
+  const jPart = journal ? `${journal}${journal && volIssue ? ", " : ""}${volIssue}${pagesPart}.` : "";
+
+  return `${authors} ${year} ${title}. ${jPart}${doiPart}`.replace(/\s+/g, " ").trim();
+}
+
+async function copyToClipboard(text){
+  try{
+    await navigator.clipboard.writeText(text);
+    showToast("Kaynakça kopyalandı");
+  }catch{
+    // fallback
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand("copy");
+    document.body.removeChild(ta);
+    showToast("Kaynakça kopyalandı");
   }
 }
 
-function renderCards(data) {
-  if (!data.length) {
-    const tpl = document.getElementById("emptyState");
-    listEl.innerHTML = "";
-    listEl.appendChild(tpl.content.cloneNode(true));
-    resultCount.textContent = "0 sonuç";
+/* ---------- iframe auto-height (postMessage) ---------- */
+function postHeight(){
+  const h = Math.max(
+    document.body.scrollHeight,
+    document.documentElement.scrollHeight
+  );
+  window.parent?.postMessage?.(
+    { type: "mnytm-height", height: h },
+    "*"
+  );
+}
+function scheduleHeight(){
+  clearTimeout(scheduleHeight._t);
+  scheduleHeight._t = setTimeout(postHeight, 120);
+}
+/* ------------------------------------------------------ */
+
+function populateYearOptions(items){
+  const years = [...new Set(items.map(x => Number(x.year)).filter(Boolean))].sort((a,b)=>b-a);
+  elYear.innerHTML = `<option value="">Tümü</option>` + years.map(y => `<option value="${y}">${y}</option>`).join("");
+}
+
+function sortItems(items, mode){
+  const arr = [...items];
+  switch(mode){
+    case "year-asc":
+      return arr.sort((a,b)=>(Number(a.year)||0)-(Number(b.year)||0));
+    case "title-asc":
+      return arr.sort((a,b)=> safe(a.title).localeCompare(safe(b.title), "tr"));
+    case "journal-asc":
+      return arr.sort((a,b)=> safe(a.journal).localeCompare(safe(b.journal), "tr"));
+    case "year-desc":
+    default:
+      return arr.sort((a,b)=>(Number(b.year)||0)-(Number(a.year)||0));
+  }
+}
+
+function render(items){
+  if (!items.length){
+    const tpl = document.getElementById("tplEmpty");
+    elList.innerHTML = "";
+    elList.appendChild(tpl.content.cloneNode(true));
+    elCount.textContent = "0 sonuç";
+    scheduleHeight();
     return;
   }
 
-  listEl.innerHTML = data.map(item => {
+  elList.innerHTML = items.map(item => {
     const year = escapeHtml(item.year);
     const title = escapeHtml(item.title);
     const authors = escapeHtml(item.authors);
     const journal = escapeHtml(item.journal);
+    const quartile = safe(item.quartile).toUpperCase();
+    const metaLine = buildMetaLine(item);
+    const abs = item.abstract ? escapeHtml(item.abstract) : "";
 
-    const volIssuePages = [
-      item.volume ? `Cilt ${escapeHtml(item.volume)}` : "",
-      item.issue ? `Sayı ${escapeHtml(item.issue)}` : "",
-      item.pages ? `s. ${escapeHtml(item.pages)}` : ""
-    ].filter(Boolean);
+    const qChip = quartile ? `<span class="chip chip--q">${escapeHtml(quartile)}</span>` : "";
+    const metaChip = metaLine ? `<span class="chip chip--soft">${escapeHtml(metaLine)}</span>` : "";
 
-    const quartileChip = item.quartile
-      ? `<span class="chip q">${escapeHtml(item.quartile)}</span>`
-      : "";
-
-    const metaChip = volIssuePages.length
-      ? `<span class="chip">${volIssuePages.join(" • ")}</span>`
-      : "";
-
-    const tagChips = Array.isArray(item.tags)
-      ? item.tags.map(tag => `<span class="chip tag">${escapeHtml(tag)}</span>`).join("")
-      : "";
-
-    const abstract = item.abstract
-      ? `<p class="abstract">${escapeHtml(item.abstract)}</p>`
-      : "";
+    const tags = Array.isArray(item.tags) ? item.tags.map(t => `<span class="chip chip--soft">${escapeHtml(t)}</span>`).join("") : "";
 
     const doiBtn = item.doiUrl
-      ? `<a class="action-link" href="${escapeHtml(item.doiUrl)}" target="_blank" rel="noopener noreferrer">DOI</a>`
-      : (item.doi
-        ? `<span class="action-link secondary">DOI: ${escapeHtml(item.doi)}</span>`
-        : "");
+      ? `<a class="alink" href="${escapeHtml(item.doiUrl)}" target="_blank" rel="noopener noreferrer">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M14 3h7v7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M21 3l-9 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M10 7H7a4 4 0 0 0 0 8h3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M14 17h3a4 4 0 0 0 0-8h-3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          DOI
+        </a>`
+      : (item.doi ? `<span class="alink alink--secondary">DOI: ${escapeHtml(item.doi)}</span>` : "");
 
     const pdfBtn = item.pdfUrl
-      ? `<a class="action-link secondary" href="${escapeHtml(item.pdfUrl)}" target="_blank" rel="noopener noreferrer">PDF</a>`
+      ? `<a class="alink alink--secondary" href="${escapeHtml(item.pdfUrl)}" target="_blank" rel="noopener noreferrer">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="2"/>
+            <path d="M14 2v6h6" stroke="currentColor" stroke-width="2"/>
+          </svg>
+          PDF
+        </a>`
       : "";
 
+    const citation = buildCitationAPA(item);
+    const citeBtn = `<button class="alink alink--secondary" type="button" data-cite="${escapeHtml(citation)}">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M8 7h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M8 12h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M8 17h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M6 7h.01M6 12h.01M6 17h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+        APA Kopyala
+      </button>`;
+
+    const absHtml = abs ? `<p class="abstract">${abs}</p>` : "";
+
     return `
-      <article class="pub-card">
-        <div class="pub-top">
+      <article class="pub" data-id="${escapeHtml(item.id || "")}">
+        <div class="pub__top">
           <div>
-            <h2 class="pub-title">${title}</h2>
-            <p class="pub-authors">${authors}</p>
-            <p class="pub-journal"><em>${journal}</em></p>
+            <h2 class="pub__title">${title}</h2>
+            <p class="pub__authors">${authors}</p>
+            <p class="pub__journal"><em>${journal}</em></p>
+            <div class="accentLine"></div>
           </div>
-          <div class="pub-year">${year}</div>
+          <div class="badge-year">${year}</div>
         </div>
 
-        <div class="meta-row">
-          ${quartileChip}
+        <div class="metaRow">
+          ${qChip}
           ${metaChip}
-          ${tagChips}
+          ${tags}
         </div>
 
-        ${abstract}
+        ${absHtml}
 
-        <div class="actions">
+        <div class="actionsRow">
           ${doiBtn}
           ${pdfBtn}
+          ${citeBtn}
         </div>
       </article>
     `;
   }).join("");
 
-  resultCount.textContent = `${data.length} sonuç`;
+  elCount.textContent = `${items.length} sonuç`;
+  scheduleHeight();
 }
 
-function applyFilters() {
-  const q = searchInput.value.trim().toLowerCase();
-  const year = yearFilter.value;
-  const quartile = quartileFilter.value;
-  const sortMode = sortSelect.value;
+function apply(){
+  const q = normalize(elSearch.value);
+  const y = elYear.value;
+  const qu = normalize(elQuartile.value);
+  const sortMode = elSort.value;
 
-  filtered = publications.filter(item => {
-    const blob = buildSearchBlob(item);
-    const matchSearch = !q || blob.includes(q);
-    const matchYear = !year || String(item.year) === String(year);
-    const matchQuartile = !quartile || safe(item.quartile).toUpperCase() === quartile.toUpperCase();
-
-    return matchSearch && matchYear && matchQuartile;
+  filtered = DATA.filter(item => {
+    const blob = buildBlob(item);
+    const okQ = !q || blob.includes(q);
+    const okY = !y || String(item.year) === String(y);
+    const okQu = !qu || normalize(item.quartile).toUpperCase() === qu.toUpperCase();
+    return okQ && okY && okQu;
   });
 
-  filtered = sortPublications(filtered, sortMode);
-  renderCards(filtered);
+  filtered = sortItems(filtered, sortMode);
+  render(filtered);
 }
 
-function attachEvents() {
-  [searchInput, yearFilter, quartileFilter, sortSelect].forEach(el => {
-    el.addEventListener("input", applyFilters);
-    el.addEventListener("change", applyFilters);
+function attach(){
+  [elSearch, elYear, elQuartile, elSort].forEach(el => {
+    el.addEventListener("input", apply);
+    el.addEventListener("change", apply);
   });
 
-  clearBtn.addEventListener("click", () => {
-    searchInput.value = "";
-    yearFilter.value = "";
-    quartileFilter.value = "";
-    sortSelect.value = "year-desc";
-    applyFilters();
+  btnClear.addEventListener("click", () => {
+    elSearch.value = "";
+    elYear.value = "";
+    elQuartile.value = "";
+    elSort.value = "year-desc";
+    apply();
   });
+
+  // Delegated click for citation copy
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest("[data-cite]");
+    if (!btn) return;
+    const cite = btn.getAttribute("data-cite") || "";
+    copyToClipboard(cite);
+  });
+
+  // Height hooks
+  window.addEventListener("load", postHeight);
+  window.addEventListener("resize", scheduleHeight);
+  document.addEventListener("click", scheduleHeight);
 }
 
-async function init() {
-  try {
+async function init(){
+  try{
     const res = await fetch("./publications.json", { cache: "no-store" });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
-    publications = await res.json();
+    const json = await res.json();
+    META = json.meta || {};
+    DATA = Array.isArray(json.items) ? json.items : [];
 
-    if (!Array.isArray(publications)) {
-      throw new Error("JSON array değil");
+    populateYearOptions(DATA);
+
+    if (META.lastUpdated){
+      elLastUpdated.textContent = `Güncelleme: ${META.lastUpdated}`;
+    } else {
+      elLastUpdated.textContent = "";
     }
 
-    populateYearOptions(publications);
-    attachEvents();
-    applyFilters();
-  } catch (err) {
-    console.error("SCI publications load error:", err);
-    const tpl = document.getElementById("errorState");
-    listEl.innerHTML = "";
-    listEl.appendChild(tpl.content.cloneNode(true));
-    resultCount.textContent = "Hata";
+    attach();
+    apply();
+  }catch(err){
+    console.error("SCI load error:", err);
+    const tpl = document.getElementById("tplError");
+    elList.innerHTML = "";
+    elList.appendChild(tpl.content.cloneNode(true));
+    elCount.textContent = "Hata";
+    scheduleHeight();
   }
 }
 
