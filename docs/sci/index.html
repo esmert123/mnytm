@@ -5,12 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SCI Yayınlar | MANYETAM</title>
   <meta name="description" content="MANYETAM SCI yayınlar listesi (filtrelenebilir, güncellenebilir)." />
-
-  <!-- Cryo White typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-
+  <!-- Playfair Display (serif başlıklar) + DM Sans (okunabilir body) -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
@@ -20,36 +18,34 @@
     <div class="container hero__inner">
       <div class="kicker">
         <span class="kdot"></span>
-        <span>MANYETAM • Bilimsel Çıktılar</span>
+        <span>MANYETAM · Bilimsel Çıktılar</span>
       </div>
-
       <div class="hero__titleRow">
         <div class="hero__accent"></div>
         <div class="hero__titles">
           <h1>SCI Yayınlar</h1>
-          <p class="hero__sub">Kurumsal yayın listesi • filtrelenebilir • güncellenebilir • GitHub Pages uyumlu</p>
+          <p class="hero__sub">Kurumsal yayın listesi · filtrelenebilir · güncellenebilir · GitHub Pages uyumlu</p>
         </div>
       </div>
-
       <div class="hero__rule"></div>
     </div>
   </header>
 
   <main class="container">
-    <section class="panel card" aria-label="Filtreler">
+
+    <!-- Filtre paneli -->
+    <section class="panel" aria-label="Filtreler">
       <div class="panel__grid">
         <div class="field field--grow">
           <label for="qSearch">Ara</label>
-          <input id="qSearch" type="text" placeholder="Başlık, yazar, dergi, etiket, DOI..." autocomplete="off" />
+          <input id="qSearch" type="text" placeholder="Başlık, yazar, dergi, etiket, DOI…" autocomplete="off" />
         </div>
-
         <div class="field">
           <label for="qYear">Yıl</label>
           <select id="qYear">
             <option value="">Tümü</option>
           </select>
         </div>
-
         <div class="field">
           <label for="qQuartile">Q Sınıfı</label>
           <select id="qQuartile">
@@ -60,7 +56,6 @@
             <option value="Q4">Q4</option>
           </select>
         </div>
-
         <div class="field">
           <label for="qSort">Sırala</label>
           <select id="qSort">
@@ -71,43 +66,44 @@
           </select>
         </div>
       </div>
-
       <div class="panel__footer">
         <div class="meta">
-          <span id="countText" class="meta__count">Yükleniyor...</span>
+          <span id="countText" class="meta__count">Yükleniyor…</span>
           <span class="meta__dot"></span>
           <span id="lastUpdated" class="meta__muted"></span>
         </div>
-
         <div class="actions">
-          <button id="btnClear" class="btn btn--ghost" type="button">Filtreleri Temizle</button>
+          <button id="btnClear" class="btn" type="button">Filtreleri Temizle</button>
         </div>
       </div>
     </section>
 
+    <!-- Yayın listesi -->
     <section id="list" class="grid" aria-live="polite"></section>
 
+    <!-- Boş durum -->
     <template id="tplEmpty">
-      <div class="card empty">
+      <div class="empty">
         <h3>Sonuç bulunamadı</h3>
         <p>Filtreleri değiştirip tekrar deneyebilirsin.</p>
       </div>
     </template>
 
+    <!-- Hata durumu -->
     <template id="tplError">
-      <div class="card empty empty--error">
+      <div class="empty empty--error">
         <h3>Veri yüklenemedi</h3>
         <p><code>publications.json</code> dosyasını ve JSON formatını kontrol et.</p>
       </div>
     </template>
 
-    <div class="foot">
+    <footer class="foot">
       <div class="foot__line"></div>
-      <p>© MANYETAM • SCI Publications</p>
-    </div>
+      <p>© MANYETAM · SCI Publications</p>
+    </footer>
   </main>
 
-  <!-- Toast -->
+  <!-- Toast bildirimi -->
   <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
   <script src="./app.js" defer></script>
