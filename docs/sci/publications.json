@@ -1,34 +1,41 @@
-[
-  {
-    "id": "SCI-2026-001",
-    "title": "Fabrication and Characterization of Polymer-Based Nanofiber Nanocomposites for Electromagnetic Interference (EMI) Shielding Applications",
-    "authors": "A. Author, B. Author, M. Esmeroğlu",
-    "journal": "Journal of Advanced Materials Research",
-    "year": 2026,
-    "volume": "12",
-    "issue": "3",
-    "pages": "101-118",
-    "quartile": "Q1",
-    "doi": "10.1234/example-doi-001",
-    "doiUrl": "https://doi.org/10.1234/example-doi-001",
-    "pdfUrl": "",
-    "tags": ["Nanofiber", "EMI Shielding", "Polymer Composite"],
-    "abstract": "This study investigates polymer-based nanofiber nanocomposites for electromagnetic interference shielding applications and evaluates structural and shielding performance under different processing conditions."
+{
+  "meta": {
+    "lastUpdated": "2026-02-26",
+    "owner": "MANYETAM",
+    "note": "SCI yayınlar listesi (JSON)."
   },
-  {
-    "id": "SCI-2025-002",
-    "title": "Magnetic Nanoparticle Reinforced PAN Nanofibers: Processing–Structure Relationship",
-    "authors": "C. Researcher, M. Esmeroğlu, D. Researcher",
-    "journal": "Materials Science Forum",
-    "year": 2025,
-    "volume": "88",
-    "issue": "1",
-    "pages": "45-59",
-    "quartile": "Q2",
-    "doi": "10.5678/example-doi-002",
-    "doiUrl": "https://doi.org/10.5678/example-doi-002",
-    "pdfUrl": "",
-    "tags": ["PAN", "Magnetic Nanoparticle", "Electrospinning"],
-    "abstract": "A comparative study on reinforced PAN nanofibers focusing on process parameters, fiber morphology, and the resulting magnetic/functional behavior."
-  }
-]
+  "items": [
+    {
+      "id": "SCI-2026-001",
+      "title": "Fabrication and Characterization of Polymer-Based Nanofiber Nanocomposites for Electromagnetic Interference (EMI) Shielding Applications",
+      "authors": "A. Author, B. Author, M. Esmeroğlu",
+      "journal": "Journal of Advanced Materials Research",
+      "year": 2026,
+      "quartile": "Q1",
+      "volume": "12",
+      "issue": "3",
+      "pages": "101-118",
+      "doi": "10.1234/example-doi-001",
+      "doiUrl": "https://doi.org/10.1234/example-doi-001",
+      "pdfUrl": "",
+      "tags": ["Nanofiber", "EMI Shielding", "Polymer Composite"],
+      "abstract": "This study investigates polymer-based nanofiber nanocomposites for electromagnetic interference shielding applications and evaluates structural and shielding performance under different processing conditions."
+    },
+    {
+      "id": "SCI-2025-002",
+      "title": "Magnetic Nanoparticle Reinforced PAN Nanofibers: Processing–Structure Relationship",
+      "authors": "C. Researcher, M. Esmeroğlu, D. Researcher",
+      "journal": "Materials Science Forum",
+      "year": 2025,
+      "quartile": "Q2",
+      "volume": "88",
+      "issue": "1",
+      "pages": "45-59",
+      "doi": "10.5678/example-doi-002",
+      "doiUrl": "https://doi.org/10.5678/example-doi-002",
+      "pdfUrl": "",
+      "tags": ["PAN", "Magnetic Nanoparticle", "Electrospinning"],
+      "abstract": "A comparative study on reinforced PAN nanofibers focusing on process parameters, fiber morphology, and the resulting magnetic/functional behavior."
+    }
+  ]
+}
