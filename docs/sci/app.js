@@ -13,9 +13,7 @@ const elCount     = document.getElementById("countText");
 const elLastUpd   = document.getElementById("lastUpdated");
 const btnFilter   = document.getElementById("btnFilter");
 const btnClear    = document.getElementById("btnClear");
-const btnExcel    = document.getElementById("btnExcel");
-const btnBibtex   = document.getElementById("btnBibtex");
-const btnRis      = document.getElementById("btnRis");
+
 const elPage      = document.getElementById("pagination");
 const toast       = document.getElementById("toast");
 
@@ -337,10 +335,6 @@ function attach() {
     elSort.value     = "year-desc";
     apply();
   });
-
-  btnExcel.addEventListener("click",  exportExcel);
-  btnBibtex.addEventListener("click", exportBibtex);
-  btnRis.addEventListener("click",    exportRis);
 
   document.addEventListener("click", e => {
     const btn = e.target.closest("[data-cite]");
