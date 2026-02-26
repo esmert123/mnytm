@@ -1,1 +1,93 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TR Dizin Yayınlar | MANYETAM</title>
+  <meta name="description" content="MANYETAM TR Dizin yayınlar listesi." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./trdiziznss.css" />
+</head>
+<body>
 
+  <main class="container main-wrap" style="padding-top:24px">
+
+    <!-- Filtre Paneli -->
+    <section class="filter-panel" aria-label="Filtreler">
+      <div class="filter-grid" style="grid-template-columns: 2fr .65fr .85fr auto">
+        <div class="search-wrap">
+          <svg class="search-ico" viewBox="0 0 20 20" fill="none">
+            <circle cx="9" cy="9" r="5.5" stroke="#94a3b8" stroke-width="1.7"/>
+            <path d="M13.2 13.2L17 17" stroke="#94a3b8" stroke-width="1.7" stroke-linecap="round"/>
+          </svg>
+          <input id="qSearch" type="text" class="f-input f-input--search"
+            placeholder="Başlık, yazar, dergi, DOI..." autocomplete="off"/>
+        </div>
+        <div class="f-field">
+          <label class="f-label" for="qYear">Yıl</label>
+          <select id="qYear" class="f-select"><option value="">Tümü</option></select>
+        </div>
+        <div class="f-field">
+          <label class="f-label" for="qLang">Dil</label>
+          <select id="qLang" class="f-select">
+            <option value="">Tümü</option>
+            <option value="TR">Türkçe</option>
+            <option value="EN">İngilizce</option>
+          </select>
+        </div>
+        <button id="btnFilter" class="btn-primary" type="button">
+          <svg viewBox="0 0 18 18" fill="none" width="15" height="15">
+            <path d="M2 4h14M5 9h8M8 14h2" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          Filtrele
+        </button>
+      </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <div class="stats-bar">
+      <div class="stats-left">
+        <span class="stats-dot"></span>
+        <span>Toplam <strong id="countText">…</strong> yayın bulundu</span>
+        <span class="stats-pipe">|</span>
+        <span class="stats-star">★</span>
+        <span id="lastUpdated" class="stats-date"></span>
+      </div>
+      <div class="stats-right">
+        <button id="btnClear" class="exp-btn exp-btn--clear" type="button">✕ Temizle</button>
+      </div>
+    </div>
+
+    <!-- Yayın Listesi -->
+    <section id="list" class="pub-list" aria-live="polite"></section>
+
+    <!-- Pagination -->
+    <nav id="pagination" class="pagination" aria-label="Sayfalama"></nav>
+
+    <template id="tplEmpty">
+      <div class="state-box">
+        <div class="state-ico">🔍</div>
+        <h3>Sonuç bulunamadı</h3>
+        <p>Filtreleri değiştirip tekrar deneyebilirsin.</p>
+      </div>
+    </template>
+    <template id="tplError">
+      <div class="state-box state-box--err">
+        <div class="state-ico">⚠️</div>
+        <h3>Veri yüklenemedi</h3>
+        <p><code>trdizin.json</code> dosyasını kontrol et.</p>
+      </div>
+    </template>
+
+    <footer class="site-foot">
+      <div class="foot-rule"></div>
+      <p>© MANYETAM · TR Dizin Yayınlar</p>
+    </footer>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+  <script src="./trdiziznapp.js" defer></script>
+</body>
+</html>
