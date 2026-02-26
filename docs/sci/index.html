@@ -4,51 +4,80 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SCI Yayınlar | MANYETAM</title>
-  <meta name="description" content="MANYETAM SCI yayınlar listesi (filtrelenebilir, güncellenebilir)." />
+  <meta name="description" content="MANYETAM SCI yayınlar listesi — filtrelenebilir, güncellenebilir." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Playfair Display (serif başlıklar) + DM Sans (okunabilir body) -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
-  <div class="bg"></div>
 
-  <header class="hero">
-    <div class="container hero__inner">
-      <div class="kicker">
-        <span class="kdot"></span>
-        <span>MANYETAM · Bilimsel Çıktılar</span>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <svg class="brand-icon" viewBox="0 0 36 36" fill="none">
+          <circle cx="18" cy="18" r="17" stroke="white" stroke-width="1.8" opacity=".8"/>
+          <circle cx="18" cy="18" r="10" stroke="white" stroke-width="1.3" stroke-dasharray="3 2" opacity=".6"/>
+          <circle cx="18" cy="18" r="4" fill="white"/>
+          <circle cx="28" cy="10" r="2.5" fill="white" opacity=".55"/>
+          <circle cx="8"  cy="26" r="2"   fill="white" opacity=".4"/>
+        </svg>
+        <span class="brand-name">MANYETAM</span>
       </div>
-      <div class="hero__titleRow">
-        <div class="hero__accent"></div>
-        <div class="hero__titles">
-          <h1>SCI Yayınlar</h1>
-          <p class="hero__sub">Kurumsal yayın listesi · filtrelenebilir · güncellenebilir · GitHub Pages uyumlu</p>
+
+      <div class="hero-content">
+        <div class="hero-title-row">
+          <div class="hero-bar"></div>
+          <div>
+            <h1 class="hero-title"><span class="hero-sci">SCI</span> Yayınlar</h1>
+            <p class="hero-sub">Kurumsal yayın listesi &bull; filtrelenebilir &bull; güncellenebilir &bull; GitHub Pages uyumlu</p>
+          </div>
         </div>
       </div>
-      <div class="hero__rule"></div>
+
+      <div class="header-deco" aria-hidden="true">
+        <svg viewBox="0 0 300 160" fill="none">
+          <circle cx="80"  cy="80"  r="5.5" fill="white" opacity=".7"/>
+          <circle cx="155" cy="35"  r="4.5" fill="white" opacity=".6"/>
+          <circle cx="230" cy="90"  r="6"   fill="white" opacity=".65"/>
+          <circle cx="180" cy="140" r="3.5" fill="white" opacity=".5"/>
+          <circle cx="275" cy="55"  r="4.5" fill="white" opacity=".55"/>
+          <circle cx="50"  cy="140" r="3.5" fill="white" opacity=".4"/>
+          <circle cx="120" cy="120" r="3"   fill="white" opacity=".45"/>
+          <circle cx="255" cy="130" r="3"   fill="white" opacity=".35"/>
+          <line x1="80"  y1="80"  x2="155" y2="35"  stroke="white" stroke-width="1.1" opacity=".3"/>
+          <line x1="155" y1="35"  x2="230" y2="90"  stroke="white" stroke-width="1.1" opacity=".3"/>
+          <line x1="230" y1="90"  x2="275" y2="55"  stroke="white" stroke-width="1"   opacity=".22"/>
+          <line x1="230" y1="90"  x2="180" y2="140" stroke="white" stroke-width="1"   opacity=".25"/>
+          <line x1="230" y1="90"  x2="255" y2="130" stroke="white" stroke-width="1"   opacity=".22"/>
+          <line x1="80"  y1="80"  x2="50"  y2="140" stroke="white" stroke-width="1"   opacity=".22"/>
+          <line x1="80"  y1="80"  x2="120" y2="120" stroke="white" stroke-width="1"   opacity=".25"/>
+          <line x1="120" y1="120" x2="180" y2="140" stroke="white" stroke-width="1"   opacity=".22"/>
+          <line x1="155" y1="35"  x2="120" y2="120" stroke="white" stroke-width=".8"  opacity=".18"/>
+        </svg>
+      </div>
     </div>
   </header>
 
-  <main class="container">
+  <main class="container main-wrap">
 
-    <!-- Filtre paneli -->
-    <section class="panel" aria-label="Filtreler">
-      <div class="panel__grid">
-        <div class="field field--grow">
-          <label for="qSearch">Ara</label>
-          <input id="qSearch" type="text" placeholder="Başlık, yazar, dergi, etiket, DOI…" autocomplete="off" />
+    <section class="filter-panel" aria-label="Filtreler">
+      <div class="filter-grid">
+        <div class="search-wrap">
+          <svg class="search-ico" viewBox="0 0 20 20" fill="none">
+            <circle cx="9" cy="9" r="5.5" stroke="#94a3b8" stroke-width="1.7"/>
+            <path d="M13.2 13.2L17 17" stroke="#94a3b8" stroke-width="1.7" stroke-linecap="round"/>
+          </svg>
+          <input id="qSearch" type="text" class="f-input f-input--search"
+            placeholder="Başlık, yazar, dergi, etiket, DOI..." autocomplete="off"/>
         </div>
-        <div class="field">
-          <label for="qYear">Yıl</label>
-          <select id="qYear">
-            <option value="">Tümü</option>
-          </select>
+        <div class="f-field">
+          <label class="f-label" for="qYear">Yıl</label>
+          <select id="qYear" class="f-select"><option value="">Tümü</option></select>
         </div>
-        <div class="field">
-          <label for="qQuartile">Q Sınıfı</label>
-          <select id="qQuartile">
+        <div class="f-field">
+          <label class="f-label" for="qQuartile">Q Sınıfı</label>
+          <select id="qQuartile" class="f-select">
             <option value="">Tümü</option>
             <option value="Q1">Q1</option>
             <option value="Q2">Q2</option>
@@ -56,56 +85,75 @@
             <option value="Q4">Q4</option>
           </select>
         </div>
-        <div class="field">
-          <label for="qSort">Sırala</label>
-          <select id="qSort">
+        <div class="f-field">
+          <label class="f-label" for="qSort">Sırala</label>
+          <select id="qSort" class="f-select">
             <option value="year-desc">Yıl (Yeni → Eski)</option>
             <option value="year-asc">Yıl (Eski → Yeni)</option>
             <option value="title-asc">Başlık (A–Z)</option>
             <option value="journal-asc">Dergi (A–Z)</option>
           </select>
         </div>
-      </div>
-      <div class="panel__footer">
-        <div class="meta">
-          <span id="countText" class="meta__count">Yükleniyor…</span>
-          <span class="meta__dot"></span>
-          <span id="lastUpdated" class="meta__muted"></span>
-        </div>
-        <div class="actions">
-          <button id="btnClear" class="btn" type="button">Filtreleri Temizle</button>
-        </div>
+        <button id="btnFilter" class="btn-primary" type="button">
+          <svg viewBox="0 0 18 18" fill="none" width="15" height="15">
+            <path d="M2 4h14M5 9h8M8 14h2" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          Filtrele
+        </button>
       </div>
     </section>
 
-    <!-- Yayın listesi -->
-    <section id="list" class="grid" aria-live="polite"></section>
+    <div class="stats-bar">
+      <div class="stats-left">
+        <span class="stats-dot"></span>
+        <span>Toplam <strong id="countText">…</strong> yayın bulundu</span>
+        <span class="stats-pipe">|</span>
+        <span class="stats-star">★</span>
+        <span id="lastUpdated" class="stats-date"></span>
+      </div>
+      <div class="stats-right">
+        <button id="btnExcel"  class="exp-btn" type="button">
+          <svg viewBox="0 0 16 16" fill="none" width="13" height="13"><rect x="1.5" y="1.5" width="13" height="13" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M5 5l6 6M11 5L5 11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+          Excel
+        </button>
+        <button id="btnBibtex" class="exp-btn" type="button">
+          <svg viewBox="0 0 16 16" fill="none" width="13" height="13"><path d="M3 4h10M3 8h10M3 12h6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+          BibTeX
+        </button>
+        <button id="btnRis"    class="exp-btn" type="button">
+          <svg viewBox="0 0 16 16" fill="none" width="13" height="13"><rect x="2" y="1" width="12" height="14" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M5 5h6M5 8h6M5 11h3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+          RIS
+        </button>
+        <button id="btnClear" class="exp-btn exp-btn--clear" type="button">✕ Temizle</button>
+      </div>
+    </div>
 
-    <!-- Boş durum -->
+    <section id="list" class="pub-list" aria-live="polite"></section>
+
+    <nav id="pagination" class="pagination" aria-label="Sayfalama"></nav>
+
     <template id="tplEmpty">
-      <div class="empty">
+      <div class="state-box">
+        <div class="state-ico">🔍</div>
         <h3>Sonuç bulunamadı</h3>
         <p>Filtreleri değiştirip tekrar deneyebilirsin.</p>
       </div>
     </template>
-
-    <!-- Hata durumu -->
     <template id="tplError">
-      <div class="empty empty--error">
+      <div class="state-box state-box--err">
+        <div class="state-ico">⚠️</div>
         <h3>Veri yüklenemedi</h3>
-        <p><code>publications.json</code> dosyasını ve JSON formatını kontrol et.</p>
+        <p><code>publications.json</code> dosyasını kontrol et.</p>
       </div>
     </template>
 
-    <footer class="foot">
-      <div class="foot__line"></div>
+    <footer class="site-foot">
+      <div class="foot-rule"></div>
       <p>© MANYETAM · SCI Publications</p>
     </footer>
   </main>
 
-  <!-- Toast bildirimi -->
   <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
-
   <script src="./app.js" defer></script>
 </body>
 </html>
