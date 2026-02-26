@@ -2,7 +2,7 @@
   "meta": {
     "lastUpdated": "2026-02-26",
     "owner": "MANYETAM",
-    "note": "SCI yayınlar listesi (JSON)."
+    "note": "SCI yayınlar listesi. coverUrl alanı boş bırakılırsa dergi adına göre otomatik renkli kapak oluşturulur."
   },
   "items": [
     {
@@ -18,6 +18,7 @@
       "doi": "10.1234/example-doi-001",
       "doiUrl": "https://doi.org/10.1234/example-doi-001",
       "pdfUrl": "",
+      "coverUrl": "",
       "tags": ["Nanofiber", "EMI Shielding", "Polymer Composite"],
       "abstract": "This study investigates polymer-based nanofiber nanocomposites for electromagnetic interference shielding applications and evaluates structural and shielding performance under different processing conditions."
     },
@@ -34,6 +35,7 @@
       "doi": "10.5678/example-doi-002",
       "doiUrl": "https://doi.org/10.5678/example-doi-002",
       "pdfUrl": "",
+      "coverUrl": "",
       "tags": ["PAN", "Magnetic Nanoparticle", "Electrospinning"],
       "abstract": "A comparative study on reinforced PAN nanofibers focusing on process parameters, fiber morphology, and the resulting magnetic/functional behavior."
     }
