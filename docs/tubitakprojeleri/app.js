@@ -54,14 +54,14 @@ function categoryHTML(cat, index) {
 
 async function init() {
   try {
-    const res = await fetch("./tubitak-projects.json", { cache: "no-store" });
+    const res = await fetch("./publications.json", { cache: "no-store" });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
     acc.innerHTML = data.map((cat, i) => categoryHTML(cat, i)).join("");
   } catch (err) {
     acc.innerHTML = `
       <div class="alert alert-danger" role="alert">
-        TÜBİTAK proje verileri yüklenemedi. Lütfen <code>tubitak-projects.json</code> dosyasını kontrol edin.
+        TÜBİTAK proje verileri yüklenemedi. Lütfen <code>publications.json</code> dosyasını kontrol edin.
       </div>`;
     console.error(err);
   }
