@@ -6,6 +6,7 @@ const elList    = document.getElementById("list");
 const elSearch  = document.getElementById("qSearch");
 const elYear    = document.getElementById("qYear");
 const elLang    = document.getElementById("qLang");
+const elSort    = document.getElementById("qSort");
 const elCount   = document.getElementById("countText");
 const elLastUpd = document.getElementById("lastUpdated");
 const btnFilter = document.getElementById("btnFilter");
@@ -134,9 +135,17 @@ function renderPage() {
       </div>
       <div class="pub-actions">
         <span class="year-badge year-badge--def">${esc(String(item.year))}</span>
-        ${doiURL ? `<span class="doi-text">${esc(doiURL.replace("https://doi.org/","doi.org/"))}</span>` : ""}
+        ${doiURL ? `<a class="doi-link" href="${esc(doiURL)}" target="_blank" rel="noopener">
+           <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M7 3H4a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M10 2h4v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M14 2L8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+           ${esc(doiURL)}
+         </a>` : ""}
         <div class="action-btns">${goHTML}</div>
-        <div style="flex:1"></div>
+        <button class="card-expand" type="button" aria-label="Detaylar" title="Detaylar">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.4"/>
+            <path d="M8 7v4M8 5.5v.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
       </div>
     </article>`;
   }).join("");
@@ -146,8 +155,14 @@ function renderPage() {
 }
 
 /* ── Sort ── */
-function sortItems(items) {
-  return [...items].sort((a,b) => (Number(b.year)||0) - (Number(a.year)||0));
+function sortItems(items, mode) {
+  const arr = [...items];
+  switch(mode) {
+    case "year-asc":    return arr.sort((a,b)=>(Number(a.year)||0)-(Number(b.year)||0));
+    case "title-asc":   return arr.sort((a,b)=>safe(a.title).localeCompare(safe(b.title),"tr"));
+    case "journal-asc": return arr.sort((a,b)=>safe(a.journal).localeCompare(safe(b.journal),"tr"));
+    default:            return arr.sort((a,b)=>(Number(b.year)||0)-(Number(a.year)||0));
+  }
 }
 
 /* ── Apply filters ── */
@@ -163,7 +178,7 @@ function apply() {
         && (!lg || norm(item.lang) === lg);
   });
 
-  filtered = sortItems(filtered);
+  filtered = sortItems(filtered, elSort.value);
   elCount.textContent = filtered.length;
   currentPage = 1;
   renderPage();
@@ -188,7 +203,7 @@ function scheduleHeight() {
 
 /* ── Events ── */
 function attach() {
-  [elSearch, elYear, elLang].forEach(el => {
+  [elSearch, elYear, elLang, elSort].forEach(el => {
     el.addEventListener("input",  apply);
     el.addEventListener("change", apply);
   });
@@ -197,6 +212,7 @@ function attach() {
     elSearch.value = "";
     elYear.value   = "";
     elLang.value   = "";
+    elSort.value   = "year-desc";
     apply();
   });
   window.addEventListener("load",   postHeight);
