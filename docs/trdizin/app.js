@@ -222,7 +222,7 @@ function attach() {
 /* ── Init ── */
 async function init() {
   try {
-    const res = await fetch("./trdiziznapp.json", { cache:"no-store" });
+    const res = await fetch("./publications.json", { cache:"no-store" });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const json = await res.json();
     META = json.meta || {};
@@ -252,3 +252,4 @@ async function init() {
 }
 
 init();
+
