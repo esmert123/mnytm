@@ -1,0 +1,527 @@
+{
+  "meta": {
+    "lastUpdated": "2025-03-01"
+  },
+  "categories": [
+    {
+      "code": "BAP06",
+      "label": "Lisansüstü / Tez Projeleri",
+      "color": "#2563eb",
+      "hint": "Nd-Fe-B · SrFe₁₂O₁₉ · Mg₂Ni · YEA",
+      "projects": [
+        {
+          "id": "bap06-1",
+          "title": "Element Katkılı Nd-Fe-B Esaslı Sert Mıknatısların Üretimi ve Özelliklerinin İncelenmesi",
+          "status": "done",
+          "meta": "",
+          "investigators": {
+            "leader": "Prof. Dr. Sultan Öztürk",
+            "researchers": ["Ömer Şahin", "Arş. Gör. Kürşat İÇİN"]
+          },
+          "cards": [
+            {
+              "heading": "Kısa özet",
+              "content": "Nd-Fe-B tabanlı kalıcı mıknatısların Dy/Tb gibi kritik elementlere bağımlılığını azaltacak alternatif element katkılarıyla yüksek sıcaklık kararlılığı ve manyetik performansın geliştirilmesi hedeflenir.",
+              "type": "text"
+            },
+            {
+              "heading": "Amaç",
+              "content": ["Koersiviteyi artırmak", "Yüksek sıcaklık performansını iyileştirmek", "Maliyet/kritik element bağımlılığını azaltmak"],
+              "type": "list"
+            },
+            {
+              "heading": "Beklenen katkı",
+              "content": ["Performans-maliyet dengesinde iyileştirme", "Mikroyapı-özellik ilişkisine bilimsel katkı", "Endüstriyel uygulamalar için altyapı"],
+              "type": "list"
+            },
+            {
+              "heading": "Uygulama alanları",
+              "content": "Elektrikli araç motorları · Jeneratörler · Rüzgâr türbinleri · Sensör/aktüatör",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "id": "bap06-2",
+          "title": "Yerli Selestit Cevherinden Mekanokimyasal Sentez ile SrFeO Esaslı Kalıcı Mıknatısların Üretimi",
+          "status": "done",
+          "meta": "",
+          "investigators": {
+            "leader": "Prof. Dr. Sultan Öztürk",
+            "researchers": ["Damla Dilara Çakıl", "Arş. Gör. Kürşat İÇİN", "Arş. Gör. Raşit SEZER"]
+          },
+          "cards": [
+            {
+              "heading": "Kısa özet",
+              "content": "Yerli selestit (Sr kaynağı) ve tufal (Fe₂O₃ kaynağı) gibi girdilerle SrFeO tabanlı kalıcı mıknatısların maliyet-etkin üretimi ve ithalat bağımlılığının azaltılması hedeflenir.",
+              "type": "text"
+            },
+            {
+              "heading": "Öne çıkanlar",
+              "content": ["Yerli hammadde + atık değerlendirme", "Koersivite odaklı faz/özellik analizi", "Patent/ticarileşme potansiyeli"],
+              "type": "list"
+            },
+            {
+              "heading": "Uygulama alanları",
+              "content": "Motor/jeneratör · Elektrikli araçlar · Yüksek frekans sistemleri",
+              "type": "text"
+            },
+            {
+              "heading": "Anahtar kelimeler",
+              "content": "Selestit · Tufal · Kalıcı mıknatıs · Koersivite",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "id": "bap06-3",
+          "title": "SrFe₁₂O₁₉ Mıknatısların Yerli Selestit ve Tufal ile Tek Aşamada Üretimi",
+          "status": "done",
+          "meta": "BAP06 (Doktora)",
+          "investigators": {
+            "leader": "Prof. Dr. Sultan Öztürk",
+            "researchers": ["Arş. Gör. Kürşat İÇİN"]
+          },
+          "cards": [
+            {
+              "heading": "Kısa özet",
+              "content": "SrFe₁₂O₁₉ kalıcı mıknatısların yerli kaynaklarla üretilmesi; katkılarla koersivite ve performans geliştirme, tek-aşamalı üretim yaklaşımı.",
+              "type": "text"
+            },
+            {
+              "heading": "Öne çıkan",
+              "content": ["Tek aşamalı üretim yaklaşımı", "Yerli kaynak + atık dönüşümü", "Patent/ticarileşme potansiyeli"],
+              "type": "list"
+            },
+            {
+              "heading": "Uygulama alanları",
+              "content": "Motor/jeneratör · Ev aletleri · Yüksek frekans uygulamaları",
+              "type": "text"
+            },
+            {
+              "heading": "Anahtar kelimeler",
+              "content": "SrFe₁₂O₁₉ · Selestit · Tufal · Koersivite",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "id": "bap06-4",
+          "title": "Mg₂Ni Esaslı Hidrojen Depolayan Şeritlerin Üretilmesi ve Özelliklerinin İncelenmesi",
+          "status": "done",
+          "meta": "",
+          "investigators": {
+            "leader": "Prof. Dr. Sultan Öztürk",
+            "researchers": ["Arş. Gör. Sefa Emre Sünbül", "Arş. Gör. Kürşat İÇİN"]
+          },
+          "cards": [
+            {
+              "heading": "Kısa özet",
+              "content": "Mg₂Ni metal hidrit sistemlerinde desorpsiyon sıcaklığı ve kinetik problemlerin düşük oran katkılarla iyileştirilmesi hedeflenir.",
+              "type": "text"
+            },
+            {
+              "heading": "Amaç",
+              "content": ["Geri bırakım sıcaklığını düşürmek", "Kinetiği iyileştirmek", "Katkı türü/oranı optimizasyonu"],
+              "type": "list"
+            },
+            {
+              "heading": "Uygulama alanları",
+              "content": "Katı hâl hidrojen depolama · Hidrojen teknolojileri · Enerji entegrasyonu",
+              "type": "text"
+            },
+            {
+              "heading": "Anahtar kelimeler",
+              "content": "Metal hidrit · Mg₂Ni · Kinetik · Desorpsiyon",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "id": "bap06-5",
+          "title": "FeCoCuNiXTi (X = Mn, Al, Cr) Yüksek Entropili Alaşımların Özelliklerinin İncelenmesi",
+          "status": "done",
+          "meta": "BAP06 (Yüksek Lisans)",
+          "investigators": {
+            "leader": "Prof. Dr. Sultan Öztürk",
+            "researchers": ["Arş. Gör. Kürşat İÇİN", "Sefa Emre Sünbül", "Furkan Alptekin"]
+          },
+          "cards": [
+            {
+              "heading": "Kısa özet",
+              "content": "Bileşim değişiminin mikroyapı, mekanik ve manyetik performansa etkisi incelenerek mikroyapı-özellik ilişkisi kurulur.",
+              "type": "text"
+            },
+            {
+              "heading": "Hedef",
+              "content": "Sertlik · Aşınma/korozyon dayanımı · Manyetik özellikler",
+              "type": "text"
+            },
+            {
+              "heading": "Uygulama alanları",
+              "content": "Zorlu servis koşullarında yüzey/alaşım performansı",
+              "type": "text"
+            },
+            {
+              "heading": "Anahtar kelimeler",
+              "content": "YEA/HEA · Manyetik · Sertlik · Korozyon",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "id": "bap06-6",
+          "title": "Kristal Yapı Faktörünün Yüksek Entropili Alaşımın Manyetik Özelliklerine Etkisinin Araştırılması",
+          "status": "done",
+          "meta": "BAP06 (Yüksek Lisans)",
+          "investigators": {
+            "leader": "Dr. Öğr. Üyesi Kürşat İÇİN",
+            "researchers": ["Furkan Kamacı"]
+          },
+          "cards": [
+            {
+              "heading": "Kısa özet",
+              "content": "FeCoCuNi tabanlı YEA'larda Mn/Al değişimi ve Ti katkısı ile oluşan kristal yapı dönüşümlerinin manyetik özelliklere etkisi belirlenir.",
+              "type": "text"
+            },
+            {
+              "heading": "Hedef",
+              "content": "FCC-BCC/B2 geçişlerinin doygun mıknatıslanma ve koersivite üzerindeki etkisini ortaya koymak",
+              "type": "text"
+            },
+            {
+              "heading": "Uygulama alanları",
+              "content": "Yumuşak manyetik malzemeler · Elektrik motorları · Elektromıknatıslar",
+              "type": "text"
+            },
+            {
+              "heading": "Anahtar kelimeler",
+              "content": "YEA · Kristal yapı (FCC/BCC/B2) · Ferromanyetik · Koersivite",
+              "type": "text"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "BAP01",
+      "label": "Temel Araştırma Projeleri",
+      "color": "#16a34a",
+      "hint": "Cu-Al-Mn · MAO · Mg₂Ni · Ni-B/WS₂",
+      "projects": [
+        {
+          "id": "bap01-1",
+          "title": "Ferromanyetik Şekil Hafızalı Cu-Al-Mn Alaşımlarının Hızlı Katılaştırma ile Üretimi ve Özelliklerinin Geliştirilmesi",
+          "status": "done",
+          "meta": "",
+          "investigators": {
+            "leader": "Prof. Dr. Sultan Öztürk",
+            "researchers": ["Arş. Gör. Kürşat İÇİN", "Arş. Gör. Sefa Emre Sünbül", "Arş. Gör. Raşit SEZER"]
+          },
+          "cards": [
+            {
+              "heading": "Kısa özet",
+              "content": "Cu-Al-Mn sisteminde hızlı katılaştırma koşullarının şekil hafıza ve ferromanyetik davranışa etkisi incelenir.",
+              "type": "text"
+            },
+            {
+              "heading": "Amaç",
+              "content": "Mikroyapı-özellik ilişkisi · Kompozisyon/işlem optimizasyonu",
+              "type": "text"
+            },
+            {
+              "heading": "Uygulama alanları",
+              "content": "Sensör · Aktüatör · Mikro sistemler",
+              "type": "text"
+            },
+            {
+              "heading": "Anahtar kelimeler",
+              "content": "Şekil hafıza · Ferromanyetik · Cu-Al-Mn",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "id": "bap01-2",
+          "title": "Mikro Ark Oksidasyon (MAO) ile Alüminyum Alaşımlarının Kaplanması ve Erozyon Aşınma Davranışlarının İncelenmesi",
+          "status": "done",
+          "meta": "",
+          "investigators": {
+            "leader": "Doç. Dr. Bülent Öztürk",
+            "researchers": ["Doç. Dr. Hasan Gedikli", "Arş. Gör. Raşit SEZER", "Arş. Gör. Kürşat İÇİN", "Yavuz Selim Kılıçarslan"]
+          },
+          "cards": [
+            {
+              "heading": "Kısa özet",
+              "content": "MAO/PEO ile Al alaşımlarında sert oksit tabaka oluşturularak erozyon aşınma davranışı kaplı/kaplanmamış numunelerde karşılaştırılır.",
+              "type": "text"
+            },
+            {
+              "heading": "Amaç",
+              "content": "Kaplama parametre optimizasyonu · Dayanım artışı",
+              "type": "text"
+            },
+            {
+              "heading": "Uygulama alanları",
+              "content": "Havacılık/uzay · Otomotiv · Enerji · Makine",
+              "type": "text"
+            },
+            {
+              "heading": "Anahtar kelimeler",
+              "content": "MAO · PEO · Erozyon aşınması · Al alaşımları",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "id": "bap01-3",
+          "title": "Mg₍₂₋ₓ₎NiMₓ (M = Fe, Ti, Ag) Alaşımlarının Eriyik Savurma ile Üretimi ve Elektrokimyasal Hidrojen Depolama Özellikleri",
+          "status": "done",
+          "meta": "",
+          "investigators": {
+            "leader": "Prof. Dr. Sultan Öztürk",
+            "researchers": ["Dr. Öğr. Üyesi Raşit SEZER", "Arş. Gör. Sefa Emre Sünbül", "Arş. Gör. Kürşat İÇİN"]
+          },
+          "cards": [
+            {
+              "heading": "Kısa özet",
+              "content": "Mg₂Ni temelli sistemlerde Fe/Ti/Ag katkıları ile hidrojen depolama kinetiği ve elektrokimyasal performansın iyileştirilmesi hedeflenir.",
+              "type": "text"
+            },
+            {
+              "heading": "Amaç",
+              "content": "Kinetik iyileştirme · Kapasite/çevrim kararlılığı",
+              "type": "text"
+            },
+            {
+              "heading": "Uygulama alanları",
+              "content": "Hidrojen depolama · Ni-MH batarya · Enerji sistemleri",
+              "type": "text"
+            },
+            {
+              "heading": "Anahtar kelimeler",
+              "content": "Metal hidrit · Elektrokimya · Mg₂Ni",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "id": "bap01-4",
+          "title": "Yüksek Entropili Alaşımların Yüksek Sıcaklık Uygulamaları İçin Yüzey Özelliklerinin Geliştirilmesi (Ni-B + WS₂)",
+          "status": "ongoing",
+          "meta": "",
+          "investigators": {
+            "leader": "Dr. Öğr. Üyesi Kürşat İÇİN",
+            "researchers": ["Arş. Gör. Dr. Sefa Emre Sünbül", "Arş. Gör. Sümran Bilgin", "Samet Topal"]
+          },
+          "cards": [
+            {
+              "heading": "Kısa özet",
+              "content": "Akımsız Ni-B ve WS₂ katkılı Ni-B kaplamalar ile yüksek sıcaklıkta sürtünme/aşınma/korozyon davranışının iyileştirilmesi hedeflenir.",
+              "type": "text"
+            },
+            {
+              "heading": "Amaç",
+              "content": "Kaplama parametreleri · Sürtünme azaltma · Yüzey dayanımı",
+              "type": "text"
+            },
+            {
+              "heading": "Uygulama alanları",
+              "content": "Yüksek sıcaklık endüstriyel sistemler · Yüzey dayanımı kritik parçalar",
+              "type": "text"
+            },
+            {
+              "heading": "Anahtar kelimeler",
+              "content": "Ni-B · WS₂ · Kaplama · YEA/HEA",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "id": "bap01-5",
+          "title": "Yüksek Entropili Süper Alaşım Tasarımı ve Özelliklerinin İncelenmesi",
+          "status": "ongoing",
+          "meta": "",
+          "investigators": {
+            "leader": "Dr. Öğr. Üyesi Kürşat İÇİN",
+            "researchers": ["Arş. Gör. Sümran Bilgin", "Arş. Gör. Dr. Sefa Emre Sünbül"]
+          },
+          "cards": [
+            {
+              "heading": "Kısa özet",
+              "content": "AlCoCrFeNiTi(Cu,Si) bileşimli YESA'ların γ/γ' mikroyapı ile yüksek sıcaklık dayanımı, aşınma, korozyon ve oksidasyon direncinin geliştirilmesi.",
+              "type": "text"
+            },
+            {
+              "heading": "Hedef",
+              "content": "γ matrisi + γ' fazı ile zorlu servis koşullarında performans artışı",
+              "type": "text"
+            },
+            {
+              "heading": "Uygulama alanları",
+              "content": "Zorlu servis koşulları · Yüksek sıcaklık sistemleri · Enerji/kimya",
+              "type": "text"
+            },
+            {
+              "heading": "Anahtar kelimeler",
+              "content": "YESA · γ/γ' mikroyapı · Yüksek sıcaklık · Korozyon",
+              "type": "text"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "BAP04",
+      "label": "Altyapı / Geliştirme Projeleri",
+      "color": "#d97706",
+      "hint": "LiFePO₄ · VSM/HEA · YEO",
+      "projects": [
+        {
+          "id": "bap04-1",
+          "title": "Lityum İyon Piller İçin Katot Malzemelerinin Geliştirilmesi (LiFePO₄ + B/Mn)",
+          "status": "done",
+          "meta": "",
+          "investigators": {
+            "leader": "Prof. Dr. Sultan Öztürk",
+            "researchers": ["Arş. Gör. Kürşat İÇİN", "Arş. Gör. Sefa Emre Sünbül", "Selmine Akyol", "Furkan Alptekin"]
+          },
+          "cards": [
+            {
+              "heading": "Kısa özet",
+              "content": "LiFePO₄ katotta B ve Mn katkıları ile kapasite ve çevrim kararlılığının iyileştirilmesi hedeflenir.",
+              "type": "text"
+            },
+            {
+              "heading": "Amaç",
+              "content": "Katot performansını artırma · Çevrim ömrü iyileştirme",
+              "type": "text"
+            },
+            {
+              "heading": "Uygulama alanları",
+              "content": "Enerji depolama · Elektrikli araç · Batarya sistemleri",
+              "type": "text"
+            },
+            {
+              "heading": "Anahtar kelimeler",
+              "content": "LiFePO₄ · Katot · Bor · Mangan",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "id": "bap04-2",
+          "title": "Yüksek Entropili Alaşımların Tasarımı ve Manyetik / Elektrokimyasal Özelliklerinin Geliştirilmesi (VSM Altyapısı)",
+          "status": "ongoing",
+          "meta": "",
+          "investigators": {
+            "leader": "Prof. Dr. Sultan Öztürk",
+            "researchers": ["Prof. Dr. Ümit Alver", "Arş. Gör. Dr. Kürşat İÇİN", "Arş. Gör. Sümran Bilgin"]
+          },
+          "cards": [
+            {
+              "heading": "Kısa özet",
+              "content": "Cu katkılı HEA tasarımı ve Ti ilavesiyle yumuşak manyetik karaktere yaklaşım; eş zamanlı elektrokimyasal dayanım geliştirme ve VSM altyapısının güçlendirilmesi hedeflenir.",
+              "type": "text"
+            },
+            {
+              "heading": "Amaç",
+              "content": "Manyetik parametre optimizasyonu · Korozyon dayanımı · Altyapı geliştirme",
+              "type": "text"
+            },
+            {
+              "heading": "Uygulama alanları",
+              "content": "Manyetik karakterizasyon · HEA geliştirme · Korozyon+manyetik performans",
+              "type": "text"
+            },
+            {
+              "heading": "Anahtar kelimeler",
+              "content": "HEA · VSM · Manyetik · Elektrokimya",
+              "type": "text"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "BAP09",
+      "label": "Lisans Öğrenci Projeleri",
+      "color": "#7c3aed",
+      "hint": "YEO · Süperkapasitör",
+      "projects": [
+        {
+          "id": "bap09-1",
+          "title": "Nadir Toprak Elementleri İçeren Yüksek Entropili Oksitlerin Süperkapasitör Uygulamalarında Kullanımı",
+          "status": "done",
+          "meta": "",
+          "investigators": {
+            "leader": "Dr. Öğr. Üyesi Kürşat İÇİN",
+            "researchers": ["Ahmet Emin Kaya"]
+          },
+          "cards": [
+            {
+              "heading": "Kısa özet",
+              "content": "La/Ce/Y gibi nadir toprak katkılı YEO'lerin süperkapasitör performansına etkisi incelenerek enerji yoğunluğu ve çevrim ömrünün iyileştirilmesi hedeflenir.",
+              "type": "text"
+            },
+            {
+              "heading": "Amaç",
+              "content": "Elektrot malzemesi geliştirme · Performans-bileşim ilişkisi",
+              "type": "text"
+            },
+            {
+              "heading": "Uygulama alanları",
+              "content": "Süperkapasitör · Enerji depolama · Yüksek güç sistemleri",
+              "type": "text"
+            },
+            {
+              "heading": "Anahtar kelimeler",
+              "content": "YEO · Nadir toprak · Süperkapasitör",
+              "type": "text"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "AÜ",
+      "label": "Araştırma Üniversitesi Destek",
+      "color": "#dc2626",
+      "hint": "Manyetik alan destekli biyomalzemeler",
+      "projects": [
+        {
+          "id": "au-1",
+          "title": "Manyetik Alan Destekli Kemik Rejenerasyonu ve Hücresel Proliferasyon",
+          "status": "ongoing",
+          "meta": "",
+          "investigators": {
+            "leader": "Dr. Kürşat İÇİN",
+            "researchers": ["Prof. Dr. Ümit Alver", "Prof. Dr. Mehmet Ertuğrul", "Doç. Dr. Meryem Polat Gönüllü", "Dr. Sedanur Keleş", "Öğr. Gör. Damla Dilara Çakıl", "Arş. Gör. Sümran Bilgin"]
+          },
+          "cards": [
+            {
+              "heading": "Kısa özet",
+              "content": "PCL bazlı nanolif iskelelerin SrFe₁₂O₁₉ ve Ca-SrFe₁₂O₁₉ nanoparçacıkları ile güçlendirilmesi; manyetik uyarım ve antibakteriyel performans hedefi.",
+              "type": "text"
+            },
+            {
+              "heading": "Amaç",
+              "content": "Nanolif yapı optimizasyonu · Manyetik alan altında performans artışı",
+              "type": "text"
+            },
+            {
+              "heading": "Uygulama alanları",
+              "content": "Kemik doku mühendisliği · Antibakteriyel yüzeyler",
+              "type": "text"
+            },
+            {
+              "heading": "Anahtar kelimeler",
+              "content": "Elektrospinning · PCL · SrFe₁₂O₁₉ · Manyetik alan",
+              "type": "text"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
