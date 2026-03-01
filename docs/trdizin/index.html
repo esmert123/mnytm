@@ -12,11 +12,11 @@
 </head>
 <body>
 
-  <main class="container main-wrap" style="padding-top:24px">
+  <main class="container main-wrap">
 
     <!-- Filtre Paneli -->
     <section class="filter-panel" aria-label="Filtreler">
-      <div class="filter-grid" style="grid-template-columns: 2fr .65fr .85fr auto">
+      <div class="filter-grid filter-grid--trdizin">
         <div class="search-wrap">
           <svg class="search-ico" viewBox="0 0 20 20" fill="none">
             <circle cx="9" cy="9" r="5.5" stroke="#94a3b8" stroke-width="1.7"/>
@@ -35,6 +35,15 @@
             <option value="">Tümü</option>
             <option value="TR">Türkçe</option>
             <option value="EN">İngilizce</option>
+          </select>
+        </div>
+        <div class="f-field">
+          <label class="f-label" for="qSort">Sırala</label>
+          <select id="qSort" class="f-select">
+            <option value="year-desc">Yıl (Yeni → Eski)</option>
+            <option value="year-asc">Yıl (Eski → Yeni)</option>
+            <option value="title-asc">Başlık (A–Z)</option>
+            <option value="journal-asc">Dergi (A–Z)</option>
           </select>
         </div>
         <button id="btnFilter" class="btn-primary" type="button">
@@ -77,7 +86,7 @@
       <div class="state-box state-box--err">
         <div class="state-ico">⚠️</div>
         <h3>Veri yüklenemedi</h3>
-        <p><code>trdizin.json</code> dosyasını kontrol et.</p>
+        <p><code>trdiziznapp.json</code> dosyasını kontrol et.</p>
       </div>
     </template>
 
