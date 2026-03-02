@@ -284,6 +284,7 @@ body {
   border-radius: 999px;
   background: var(--bg);
   border: 1.5px solid var(--border);
+  font-family: 'Syne', sans-serif;
   font-size: .82rem;
   font-weight: 800;
   color: var(--navy);
@@ -348,7 +349,8 @@ body {
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  padding: 14px 16px 14px 20px;
+  padding: 14px 16px 10px 20px;
+  cursor: pointer;
   user-select: none;
 }
 
@@ -363,6 +365,7 @@ body {
   font-weight: 700;
   color: var(--navy);
   line-height: 1.45;
+  margin-bottom: 4px;
 }
 .proj-title mark {
   background: #fef9c3;
