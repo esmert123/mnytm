@@ -7,13 +7,13 @@
       "id": "altek",
       "name": "Altek Döküm",
       "website": "https://www.altekdokum.com",
-      "logo": "dosyalar/manyetam_5mznZ.png"
+      "logo": "https://www.ktu.edu.tr/dosyalar/manyetam_5mznZ.png"
     },
     {
       "id": "tisas",
       "name": "Tisaş",
       "website": "https://tisasarms.com",
-      "logo": "/dosyalar/manyetam_m16uZ.jpg"
+      "logo": "https://www.ktu.edu.tr/dosyalar/manyetam_m16uZ.jpg"
     }
   ]
 }
