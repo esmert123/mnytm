@@ -1,1 +1,170 @@
+:root {
+  --cw-bg: #f7faff;
+  --cw-card: #ffffff;
+  --cw-border: #dbe7f5;
+  --cw-border-strong: #bfd5ee;
+  --cw-text: #10243e;
+  --cw-muted: #5c7190;
+  --cw-accent: #1e63d9;
+  --cw-accent-soft: rgba(30, 99, 217, 0.1);
+  --cw-shadow: 0 10px 26px rgba(23, 53, 97, 0.08);
+  --cw-shadow-hover: 0 18px 36px rgba(23, 53, 97, 0.14);
+  --r-lg: 18px;
+  --r-md: 14px;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, sans-serif;
+  background: var(--cw-bg);
+  color: var(--cw-text);
+}
+.container { width: min(1160px, calc(100% - 32px)); margin-inline: auto; }
+.py-4 { padding-block: 1.5rem; }
+
+.teamHeader {
+  border: 1px solid var(--cw-border);
+  border-radius: var(--r-lg);
+  padding: 20px;
+  background:
+    radial-gradient(800px 260px at 8% 0%, rgba(30, 99, 217, 0.1), transparent 60%),
+    linear-gradient(180deg, #fff, #f5f9ff);
+  box-shadow: var(--cw-shadow);
+}
+.teamKickerText { margin: 0; color: var(--cw-muted); font-size: 0.96rem; font-weight: 500; }
+.teamTitle { margin: 8px 0 0; font-size: clamp(1.4rem, 2.2vw, 1.9rem); font-weight: 800; }
+.controlRow { margin-top: 14px; display: inline-flex; flex-direction: column; gap: 6px; }
+.controlLabel { font-size: 0.76rem; font-weight: 700; color: var(--cw-muted); text-transform: uppercase; letter-spacing: 0.08em; }
+.controlSelect {
+  border: 1px solid var(--cw-border);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--cw-text);
+  padding: 10px 12px;
+  min-width: 240px;
+}
+
+.teamDivider { height: 1px; margin: 16px 0 6px; background: linear-gradient(90deg, transparent, rgba(30, 99, 217, 0.3), transparent); }
+.groupHead { display: flex; justify-content: space-between; gap: 12px; align-items: end; margin-top: 18px; margin-bottom: 10px; }
+.groupOver { font-size: 0.75rem; color: var(--cw-muted); letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; }
+.groupTitle { margin: 4px 0 0; font-size: 1.08rem; font-weight: 800; }
+.groupBadge {
+  border-radius: 999px;
+  padding: 6px 10px;
+  border: 1px solid var(--cw-border);
+  background: #fff;
+  color: var(--cw-muted);
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.memberGrid { display: grid; grid-template-columns: repeat(1, minmax(0, 1fr)); gap: 12px; }
+@media (min-width: 760px) { .memberGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1100px) { .memberGrid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
+.teamCard {
+  border: 1px solid var(--cw-border);
+  background: var(--cw-card);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  box-shadow: var(--cw-shadow);
+  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+  cursor: pointer;
+}
+.teamCard:hover,
+.teamCard:focus-visible {
+  transform: translateY(-3px);
+  border-color: var(--cw-border-strong);
+  box-shadow: var(--cw-shadow-hover);
+  outline: none;
+}
+
+.photoPH {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  display: grid;
+  place-items: center;
+  border-bottom: 1px solid var(--cw-border);
+  background: linear-gradient(145deg, #f6fbff, #eef5ff);
+  overflow: hidden;
+}
+.photoPH img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 24%;
+  display: block;
+}
+.photoPH::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(30, 99, 217, 0.1);
+  pointer-events: none;
+}
+.avatarPH {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  border: 1px solid var(--cw-border);
+  background: linear-gradient(145deg, #eaf4ff, #dcecff);
+  color: #2a4e82;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 1.2rem;
+  z-index: 1;
+}
+.photoSoon {
+  position: absolute;
+  bottom: 10px;
+  z-index: 1;
+  font-size: 0.72rem;
+  color: var(--cw-muted);
+}
+
+.teamBody { padding: 11px 12px 14px; }
+.teamName { margin: 0; font-size: 0.98rem; font-weight: 700; line-height: 1.35; }
+.teamRole { margin: 4px 0 0; font-size: 0.86rem; color: var(--cw-muted); }
+.chipRow { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { border: 1px solid var(--cw-border); padding: 3px 8px; border-radius: 999px; font-size: 0.72rem; color: #2e4e77; background: #f5f9ff; }
+.accentLine { margin-top: 10px; width: 56px; height: 2px; border-radius: 999px; background: linear-gradient(90deg, var(--cw-accent), rgba(30, 99, 217, 0)); }
+
+.panel { position: fixed; inset: 0; pointer-events: none; }
+.panelBackdrop { position: absolute; inset: 0; background: rgba(16, 36, 62, 0.22); opacity: 0; transition: opacity 0.2s ease; }
+.panelSheet {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: min(460px, 94vw);
+  background: #fff;
+  border-left: 1px solid var(--cw-border);
+  box-shadow: -20px 0 42px rgba(12, 31, 59, 0.16);
+  transform: translateX(100%);
+  transition: transform 0.24s ease;
+  padding: 20px;
+  overflow-y: auto;
+}
+.panel.open { pointer-events: auto; }
+.panel.open .panelBackdrop { opacity: 1; }
+.panel.open .panelSheet { transform: translateX(0); }
+.panelClose { border: 1px solid var(--cw-border); background: #fff; border-radius: 8px; width: 32px; height: 32px; cursor: pointer; float: right; }
+.panelPhoto { margin-top: 20px; border-radius: 14px; overflow: hidden; border: 1px solid var(--cw-border); aspect-ratio: 4/5; background: #eef5ff; }
+.panelPhoto img { width: 100%; height: 100%; object-fit: cover; object-position: center 22%; }
+.panelName { margin: 14px 0 4px; font-size: 1.25rem; font-weight: 800; }
+.panelTitle { margin: 0; color: var(--cw-muted); }
+.panelChipRow { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
+.panelBio { margin-top: 12px; color: #314a68; line-height: 1.55; }
+.panelSection { margin-top: 14px; }
+.panelSection h3 { margin: 0 0 6px; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--cw-muted); }
+.panelList, .panelLinks { display: grid; gap: 6px; }
+.panelLinks a { color: var(--cw-accent); text-decoration: none; font-weight: 600; }
+
+@media (max-width: 520px) {
+  .teamBody { padding: 10px 10px 12px; }
+  .teamName { font-size: 0.93rem; }
+  .chip { max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+}
 
