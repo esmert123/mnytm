@@ -1,0 +1,87 @@
+{
+  "meta": {
+    "lastUpdated": "2026-03-01"
+  },
+  "categories": [
+    {
+      "code": "1001",
+      "label": "TÜBİTAK 1001",
+      "color": "#2563eb",
+      "hint": "Kalıcı mıknatıs · Mg-Ni · Nanofiber · HEA",
+      "projects": [
+        {
+          "id": "1001-1",
+          "title": "Hibrit ve Elektrikli Araçlar İçin Yüksek Performanslı Sert (Kalıcı) Mıknatısların Hızlı Katılaşma Yöntemi ile Üretimi ve Özelliklerinin Geliştirilmesi",
+          "status": "done"
+        },
+        {
+          "id": "1001-2",
+          "title": "Yüksek Oranda Hidrojen Depolayan Mg-Ni Esaslı ve Element Katkılı Alaşımların Hızlı Katılaştırma Yoluyla Üretilmesi ve Özelliklerinin Geliştirilmesi",
+          "status": "done"
+        },
+        {
+          "id": "1001-3",
+          "title": "Li-Bataryalar ve Süperkapasitörler İçin Enerji Verimliliği Yüksek Nanofiber Formunda Yüksek Entropili Oksitlerin Tasarımı ve Özelliklerinin Geliştirilmesi",
+          "status": "ongoing"
+        },
+        {
+          "id": "1001-4",
+          "title": "Askeri Amaçlı Ateşli Silahlara Yönelik Susturucularda Yüksek Entropili Alaşımların Kullanımının Araştırılması",
+          "status": "ongoing"
+        }
+      ]
+    },
+    {
+      "code": "1002",
+      "label": "TÜBİTAK 1002",
+      "color": "#16a34a",
+      "hint": "Elektrospinning · Nanofiber",
+      "projects": [
+        {
+          "id": "1002-1",
+          "title": "Sıcaklık Kontrollü Elektrospinning ile Yüksek Performanslı Nanofiber Üretiminin Optimizasyonu",
+          "status": "ongoing"
+        }
+      ]
+    },
+    {
+      "code": "1005",
+      "label": "TÜBİTAK 1005",
+      "color": "#d97706",
+      "hint": "Sr Hekzaferrit · Yerli kaynak",
+      "projects": [
+        {
+          "id": "1005-1",
+          "title": "Elektrikli Araçlarda Yaygın Olarak Kullanılan Stronsiyum Hekzaferrit Mıknatısların Yerli Kaynaklarla Üretimi ve Özelliklerinin Geliştirilmesi",
+          "status": "done"
+        }
+      ]
+    },
+    {
+      "code": "BİGG",
+      "label": "BİGG Yatırım Programı",
+      "color": "#7c3aed",
+      "hint": "Atık değerlendirme · Yerli üretim",
+      "projects": [
+        {
+          "id": "bigg-1",
+          "title": "Yerli Hammaddeler ve Atık Kullanarak Stronsiyum Hekzaferrit Mıknatısların Üretimi",
+          "status": "done"
+        }
+      ]
+    },
+    {
+      "code": "SANAYİ",
+      "label": "Sanayi Ar-Ge Projeleri Destekleme Programı",
+      "color": "#dc2626",
+      "hint": "Kaplama · Ni-P · Sn-Ni",
+      "projects": [
+        {
+          "id": "sanayi-1",
+          "title": "Hafif Silah Bileşenlerine Yönelik Çevreci Yeni Nesil Akımsız Nikel-fosfor ve Elektrolitik Kalay-nikel Dubleks Kaplama Uygulamalarının Geliştirilmesi",
+          "status": "done"
+        }
+      ]
+    }
+  ]
+}
