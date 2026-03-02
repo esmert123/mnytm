@@ -1,6 +1,6 @@
 /* ================================================
    MANYETAM TÜBİTAK PROJELERİ — Style
-   Fonts: Syne (display) + DM Sans (body)
+   Fonts: Manrope (display) + DM Sans (body)
    ================================================ */
 
 :root {
@@ -242,7 +242,7 @@ body {
   min-width: 62px;
   padding: 5px 12px;
   border-radius: 999px;
-  font-family: 'Syne', sans-serif;
+  font-family: 'Manrope', 'DM Sans', system-ui, sans-serif;
   font-size: .82rem;
   font-weight: 800;
   letter-spacing: .03em;
@@ -253,7 +253,7 @@ body {
 }
 
 .cat-title {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Manrope', 'DM Sans', system-ui, sans-serif;
   font-size: 1.05rem;
   font-weight: 800;
   color: var(--navy);
@@ -284,7 +284,7 @@ body {
   border-radius: 999px;
   background: var(--bg);
   border: 1.5px solid var(--border);
-  font-family: 'Syne', sans-serif;
+  font-family: 'Manrope', 'DM Sans', system-ui, sans-serif;
   font-size: .82rem;
   font-weight: 800;
   color: var(--navy);
@@ -482,7 +482,7 @@ body {
 }
 
 .detail-heading {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Manrope', 'DM Sans', system-ui, sans-serif;
   font-size: .76rem;
   font-weight: 800;
   text-transform: uppercase;
@@ -516,7 +516,7 @@ body {
 }
 .state-ico { margin-bottom: 12px; }
 .state-box h3 {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Manrope', 'DM Sans', system-ui, sans-serif;
   font-size: 1.2rem;
   font-weight: 700;
   color: var(--navy);
