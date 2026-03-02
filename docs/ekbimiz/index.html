@@ -1,1 +1,68 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MANYETAM | Ekibimiz</title>
+  <meta name="description" content="MANYETAM ekip sayfası" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <main class="teamWrap py-4">
+    <div class="container">
+      <header class="teamHeader">
+        <p id="teamDescription" class="teamKickerText"></p>
+        <h1 id="teamTitle" class="teamTitle"></h1>
+        <div class="controlRow">
+          <label class="controlLabel" for="categoryFilter">Kategori</label>
+          <select id="categoryFilter" class="controlSelect" aria-label="Kategori filtrele">
+            <option value="">Tümü</option>
+          </select>
+        </div>
+      </header>
+
+      <div id="teamGroups"></div>
+    </div>
+  </main>
+
+  <aside id="memberPanel" class="panel" aria-hidden="true" aria-labelledby="panelName" role="dialog">
+    <div id="panelBackdrop" class="panelBackdrop"></div>
+    <div class="panelSheet">
+      <button id="panelClose" class="panelClose" type="button" aria-label="Kapat">✕</button>
+      <div id="panelContent"></div>
+    </div>
+  </aside>
+
+  <template id="groupTemplate">
+    <section class="groupSection">
+      <div class="teamDivider"></div>
+      <div class="groupHead">
+        <div>
+          <div class="groupOver">Kategori</div>
+          <h2 class="groupTitle"></h2>
+        </div>
+        <span class="groupBadge"></span>
+      </div>
+      <div class="memberGrid"></div>
+    </section>
+  </template>
+
+  <template id="memberTemplate">
+    <article class="teamCard" tabindex="0" role="button">
+      <div class="photoPH"></div>
+      <div class="teamBody">
+        <p class="teamName"></p>
+        <p class="teamRole"></p>
+        <div class="chipRow"></div>
+        <div class="accentLine"></div>
+      </div>
+    </article>
+  </template>
+
+  <script src="./app.js" defer></script>
+</body>
+</html>
 
