@@ -1,0 +1,19 @@
+{
+  "meta": {
+    "lastUpdated": "2026-03-01"
+  },
+  "companies": [
+    {
+      "id": "altek",
+      "name": "Altek Döküm",
+      "website": "https://www.altekdokum.com",
+      "logo": "dosyalar/manyetam_5mznZ.png"
+    },
+    {
+      "id": "tisas",
+      "name": "Tisaş",
+      "website": "https://tisasarms.com",
+      "logo": "/dosyalar/manyetam_m16uZ.jpg"
+    }
+  ]
+}
