@@ -5,7 +5,7 @@
   "categories": [
     {
       "code": "1001",
-      "label": "TÜBİTAK 1001",
+      "label": "Bilimsel ve Teknolojik Araştırma Projeleri Destekleme Programı",
       "color": "#2563eb",
       "hint": "Kalıcı mıknatıs · Mg-Ni · Nanofiber · HEA",
       "projects": [
@@ -33,7 +33,7 @@
     },
     {
       "code": "1002",
-      "label": "TÜBİTAK 1002",
+      "label": "Hızlı Destek Programı",
       "color": "#16a34a",
       "hint": "Elektrospinning · Nanofiber",
       "projects": [
@@ -46,7 +46,7 @@
     },
     {
       "code": "1005",
-      "label": "TÜBİTAK 1005",
+      "label": "Ulusal Yeni Fikirler ve Ürünler Araştırma Destek Programı",
       "color": "#d97706",
       "hint": "Sr Hekzaferrit · Yerli kaynak",
       "projects": [
@@ -59,7 +59,7 @@
     },
     {
       "code": "BİGG",
-      "label": "BİGG Yatırım Programı",
+      "label": "Bireysel Genç Girişimci Programı",
       "color": "#7c3aed",
       "hint": "Atık değerlendirme · Yerli üretim",
       "projects": [
