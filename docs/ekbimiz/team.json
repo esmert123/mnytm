@@ -17,16 +17,10 @@
       "kategori": "Proje Ekip Liderleri",
       "gorev": "Proje Yürütücüsü",
       "oncelik": 1,
-      "fotografUrl": "https://www.ktu.edu.tr/dosyalar/manyetam_m17bB.jpeg",
-      "etiketler": [
-        "Yönetim",
-        "Danışman"
-      ],
+      "fotografUrl": "./images/kürşat.jpeg",
+      "etiketler": ["Yönetim", "Danışman"],
       "bioKisa": "Genel proje yönetimi, araştırma stratejisi ve akademik çıktıların koordinasyonundan sorumludur. Proje yazımı, fon başvuruları ve yayın planlamasında liderlik eder.",
-      "iletisim": {
-        "email": "icinkursat@gmail.com",
-        "phone": ""
-      },
+      "iletisim": { "email": "icinkursat@gmail.com", "phone": "" },
       "linkler": {
         "scholar": "https://scholar.google.com/citations?user=LkRBexAAAAAJ&hl=tr",
         "orcid": "",
@@ -41,15 +35,10 @@
       "kategori": "Proje Ekip Liderleri",
       "gorev": "Proje Koordinatörü",
       "oncelik": 2,
-      "fotografUrl": "https://www.ktu.edu.tr/dosyalar/manyetam_9VvqF.png",
-      "etiketler": [
-        "Yönetim"
-      ],
+      "fotografUrl": "./images/sefa.png",
+      "etiketler": ["Yönetim"],
       "bioKisa": "Proje geliştirme, akademik üretkenlik ve yayın süreçlerinin yürütülmesinde aktif rol alır. Proje yazımı ve araştırma çıktılarının kalite kontrolünde destek sağlar.",
-      "iletisim": {
-        "email": "",
-        "phone": ""
-      },
+      "iletisim": { "email": "", "phone": "" },
       "linkler": {
         "scholar": "https://scholar.google.com/citations?user=tMUkK9YAAAAJ&hl=tr",
         "orcid": "",
@@ -64,15 +53,10 @@
       "kategori": "Akademik Personel",
       "gorev": "Araştırmacı",
       "oncelik": 1,
-      "fotografUrl": "https://www.ktu.edu.tr/dosyalar/manyetam_tKwkD.jpeg",
-      "etiketler": [
-        "Akademik"
-      ],
+      "fotografUrl": "./images/sümran.jpeg",
+      "etiketler": ["Akademik"],
       "bioKisa": "Laboratuvar süreçleri, deney planlama ve analiz akışının koordinasyonunda görev alır. Akademik çıktılar için veri düzenleme, raporlama ve planlama süreçlerini yürütür.",
-      "iletisim": {
-        "email": "sumranbilgin@ktu.edu.tr",
-        "phone": ""
-      },
+      "iletisim": { "email": "sumranbilgin@ktu.edu.tr", "phone": "" },
       "linkler": {
         "scholar": "https://scholar.google.com/citations?user=9BBBZZQAAAAJ&hl=tr",
         "orcid": "",
@@ -88,14 +72,9 @@
       "gorev": "Araştırmacı",
       "oncelik": 2,
       "fotografUrl": "",
-      "etiketler": [
-        "Akademik"
-      ],
+      "etiketler": ["Akademik"],
       "bioKisa": "Laboratuvar operasyonları ve üretim süreçlerinin yürütülmesinde görev alır. Numune hazırlama, cihaz/analiz organizasyonu ve günlük iş akışının planlanmasını koordine eder.",
-      "iletisim": {
-        "email": "icanozcelik@ktu.edu.tr",
-        "phone": ""
-      },
+      "iletisim": { "email": "icanozcelik@ktu.edu.tr", "phone": "" },
       "linkler": {
         "scholar": "",
         "orcid": "",
@@ -110,15 +89,10 @@
       "kategori": "Akademik Personel",
       "gorev": "Araştırmacı",
       "oncelik": 3,
-      "fotografUrl": "https://www.ktu.edu.tr/dosyalar/manyetam_xsrgP.jpeg",
-      "etiketler": [
-        "Akademik"
-      ],
+      "fotografUrl": "./images/hamit.jpeg",
+      "etiketler": ["Akademik"],
       "bioKisa": "Deneysel süreçlerin yürütülmesi ve laboratuvar düzeninin takibinde görev alır. Numune/analiz süreçlerinin düzenli ilerlemesini destekler, raporlama adımlarına katkı sağlar.",
-      "iletisim": {
-        "email": "hamitalireis@ktu.edu.tr",
-        "phone": ""
-      },
+      "iletisim": { "email": "hamitalireis@ktu.edu.tr", "phone": "" },
       "linkler": {
         "scholar": "",
         "orcid": "",
@@ -133,21 +107,11 @@
       "kategori": "Araştırma / Analiz Ekibi",
       "gorev": "Lisansüstü Araştırmacı",
       "oncelik": 1,
-      "fotografUrl": "https://www.ktu.edu.tr/dosyalar/manyetam_CCHgt.jpeg",
-      "etiketler": [
-        "Lisansüstü"
-      ],
+      "fotografUrl": "./images/samet.jpeg",
+      "etiketler": ["Lisansüstü"],
       "bioKisa": "VSM karakterizasyonu, korozyon testleri ve vakum ark ergitme süreçlerinde görev alır. Numune üretimi, hazırlama ve deneysel süreçlerin saha uygulamalarını yürütür.",
-      "iletisim": {
-        "email": "samtopall61@gmail.com",
-        "phone": ""
-      },
-      "linkler": {
-        "scholar": "",
-        "orcid": "",
-        "rg": "",
-        "web": ""
-      }
+      "iletisim": { "email": "samtopall61@gmail.com", "phone": "" },
+      "linkler": { "scholar": "", "orcid": "", "rg": "", "web": "" }
     },
     {
       "id": "zehra-mutlu",
@@ -156,21 +120,11 @@
       "kategori": "Araştırma / Analiz Ekibi",
       "gorev": "Lisansüstü Araştırmacı",
       "oncelik": 2,
-      "fotografUrl": "https://www.ktu.edu.tr/dosyalar/manyetam_tK9Mc.jpeg",
-      "etiketler": [
-        "Lisansüstü"
-      ],
+      "fotografUrl": "./images/zehra.jpeg",
+      "etiketler": ["Lisansüstü"],
       "bioKisa": "Elektrospinning üretim süreçlerinde görev alır ve DSC analizlerinin yürütülmesinden sorumludur. Numune hazırlığı ve deney akışının düzenli ilerlemesini destekler.",
-      "iletisim": {
-        "email": "",
-        "phone": ""
-      },
-      "linkler": {
-        "scholar": "",
-        "orcid": "",
-        "rg": "",
-        "web": ""
-      }
+      "iletisim": { "email": "", "phone": "" },
+      "linkler": { "scholar": "", "orcid": "", "rg": "", "web": "" }
     },
     {
       "id": "mert-esmeroglu",
@@ -179,21 +133,11 @@
       "kategori": "Araştırma / Analiz Ekibi",
       "gorev": "Lisansüstü Araştırmacı",
       "oncelik": 3,
-      "fotografUrl": "https://www.ktu.edu.tr/dosyalar/manyetam_Tpzy4.jpeg",
-      "etiketler": [
-        "Lisansüstü"
-      ],
+      "fotografUrl": "./images/mert.jpeg",
+      "etiketler": ["Lisansüstü"],
       "bioKisa": "Isıl işlem fırınları süreçlerinin yürütülmesi ve analiz çıktılarının takibinde görev alır. Deney kayıtları, raporlama ve numune süreçlerinin koordinasyonunu destekler.",
-      "iletisim": {
-        "email": "esmermert8@gmail.com",
-        "phone": ""
-      },
-      "linkler": {
-        "scholar": "",
-        "orcid": "",
-        "rg": "",
-        "web": ""
-      }
+      "iletisim": { "email": "esmermert8@gmail.com", "phone": "" },
+      "linkler": { "scholar": "", "orcid": "", "rg": "", "web": "" }
     },
     {
       "id": "merve-tulek",
@@ -202,21 +146,11 @@
       "kategori": "Araştırma / Analiz Ekibi",
       "gorev": "Lisansüstü Araştırmacı",
       "oncelik": 4,
-      "fotografUrl": "https://www.ktu.edu.tr/dosyalar/manyetam_jEmEW.jpeg",
-      "etiketler": [
-        "Lisansüstü"
-      ],
+      "fotografUrl": "./images/mervegül.jpeg",
+      "etiketler": ["Lisansüstü"],
       "bioKisa": "Fotoelektrik sistemler ve FTIR cihazı süreçlerinden sorumludur. Ölçüm planlama, veri toplama ve analiz raporlamasını yürütür.",
-      "iletisim": {
-        "email": "",
-        "phone": ""
-      },
-      "linkler": {
-        "scholar": "",
-        "orcid": "",
-        "rg": "",
-        "web": ""
-      }
+      "iletisim": { "email": "", "phone": "" },
+      "linkler": { "scholar": "", "orcid": "", "rg": "", "web": "" }
     },
     {
       "id": "taha-golbasi",
@@ -226,20 +160,10 @@
       "gorev": "Araştırma Asistanı",
       "oncelik": 1,
       "fotografUrl": "",
-      "etiketler": [
-        "Lisans"
-      ],
+      "etiketler": ["Lisans"],
       "bioKisa": "Lisans düzeyinde araştırma faaliyetlerinde görev alır. Deneysel çalışmalara destek sağlar; numune hazırlama, ölçüm süreçleri ve veri düzenleme adımlarında ekibe katkı verir.",
-      "iletisim": {
-        "email": "",
-        "phone": ""
-      },
-      "linkler": {
-        "scholar": "",
-        "orcid": "",
-        "rg": "",
-        "web": ""
-      }
+      "iletisim": { "email": "", "phone": "" },
+      "linkler": { "scholar": "", "orcid": "", "rg": "", "web": "" }
     },
     {
       "id": "batuhan-korkmaz",
@@ -249,20 +173,10 @@
       "gorev": "Araştırma Asistanı",
       "oncelik": 2,
       "fotografUrl": "",
-      "etiketler": [
-        "Lisans"
-      ],
+      "etiketler": ["Lisans"],
       "bioKisa": "Lisans düzeyinde araştırma faaliyetlerinde görev alır. Deneysel çalışmalara destek sağlar; numune hazırlama, ölçüm süreçleri ve veri düzenleme adımlarında ekibe katkı verir.",
-      "iletisim": {
-        "email": "",
-        "phone": ""
-      },
-      "linkler": {
-        "scholar": "",
-        "orcid": "",
-        "rg": "",
-        "web": ""
-      }
+      "iletisim": { "email": "", "phone": "" },
+      "linkler": { "scholar": "", "orcid": "", "rg": "", "web": "" }
     },
     {
       "id": "ahmet-arslan",
@@ -272,20 +186,10 @@
       "gorev": "Araştırma Asistanı",
       "oncelik": 3,
       "fotografUrl": "",
-      "etiketler": [
-        "Lisans"
-      ],
+      "etiketler": ["Lisans"],
       "bioKisa": "Lisans düzeyinde araştırma faaliyetlerinde görev alır. Deneysel çalışmalara destek sağlar; numune hazırlama, ölçüm süreçleri ve veri düzenleme adımlarında ekibe katkı verir.",
-      "iletisim": {
-        "email": "",
-        "phone": ""
-      },
-      "linkler": {
-        "scholar": "",
-        "orcid": "",
-        "rg": "",
-        "web": ""
-      }
+      "iletisim": { "email": "", "phone": "" },
+      "linkler": { "scholar": "", "orcid": "", "rg": "", "web": "" }
     },
     {
       "id": "melis-kilic",
@@ -294,21 +198,11 @@
       "kategori": "Lisans Öğrencileri",
       "gorev": "Araştırma Asistanı",
       "oncelik": 4,
-      "fotografUrl": "https://www.ktu.edu.tr/dosyalar/manyetam_iyI1y.jpeg",
-      "etiketler": [
-        "Lisans"
-      ],
+      "fotografUrl": "./images/melis.jpeg",
+      "etiketler": ["Lisans"],
       "bioKisa": "Lisans düzeyinde araştırma faaliyetlerinde görev alır. Deneysel çalışmalara destek sağlar; numune hazırlama, ölçüm süreçleri ve veri düzenleme adımlarında ekibe katkı verir.",
-      "iletisim": {
-        "email": "",
-        "phone": ""
-      },
-      "linkler": {
-        "scholar": "",
-        "orcid": "",
-        "rg": "",
-        "web": ""
-      }
+      "iletisim": { "email": "", "phone": "" },
+      "linkler": { "scholar": "", "orcid": "", "rg": "", "web": "" }
     },
     {
       "id": "sude-bayrak",
@@ -317,21 +211,11 @@
       "kategori": "Lisans Öğrencileri",
       "gorev": "Araştırma Asistanı",
       "oncelik": 5,
-      "fotografUrl": "https://www.ktu.edu.tr/dosyalar/manyetam_N3VnA.jpeg",
-      "etiketler": [
-        "Lisans"
-      ],
+      "fotografUrl": "./images/sude.jpeg",
+      "etiketler": ["Lisans"],
       "bioKisa": "Lisans düzeyinde araştırma faaliyetlerinde görev alır. Deneysel çalışmalara destek sağlar; numune hazırlama, ölçüm süreçleri ve veri düzenleme adımlarında ekibe katkı verir.",
-      "iletisim": {
-        "email": "",
-        "phone": ""
-      },
-      "linkler": {
-        "scholar": "",
-        "orcid": "",
-        "rg": "",
-        "web": ""
-      }
+      "iletisim": { "email": "", "phone": "" },
+      "linkler": { "scholar": "", "orcid": "", "rg": "", "web": "" }
     },
     {
       "id": "sila-yilmaz",
@@ -340,21 +224,11 @@
       "kategori": "Lisans Öğrencileri",
       "gorev": "Araştırma Asistanı",
       "oncelik": 6,
-      "fotografUrl": "https://www.ktu.edu.tr/dosyalar/manyetam_pOA2M.jpeg",
-      "etiketler": [
-        "Lisans"
-      ],
+      "fotografUrl": "./images/sıla.jpeg",
+      "etiketler": ["Lisans"],
       "bioKisa": "Lisans düzeyinde araştırma faaliyetlerinde görev alır. Deneysel çalışmalara destek sağlar; numune hazırlama, ölçüm süreçleri ve veri düzenleme adımlarında ekibe katkı verir.",
-      "iletisim": {
-        "email": "",
-        "phone": ""
-      },
-      "linkler": {
-        "scholar": "",
-        "orcid": "",
-        "rg": "",
-        "web": ""
-      }
+      "iletisim": { "email": "", "phone": "" },
+      "linkler": { "scholar": "", "orcid": "", "rg": "", "web": "" }
     },
     {
       "id": "elif-aydin",
@@ -363,21 +237,11 @@
       "kategori": "Lisans Öğrencileri",
       "gorev": "Araştırma Asistanı",
       "oncelik": 7,
-      "fotografUrl": "https://www.ktu.edu.tr/dosyalar/manyetam_oeDlm.jpeg",
-      "etiketler": [
-        "Lisans"
-      ],
+      "fotografUrl": "./images/elif.jpeg",
+      "etiketler": ["Lisans"],
       "bioKisa": "Lisans düzeyinde araştırma faaliyetlerinde görev alır. Deneysel çalışmalara destek sağlar; numune hazırlama, ölçüm süreçleri ve veri düzenleme adımlarında ekibe katkı verir.",
-      "iletisim": {
-        "email": "",
-        "phone": ""
-      },
-      "linkler": {
-        "scholar": "",
-        "orcid": "",
-        "rg": "",
-        "web": ""
-      }
+      "iletisim": { "email": "", "phone": "" },
+      "linkler": { "scholar": "", "orcid": "", "rg": "", "web": "" }
     }
   ]
 }
