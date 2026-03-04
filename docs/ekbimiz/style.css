@@ -158,6 +158,8 @@ body.drawerLocked { overflow: hidden; }
 .teamBody { padding: 11px 12px 14px; }
 .teamName { margin: 0; font-size: 0.98rem; font-weight: 700; line-height: 1.35; }
 .teamRole { margin: 4px 0 0; font-size: 0.86rem; color: var(--cw-muted); }
+.teamMainRow { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+.teamMainText { min-width: 0; }
 .chipRow { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 6px; }
 .chip {
   border: 1px solid var(--cw-border);
@@ -173,181 +175,45 @@ body.drawerLocked { overflow: hidden; }
   border-radius: 999px;
   background: linear-gradient(90deg, var(--cw-accent), rgba(11, 94, 215, 0));
 }
-
-/* ═══════════════════════════════════════════════
-   PREMIUM RIGHT DRAWER
-   ═══════════════════════════════════════════════ */
-
-/* ─── Overlay ─── */
-.drawerOverlay {
-  position: fixed;
-  inset: 0;
-  height: auto;
-  background: rgba(8, 59, 138, 0.18);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  z-index: 1000;
-  opacity: 0;
-  pointer-events: none;
-  visibility: hidden;
-  transition: opacity 0.2s ease;
-}
-.drawerOverlay.open {
-  opacity: 1;
-  pointer-events: auto;
-  visibility: visible;
-}
-
-/* ─── Drawer Shell ─── */
-.drawer {
-  position: fixed;
-  top: var(--drawer-top, 12px);
-  right: 12px;
-  width: 420px;
-  height: var(--drawer-height, calc(100vh - 24px));
-  bottom: var(--drawer-bottom, auto);
-  background: #fff;
-  border-radius: 20px;
-  border: 1px solid var(--cw-border);
-  box-shadow: 0 25px 80px rgba(8, 59, 138, 0.22), 0 8px 24px rgba(8, 59, 138, 0.10);
-  z-index: 1001;
-  display: flex;
-  flex-direction: column;
-  transform: translateX(calc(100% + 24px));
-  transition: transform 0.2s ease;
-  overflow: hidden;
-}
-.drawer.open {
-  transform: translateX(0);
-}
-
-
-/* Iframe içinde görünür alanı takip etmek için hibrit konumlama */
-body.inIframe .drawerOverlay {
-  position: absolute;
-  inset: auto;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-body.inIframe .drawer {
-  position: absolute;
-}
-
-/* ─── Drawer Header ─── */
-.drawerHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 20px 20px 16px;
-  border-bottom: 1px solid var(--cw-border);
+.expandBtn {
   flex-shrink: 0;
-  background: linear-gradient(180deg, #fafcff, #fff);
-}
-.drawerHeaderText { flex: 1; min-width: 0; }
-.drawerName {
-  margin: 0;
-  font-size: 1.14rem;
-  font-weight: 900;
-  line-height: 1.3;
-  color: var(--cw-text);
-}
-.drawerRole {
-  margin: 3px 0 0;
-  font-size: 0.88rem;
-  color: var(--cw-muted);
-  font-weight: 500;
-}
-
-/* ─── Close Button (36×36, r14) ─── */
-.drawerClose {
-  flex-shrink: 0;
-  width: 36px; height: 36px;
-  border: 1px solid var(--cw-border);
-  border-radius: 14px;
-  background: #fff;
-  color: var(--cw-muted);
-  cursor: pointer;
-  display: grid; place-items: center;
-  transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease, color 0.18s ease;
-}
-.drawerClose:hover {
-  background: #f5f9ff;
-  border-color: var(--cw-border-strong);
-  color: var(--cw-text);
-  transform: translateY(-1px);
-}
-
-/* ─── Drawer Body (scroll container) ─── */
-.drawerBody {
-  flex: 1;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-}
-
-/* Thin scrollbar — Webkit */
-.drawerBody::-webkit-scrollbar { width: 5px; }
-.drawerBody::-webkit-scrollbar-track { background: transparent; }
-.drawerBody::-webkit-scrollbar-thumb {
-  background: rgba(11, 94, 215, 0.15);
-  border-radius: 999px;
-}
-.drawerBody::-webkit-scrollbar-thumb:hover {
-  background: rgba(11, 94, 215, 0.3);
-}
-/* Thin scrollbar — Firefox */
-.drawerBody {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(11, 94, 215, 0.15) transparent;
-}
-
-/* ─── Hero Image ─── */
-.drawerHero {
-  width: 100%;
-  max-height: 360px;
-  overflow: hidden;
-  background: linear-gradient(145deg, #f0f6ff, #e4efff);
-  position: relative;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
+  gap: 4px;
+  border: 1px solid var(--cw-border);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--cw-muted);
+  padding: 6px 10px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: border-color 0.18s ease, background 0.18s ease, color 0.18s ease;
 }
-.drawerHero img {
-  width: 100%;
-  max-height: 360px;
-  object-fit: contain;
-  object-position: center;
-  display: block;
+.expandBtn:hover,
+.expandBtn:focus-visible {
+  border-color: var(--cw-accent);
+  color: var(--cw-accent);
+  background: var(--cw-accent-soft);
+  outline: none;
 }
-.drawerHero .avatarPH {
-  width: 80px; height: 80px;
-  font-size: 1.5rem;
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
+.teamCard.expanded .expandBtn svg { transform: rotate(180deg); }
+
+.cardDetail {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--cw-border);
+  display: grid;
+  gap: 12px;
+  animation: settleIn 0.2s ease both;
 }
 
-/* ─── Drawer Content ─── */
-.drawerContent {
-  padding: 16px 20px 28px;
-}
-
-/* Settle micro-animation */
-.drawerContent.settle {
-  animation: settleIn 0.18s ease both;
-}
 @keyframes settleIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* ─── Drawer Section ─── */
-.drawerSection {
-  margin-bottom: 18px;
-}
-.drawerSection h3 {
+.detailSection h3 {
   margin: 0 0 8px;
   font-size: 0.74rem;
   text-transform: uppercase;
@@ -356,16 +222,14 @@ body.inIframe .drawer {
   font-weight: 700;
 }
 
-/* ─── Bio ─── */
-.drawerBio {
+.detailBio {
   margin: 0;
   font-size: 0.9rem;
   color: #314a68;
   line-height: 1.6;
 }
 
-/* ─── Ghost Link Buttons ─── */
-.drawerLinks {
+.detailLinks {
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -393,8 +257,7 @@ body.inIframe .drawer {
 }
 .ghostBtn svg { width: 16px; height: 16px; flex-shrink: 0; }
 
-/* ─── Contact / Email Copy ─── */
-.drawerContact {
+.detailContact {
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -446,8 +309,8 @@ body.inIframe .drawer {
   background: rgba(22, 163, 74, 0.08);
 }
 
-/* ─── Drawer Accent Line ─── */
-.drawerAccent {
+/* ─── Detail Accent Line ─── */
+.detailAccent {
   width: 56px; height: 2px;
   border-radius: 999px;
   background: linear-gradient(90deg, var(--cw-accent), rgba(11, 94, 215, 0));
@@ -456,7 +319,8 @@ body.inIframe .drawer {
 
 /* ─── Copy Toast ─── */
 .copyToast {
-  position: absolute;
+  position: fixed;
+  bottom: 20px;
   left: 50%;
   transform: translateX(-50%) translateY(20px);
   background: var(--cw-accent-dark);
@@ -477,30 +341,10 @@ body.inIframe .drawer {
   transform: translateX(-50%) translateY(0);
 }
 
-/* ═══════════════════════════════════════════════
-   MOBILE BOTTOM SHEET
-   ═══════════════════════════════════════════════ */
 @media (max-width: 520px) {
-  .drawer {
-    top: var(--drawer-top, auto);
-    bottom: var(--drawer-bottom, 0);
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: var(--drawer-height, auto);
-    border-radius: 20px 20px 0 0;
-    transform: translateY(100%);
-  }
-  .drawer.open {
-    transform: translateY(0);
-  }
-  .drawerHero {
-    max-height: 280px;
-  }
-  .drawerHero img {
-    max-height: 280px;
-  }
   .teamBody { padding: 10px 10px 12px; }
   .teamName { font-size: 0.93rem; }
+  .teamMainRow { flex-direction: column; align-items: flex-start; }
+  .expandBtn { padding: 5px 10px; }
   .chip { max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 }

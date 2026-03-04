@@ -1,125 +1,20 @@
 /* ═══════════════════════════════════════════════
-   MANYETAM Ekibimiz — Premium Drawer App
+   MANYETAM Ekibimiz — Inline Detail Cards
    ═══════════════════════════════════════════════ */
 
-/* ─── DOM refs ─── */
-const titleEl        = document.getElementById("teamTitle");
-const descEl         = document.getElementById("teamDescription");
-const groupsEl       = document.getElementById("teamGroups");
+const titleEl = document.getElementById("teamTitle");
+const descEl = document.getElementById("teamDescription");
+const groupsEl = document.getElementById("teamGroups");
 const categoryFilter = document.getElementById("categoryFilter");
+const copyToast = document.getElementById("copyToast");
 
-const drawer        = document.getElementById("teamDrawer");
-const drawerOverlay = document.getElementById("drawerOverlay");
-const drawerCloseEl = document.getElementById("drawerClose");
-const drawerName    = document.getElementById("drawerName");
-const drawerRole    = document.getElementById("drawerRole");
-const drawerBody    = document.getElementById("drawerBody");
-const copyToast     = document.getElementById("copyToast");
-
-const groupTpl  = document.getElementById("groupTemplate");
+const groupTpl = document.getElementById("groupTemplate");
 const memberTpl = document.getElementById("memberTemplate");
 
 let members = [];
 let kategoriSirasi = [];
 let toastTimer = null;
 
-/* ─── Iframe-aware Drawer Positioning ─── */
-const isInIframe = window.self !== window.top;
-if (isInIframe) document.body.classList.add("inIframe");
-const rootStyle = document.documentElement.style;
-
-function setDrawerState(isOpen) {
-  drawer.classList.toggle("open", isOpen);
-  drawerOverlay.classList.toggle("open", isOpen);
-  drawer.setAttribute("aria-hidden", String(!isOpen));
-  document.body.classList.toggle("drawerLocked", isOpen);
-}
-
-function getVisibleArea() {
-  if (isInIframe) {
-    try {
-      const frameRect = window.frameElement.getBoundingClientRect();
-      const parentVH = window.parent.innerHeight;
-      const visibleStart = Math.max(0, -frameRect.top);
-      const visibleEnd = Math.min(
-        document.documentElement.scrollHeight,
-        -frameRect.top + parentVH
-      );
-      return { top: visibleStart, height: Math.max(400, visibleEnd - visibleStart) };
-    } catch (e) {
-      /* Cross-origin fallback */
-      return { top: window.scrollY || 0, height: Math.min(window.innerHeight, 900) };
-    }
-  }
-  return { top: 0, height: window.innerHeight };
-}
-
-function positionOverlay() {
-  if (!isInIframe) {
-    drawerOverlay.style.top = "";
-    drawerOverlay.style.height = "";
-    return;
-  }
-
-  drawerOverlay.style.top = "0px";
-  drawerOverlay.style.height = Math.max(
-    document.documentElement.scrollHeight,
-    document.body.scrollHeight
-  ) + "px";
-}
-
-function positionDrawer(area, isMobile) {
-  const pad = 12;
-  if (isMobile) {
-    const drawerH = Math.min(area.height * 0.88, area.height - pad);
-    rootStyle.setProperty("--drawer-top", `${area.top + area.height - drawerH}px`);
-    rootStyle.setProperty("--drawer-height", `${drawerH}px`);
-    rootStyle.setProperty("--drawer-bottom", "auto");
-    return;
-  }
-
-  rootStyle.setProperty("--drawer-top", `${area.top + pad}px`);
-  rootStyle.setProperty("--drawer-height", `${area.height - pad * 2}px`);
-  rootStyle.setProperty("--drawer-bottom", "auto");
-}
-
-function positionDrawerElements() {
-  const area = getVisibleArea();
-  const isMobile = window.matchMedia("(max-width: 520px)").matches;
-
-  positionOverlay();
-  positionDrawer(area, isMobile);
-
-  /* Toast: near the bottom of the visible area */
-  copyToast.style.top = (area.top + area.height - 70) + "px";
-}
-
-let _scrollRAF = null;
-function onParentScroll() {
-  if (_scrollRAF) return;
-  _scrollRAF = requestAnimationFrame(() => {
-    _scrollRAF = null;
-    if (drawer.classList.contains("open")) {
-      positionDrawerElements();
-    }
-  });
-}
-
-/* Scroll/resize listeners */
-if (isInIframe) {
-  try {
-    window.parent.addEventListener("scroll", onParentScroll, { passive: true });
-    window.parent.addEventListener("resize", onParentScroll, { passive: true });
-  } catch (e) {
-    window.addEventListener("scroll", onParentScroll, { passive: true });
-    window.addEventListener("resize", onParentScroll, { passive: true });
-  }
-} else {
-  window.addEventListener("scroll", onParentScroll, { passive: true });
-  window.addEventListener("resize", onParentScroll, { passive: true });
-}
-
-/* ─── Helpers ─── */
 function initialsFromName(name) {
   return (name || "")
     .split(" ")
@@ -139,11 +34,9 @@ function makeChip(text) {
 function resolvePhoto(person, prefer2x) {
   const url1 = person.photo_800 || person.fotografUrl || person.photo || person.image || person.img || "";
   const url2 = person.photo_1600 || person.photo2x || person.image2x || person.img2x || "";
-  if (prefer2x) return url2 || url1;
-  return url1;
+  return prefer2x ? (url2 || url1) : url1;
 }
 
-/* ─── Card Photo Box ─── */
 function createPhotoBox(person) {
   const holder = document.createElement("div");
   holder.className = "photoPH";
@@ -167,6 +60,7 @@ function createPhotoBox(person) {
     avatar.className = "avatarPH";
     avatar.textContent = initialsFromName(person.adSoyad) || "?";
     holder.appendChild(avatar);
+
     const hint = document.createElement("small");
     hint.className = "photoSoon";
     hint.textContent = "Fotoğraf yakında";
@@ -176,40 +70,6 @@ function createPhotoBox(person) {
   return holder;
 }
 
-/* ─── Drawer Hero Image ─── */
-function createHero(person) {
-  const hero = document.createElement("div");
-  hero.className = "drawerHero";
-
-  const url = resolvePhoto(person, true) || resolvePhoto(person, false);
-  if (url) {
-    const img = document.createElement("img");
-    img.src = url;
-    img.alt = person.adSoyad;
-    img.decoding = "async";
-    hero.appendChild(img);
-  } else {
-    const avatar = document.createElement("div");
-    avatar.className = "avatarPH";
-    avatar.textContent = initialsFromName(person.adSoyad) || "?";
-    hero.appendChild(avatar);
-  }
-
-  return hero;
-}
-
-/* ─── Section Builder ─── */
-function buildSection(title, contentEl) {
-  const section = document.createElement("div");
-  section.className = "drawerSection";
-  const h3 = document.createElement("h3");
-  h3.textContent = title;
-  section.appendChild(h3);
-  section.appendChild(contentEl);
-  return section;
-}
-
-/* ─── Copy Email ─── */
 function showToast() {
   clearTimeout(toastTimer);
   copyToast.classList.add("show");
@@ -231,46 +91,41 @@ function copyEmail(email, btn) {
   });
 }
 
-/* ─── Link Icons ─── */
 function linkIcon(type) {
   const icons = {
-    scholar:  '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/></svg>',
-    orcid:    '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="9" cy="7" r="0.5" fill="currentColor"/><line x1="9" y1="9" x2="9" y2="17"/><path d="M12 9h2a3 3 0 0 1 0 6h-2V9z"/></svg>',
-    rg:       '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6l3 6-3 6H9l-3-6z"/><line x1="12" y1="9" x2="12" y2="21"/><line x1="8" y1="21" x2="16" y2="21"/></svg>',
-    web:      '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>',
-    avesis:   '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>',
+    scholar: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/></svg>',
+    orcid: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="9" cy="7" r="0.5" fill="currentColor"/><line x1="9" y1="9" x2="9" y2="17"/><path d="M12 9h2a3 3 0 0 1 0 6h-2V9z"/></svg>',
+    rg: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6l3 6-3 6H9l-3-6z"/><line x1="12" y1="9" x2="12" y2="21"/><line x1="8" y1="21" x2="16" y2="21"/></svg>',
+    web: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>',
+    avesis: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>',
     linkedin: '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.125 2.062 2.062 0 0 1 0 4.125zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>'
   };
   return icons[type] || icons.web;
 }
 
-/* ═══════════════════════════════════════════════
-   OPEN DRAWER
-   ═══════════════════════════════════════════════ */
-function openDrawer(person) {
-  /* Header */
-  drawerName.textContent = person.adSoyad;
-  drawerRole.textContent = person.unvan || person.gorev || "";
+function createSection(title, bodyEl) {
+  const section = document.createElement("div");
+  section.className = "detailSection";
 
-  /* Clear body */
-  drawerBody.innerHTML = "";
+  const h3 = document.createElement("h3");
+  h3.textContent = title;
+  section.appendChild(h3);
+  section.appendChild(bodyEl);
 
-  /* Hero image */
-  drawerBody.appendChild(createHero(person));
+  return section;
+}
 
-  /* Scrollable content wrapper */
-  const content = document.createElement("div");
-  content.className = "drawerContent";
+function createDetail(person) {
+  const wrap = document.createElement("div");
+  wrap.className = "cardDetail";
 
-  /* Bio / Hakkında */
   if (person.bioKisa) {
-    const bioP = document.createElement("p");
-    bioP.className = "drawerBio";
-    bioP.textContent = person.bioKisa;
-    content.appendChild(buildSection("Hakkında", bioP));
+    const bio = document.createElement("p");
+    bio.className = "detailBio";
+    bio.textContent = person.bioKisa;
+    wrap.appendChild(createSection("Hakkında", bio));
   }
 
-  /* Bağlantılar — ghost buttons */
   const linkMap = {
     scholar: "Google Scholar",
     orcid: "ORCID",
@@ -279,14 +134,16 @@ function openDrawer(person) {
     linkedin: "LinkedIn",
     web: "Kişisel Sayfa"
   };
+
   const linkEntries = [];
   Object.entries(linkMap).forEach(([key, label]) => {
     const href = person.linkler?.[key];
     if (href) linkEntries.push({ key, label, href });
   });
+
   if (linkEntries.length) {
     const linksWrap = document.createElement("div");
-    linksWrap.className = "drawerLinks";
+    linksWrap.className = "detailLinks";
     linkEntries.forEach(({ key, label, href }) => {
       const a = document.createElement("a");
       a.className = "ghostBtn";
@@ -296,80 +153,74 @@ function openDrawer(person) {
       a.innerHTML = `${linkIcon(key)} ${label}`;
       linksWrap.appendChild(a);
     });
-    content.appendChild(buildSection("Bağlantılar", linksWrap));
+    wrap.appendChild(createSection("Bağlantılar", linksWrap));
   }
 
-  /* İletişim — e-posta copy */
   const contactItems = [];
-  if (person.iletisim?.email)
+  if (person.iletisim?.email) {
     contactItems.push({ label: "E-posta", value: person.iletisim.email, copyable: true });
-  if (person.iletisim?.phone)
+  }
+  if (person.iletisim?.phone) {
     contactItems.push({ label: "Telefon", value: person.iletisim.phone, copyable: false });
+  }
 
   if (contactItems.length) {
     const contactWrap = document.createElement("div");
-    contactWrap.className = "drawerContact";
+    contactWrap.className = "detailContact";
     contactItems.forEach(({ label, value, copyable }) => {
       const row = document.createElement("div");
       row.className = "contactRow";
       row.innerHTML = `<span class="label">${label}</span><span class="value">${value}</span>`;
+
       if (copyable) {
         const btn = document.createElement("button");
         btn.type = "button";
         btn.className = "copyBtn";
         btn.innerHTML = `${COPY_ICON} Kopyala`;
-        btn.addEventListener("click", (e) => {
-          e.stopPropagation();
-          copyEmail(value, btn);
-        });
+        btn.addEventListener("click", () => copyEmail(value, btn));
         row.appendChild(btn);
       }
+
       contactWrap.appendChild(row);
     });
-    content.appendChild(buildSection("İletişim", contactWrap));
+
+    wrap.appendChild(createSection("İletişim", contactWrap));
   }
 
-  /* Accent line */
   const accent = document.createElement("div");
-  accent.className = "drawerAccent";
-  content.appendChild(accent);
+  accent.className = "detailAccent";
+  wrap.appendChild(accent);
 
-  drawerBody.appendChild(content);
-
-  /* Settle micro-animation */
-  requestAnimationFrame(() => content.classList.add("settle"));
-
-  /* Position drawer in visible area (iframe-safe) */
-  positionDrawerElements();
-
-  /* Show */
-  setDrawerState(true);
-  drawerBody.scrollTop = 0;
+  return wrap;
 }
 
-/* ═══════════════════════════════════════════════
-   CLOSE DRAWER
-   ═══════════════════════════════════════════════ */
-function closeDrawer() {
-  setDrawerState(false);
+function toggleCardDetails(card, person, expandBtn) {
+  const currentOpen = card.classList.contains("expanded");
+  document.querySelectorAll(".teamCard.expanded").forEach((openCard) => {
+    openCard.classList.remove("expanded");
+    const detail = openCard.querySelector(".cardDetail");
+    const button = openCard.querySelector(".expandBtn");
+    if (detail) {
+      detail.hidden = true;
+      detail.innerHTML = "";
+    }
+    if (button) button.setAttribute("aria-expanded", "false");
+  });
 
-  /* Clear dynamic positioning */
-  copyToast.style.top = "";
-  rootStyle.removeProperty("--drawer-top");
-  rootStyle.removeProperty("--drawer-height");
-  rootStyle.removeProperty("--drawer-bottom");
-  if (isInIframe) {
-    drawerOverlay.style.top = "";
-    drawerOverlay.style.height = "";
-  }
+  if (currentOpen) return;
+
+  const detailContainer = card.querySelector(".cardDetail");
+  detailContainer.hidden = false;
+  detailContainer.replaceWith(createDetail(person));
+
+  card.classList.add("expanded");
+  expandBtn.setAttribute("aria-expanded", "true");
 }
 
-/* ═══════════════════════════════════════════════
-   CARD BUILDER
-   ═══════════════════════════════════════════════ */
 function createCard(person) {
   const fragment = memberTpl.content.cloneNode(true);
   const card = fragment.querySelector(".teamCard");
+  const expandBtn = card.querySelector(".expandBtn");
 
   card.querySelector(".photoPH").replaceWith(createPhotoBox(person));
   card.querySelector(".teamName").textContent = person.adSoyad;
@@ -379,20 +230,21 @@ function createCard(person) {
   chipRow.appendChild(makeChip(person.kategori));
   (person.etiketler || []).slice(0, 2).forEach((t) => chipRow.appendChild(makeChip(t)));
 
-  card.addEventListener("click", () => openDrawer(person));
+  expandBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    toggleCardDetails(card, person, expandBtn);
+  });
+
   card.addEventListener("keydown", (e) => {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
-      openDrawer(person);
+      toggleCardDetails(card, person, expandBtn);
     }
   });
 
   return fragment;
 }
 
-/* ═══════════════════════════════════════════════
-   RENDER
-   ═══════════════════════════════════════════════ */
 function render(filter = "") {
   groupsEl.innerHTML = "";
 
@@ -422,9 +274,6 @@ function render(filter = "") {
   });
 }
 
-/* ═══════════════════════════════════════════════
-   INIT
-   ═══════════════════════════════════════════════ */
 async function init() {
   const res = await fetch("./team.json");
   if (!res.ok) throw new Error("team.json yüklenemedi");
@@ -448,13 +297,7 @@ async function init() {
   render();
 }
 
-/* ─── Events ─── */
 categoryFilter.addEventListener("change", () => render(categoryFilter.value));
-drawerCloseEl.addEventListener("click", closeDrawer);
-drawerOverlay.addEventListener("click", closeDrawer);
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") closeDrawer();
-});
 
 init().catch((err) => {
   groupsEl.innerHTML = `<p>Veri yüklenirken bir hata oluştu: ${err.message}</p>`;

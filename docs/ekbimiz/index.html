@@ -28,23 +28,6 @@
     </div>
   </main>
 
-  <!-- Drawer Overlay -->
-  <div id="drawerOverlay" class="drawerOverlay"></div>
-
-  <!-- Premium Right Drawer -->
-  <aside id="teamDrawer" class="drawer" aria-hidden="true" role="dialog" aria-label="Üye detayı">
-    <header class="drawerHeader">
-      <div class="drawerHeaderText">
-        <h2 id="drawerName" class="drawerName"></h2>
-        <p id="drawerRole" class="drawerRole"></p>
-      </div>
-      <button id="drawerClose" class="drawerClose" type="button" aria-label="Kapat">
-        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="4" x2="14" y2="14"/><line x1="14" y1="4" x2="4" y2="14"/></svg>
-      </button>
-    </header>
-    <div id="drawerBody" class="drawerBody"></div>
-  </aside>
-
   <!-- Copy Toast -->
   <div id="copyToast" class="copyToast">Kopyalandı &#10003;</div>
 
@@ -66,10 +49,19 @@
     <article class="teamCard" tabindex="0" role="button">
       <div class="photoPH"></div>
       <div class="teamBody">
-        <p class="teamName"></p>
-        <p class="teamRole"></p>
+        <div class="teamMainRow">
+          <div class="teamMainText">
+            <p class="teamName"></p>
+            <p class="teamRole"></p>
+          </div>
+          <button class="expandBtn" type="button" aria-expanded="false" aria-label="Üye detayını göster">
+            <span>Detay</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+        </div>
         <div class="chipRow"></div>
         <div class="accentLine"></div>
+        <div class="cardDetail" hidden></div>
       </div>
     </article>
   </template>
