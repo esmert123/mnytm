@@ -17,6 +17,9 @@
   --cw-shadow-hover: 0 18px 36px rgba(23, 53, 97, 0.14);
   --r-lg: 18px;
   --r-md: 14px;
+  --drawer-top: 12px;
+  --drawer-height: calc(100vh - 24px);
+  --drawer-bottom: auto;
 }
 
 * { box-sizing: border-box; }
@@ -186,11 +189,13 @@ body.drawerLocked { overflow: hidden; }
   z-index: 1000;
   opacity: 0;
   pointer-events: none;
+  visibility: hidden;
   transition: opacity 0.2s ease;
 }
 .drawerOverlay.open {
   opacity: 1;
   pointer-events: auto;
+  visibility: visible;
 }
 
 /* ─── Drawer Shell ─── */
@@ -199,7 +204,8 @@ body.drawerLocked { overflow: hidden; }
   top: 12px;
   right: 12px;
   width: 420px;
-  height: calc(100vh - 24px);
+  height: var(--drawer-height, calc(100vh - 24px));
+  bottom: var(--drawer-bottom, auto);
   background: #fff;
   border-radius: 20px;
   border: 1px solid var(--cw-border);
@@ -481,6 +487,7 @@ body.inIframe .drawer {
     left: 0;
     right: 0;
     width: 100%;
+    height: var(--drawer-height, auto);
     border-radius: 20px 20px 0 0;
     transform: translateY(100%);
   }

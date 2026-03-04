@@ -27,7 +27,6 @@ let toastTimer = null;
 const isInIframe = window.self !== window.top;
 codex/update-drawer-styles-and-functionality-0buv46
 if (isInIframe) document.body.classList.add("inIframe");
-=======
 const hostMetrics = {
   parentScrollY: null,
   parentInnerHeight: null,
@@ -91,10 +90,12 @@ function getVisibleArea() {
   return { top: 0, height: window.innerHeight };
 }
 
-function positionDrawerElements() {
-  const area = getVisibleArea();
-  const pad = 12;
-  const isMobile = window.matchMedia("(max-width: 520px)").matches;
+function positionOverlay() {
+  if (!isInIframe) {
+    drawerOverlay.style.top = "";
+    drawerOverlay.style.height = "";
+    return;
+  }
 
  codex/update-drawer-styles-and-functionality-0buv46
   if (isInIframe) {
@@ -118,6 +119,18 @@ function positionDrawerElements() {
     drawer.style.top = (area.top + pad) + "px";
     drawer.style.height = (area.height - pad * 2) + "px";
   }
+
+  rootStyle.setProperty("--drawer-top", `${area.top + pad}px`);
+  rootStyle.setProperty("--drawer-height", `${area.height - pad * 2}px`);
+  rootStyle.setProperty("--drawer-bottom", "auto");
+}
+
+function positionDrawerElements() {
+  const area = getVisibleArea();
+  const isMobile = window.matchMedia("(max-width: 520px)").matches;
+
+  positionOverlay();
+  positionDrawer(area, isMobile);
 
   /* Toast: near the bottom of the visible area */
   copyToast.style.top = (area.top + area.height - 70) + "px";
@@ -403,10 +416,7 @@ function openDrawer(person) {
   positionDrawerElements();
 
   /* Show */
-  drawer.classList.add("open");
-  drawerOverlay.classList.add("open");
-  drawer.setAttribute("aria-hidden", "false");
-  document.body.classList.add("drawerLocked");
+  setDrawerState(true);
   drawerBody.scrollTop = 0;
 }
 
@@ -414,10 +424,7 @@ function openDrawer(person) {
    CLOSE DRAWER
    ═══════════════════════════════════════════════ */
 function closeDrawer() {
-  drawer.classList.remove("open");
-  drawerOverlay.classList.remove("open");
-  drawer.setAttribute("aria-hidden", "true");
-  document.body.classList.remove("drawerLocked");
+  setDrawerState(false);
 
   /* Clear dynamic positioning */
   drawer.style.top = "";
