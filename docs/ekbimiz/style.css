@@ -215,6 +215,20 @@ body.drawerLocked { overflow: hidden; }
   transform: translateX(0);
 }
 
+
+/* Iframe içinde görünür alanı takip etmek için hibrit konumlama */
+body.inIframe .drawerOverlay {
+  position: absolute;
+  inset: auto;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+body.inIframe .drawer {
+  position: absolute;
+}
+
 /* ─── Drawer Header ─── */
 .drawerHeader {
   display: flex;

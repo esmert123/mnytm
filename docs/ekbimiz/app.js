@@ -25,6 +25,9 @@ let toastTimer = null;
 
 /* ─── Iframe-aware Drawer Positioning ─── */
 const isInIframe = window.self !== window.top;
+codex/update-drawer-styles-and-functionality-0buv46
+if (isInIframe) document.body.classList.add("inIframe");
+=======
 const hostMetrics = {
   parentScrollY: null,
   parentInnerHeight: null,
@@ -50,6 +53,7 @@ function isValidHostMetricsPayload(data) {
     (value) => typeof value === "number" && Number.isFinite(value)
   );
 }
+ main
 
 function getVisibleArea() {
   if (isInIframe) {
@@ -92,7 +96,20 @@ function positionDrawerElements() {
   const pad = 12;
   const isMobile = window.matchMedia("(max-width: 520px)").matches;
 
+ codex/update-drawer-styles-and-functionality-0buv46
+  if (isInIframe) {
+    /* Iframe modunda overlay görünür viewport segmentini kapsasın */
+    drawerOverlay.style.top = "0px";
+    drawerOverlay.style.height = Math.max(
+      document.documentElement.scrollHeight,
+      document.body.scrollHeight
+    ) + "px";
+  }
+
+  /* Drawer: visible alana göre konumlanır */
+=======
   /* Drawer: inside the visible area */
+ main
   if (isMobile) {
     const drawerH = Math.min(area.height * 0.88, area.height - pad);
     drawer.style.top = (area.top + area.height - drawerH) + "px";
@@ -406,6 +423,13 @@ function closeDrawer() {
   drawer.style.top = "";
   drawer.style.height = "";
   copyToast.style.top = "";
+ codex/update-drawer-styles-and-functionality-0buv46
+  if (isInIframe) {
+    drawerOverlay.style.top = "";
+    drawerOverlay.style.height = "";
+  }
+
+ main
 }
 
 /* ═══════════════════════════════════════════════
