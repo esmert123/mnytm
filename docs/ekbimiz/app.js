@@ -25,6 +25,15 @@ let toastTimer = null;
 
 /* ─── Iframe-aware Drawer Positioning ─── */
 const isInIframe = window.self !== window.top;
+if (isInIframe) document.body.classList.add("inIframe");
+const rootStyle = document.documentElement.style;
+
+function setDrawerState(isOpen) {
+  drawer.classList.toggle("open", isOpen);
+  drawerOverlay.classList.toggle("open", isOpen);
+  drawer.setAttribute("aria-hidden", String(!isOpen));
+  document.body.classList.toggle("drawerLocked", isOpen);
+}
 
 function getVisibleArea() {
   if (isInIframe) {
@@ -42,35 +51,47 @@ function getVisibleArea() {
       return { top: window.scrollY || 0, height: Math.min(window.innerHeight, 900) };
     }
   }
-  return { top: window.scrollY || 0, height: window.innerHeight };
+  return { top: 0, height: window.innerHeight };
 }
 
-function positionDrawerElements() {
-  const area = getVisibleArea();
-  const pad = 12;
-  const isMobile = window.matchMedia("(max-width: 520px)").matches;
+function positionOverlay() {
+  if (!isInIframe) {
+    drawerOverlay.style.top = "";
+    drawerOverlay.style.height = "";
+    return;
+  }
 
-  /* Overlay: covers the full document */
   drawerOverlay.style.top = "0px";
   drawerOverlay.style.height = Math.max(
     document.documentElement.scrollHeight,
     document.body.scrollHeight
   ) + "px";
+}
 
-  /* Drawer: inside the visible area */
+function positionDrawer(area, isMobile) {
+  const pad = 12;
   if (isMobile) {
     const drawerH = Math.min(area.height * 0.88, area.height - pad);
-    drawer.style.top = (area.top + area.height - drawerH) + "px";
-    drawer.style.height = drawerH + "px";
-    drawer.style.bottom = "auto";
-  } else {
-    drawer.style.top = (area.top + pad) + "px";
-    drawer.style.height = (area.height - pad * 2) + "px";
+    rootStyle.setProperty("--drawer-top", `${area.top + area.height - drawerH}px`);
+    rootStyle.setProperty("--drawer-height", `${drawerH}px`);
+    rootStyle.setProperty("--drawer-bottom", "auto");
+    return;
   }
+
+  rootStyle.setProperty("--drawer-top", `${area.top + pad}px`);
+  rootStyle.setProperty("--drawer-height", `${area.height - pad * 2}px`);
+  rootStyle.setProperty("--drawer-bottom", "auto");
+}
+
+function positionDrawerElements() {
+  const area = getVisibleArea();
+  const isMobile = window.matchMedia("(max-width: 520px)").matches;
+
+  positionOverlay();
+  positionDrawer(area, isMobile);
 
   /* Toast: near the bottom of the visible area */
   copyToast.style.top = (area.top + area.height - 70) + "px";
-  copyToast.style.bottom = "auto";
 }
 
 let _scrollRAF = null;
@@ -322,10 +343,7 @@ function openDrawer(person) {
   positionDrawerElements();
 
   /* Show */
-  drawer.classList.add("open");
-  drawerOverlay.classList.add("open");
-  drawer.setAttribute("aria-hidden", "false");
-  document.body.classList.add("drawerLocked");
+  setDrawerState(true);
   drawerBody.scrollTop = 0;
 }
 
@@ -333,17 +351,17 @@ function openDrawer(person) {
    CLOSE DRAWER
    ═══════════════════════════════════════════════ */
 function closeDrawer() {
-  drawer.classList.remove("open");
-  drawerOverlay.classList.remove("open");
-  drawer.setAttribute("aria-hidden", "true");
-  document.body.classList.remove("drawerLocked");
+  setDrawerState(false);
 
   /* Clear dynamic positioning */
-  drawer.style.top = "";
-  drawer.style.height = "";
-  drawer.style.bottom = "";
   copyToast.style.top = "";
-  copyToast.style.bottom = "";
+  rootStyle.removeProperty("--drawer-top");
+  rootStyle.removeProperty("--drawer-height");
+  rootStyle.removeProperty("--drawer-bottom");
+  if (isInIframe) {
+    drawerOverlay.style.top = "";
+    drawerOverlay.style.height = "";
+  }
 }
 
 /* ═══════════════════════════════════════════════
