@@ -25,6 +25,7 @@ let toastTimer = null;
 
 /* ─── Iframe-aware Drawer Positioning ─── */
 const isInIframe = window.self !== window.top;
+if (isInIframe) document.body.classList.add("inIframe");
 
 function getVisibleArea() {
   if (isInIframe) {
@@ -42,7 +43,7 @@ function getVisibleArea() {
       return { top: window.scrollY || 0, height: Math.min(window.innerHeight, 900) };
     }
   }
-  return { top: window.scrollY || 0, height: window.innerHeight };
+  return { top: 0, height: window.innerHeight };
 }
 
 function positionDrawerElements() {
@@ -50,19 +51,20 @@ function positionDrawerElements() {
   const pad = 12;
   const isMobile = window.matchMedia("(max-width: 520px)").matches;
 
-  /* Overlay: covers the full document */
-  drawerOverlay.style.top = "0px";
-  drawerOverlay.style.height = Math.max(
-    document.documentElement.scrollHeight,
-    document.body.scrollHeight
-  ) + "px";
+  if (isInIframe) {
+    /* Iframe modunda overlay görünür viewport segmentini kapsasın */
+    drawerOverlay.style.top = "0px";
+    drawerOverlay.style.height = Math.max(
+      document.documentElement.scrollHeight,
+      document.body.scrollHeight
+    ) + "px";
+  }
 
-  /* Drawer: inside the visible area */
+  /* Drawer: visible alana göre konumlanır */
   if (isMobile) {
     const drawerH = Math.min(area.height * 0.88, area.height - pad);
     drawer.style.top = (area.top + area.height - drawerH) + "px";
     drawer.style.height = drawerH + "px";
-    drawer.style.bottom = "auto";
   } else {
     drawer.style.top = (area.top + pad) + "px";
     drawer.style.height = (area.height - pad * 2) + "px";
@@ -70,7 +72,6 @@ function positionDrawerElements() {
 
   /* Toast: near the bottom of the visible area */
   copyToast.style.top = (area.top + area.height - 70) + "px";
-  copyToast.style.bottom = "auto";
 }
 
 let _scrollRAF = null;
@@ -341,9 +342,11 @@ function closeDrawer() {
   /* Clear dynamic positioning */
   drawer.style.top = "";
   drawer.style.height = "";
-  drawer.style.bottom = "";
   copyToast.style.top = "";
-  copyToast.style.bottom = "";
+  if (isInIframe) {
+    drawerOverlay.style.top = "";
+    drawerOverlay.style.height = "";
+  }
 }
 
 /* ═══════════════════════════════════════════════
