@@ -12,7 +12,7 @@
   "uyeler": [
     {
       "id": "kursat-icin",
-      "adSoyad": "Doç. Dr. Kürşat İçin",
+      "adSoyad": "Kürşat İçin",
       "unvan": "Doç. Dr.",
       "kategori": "Proje Ekip Liderleri",
       "gorev": "Proje Yürütücüsü",
@@ -30,7 +30,7 @@
     },
     {
       "id": "sefa-sunbul",
-      "adSoyad": "Doç. Dr. Sefa Emre Sünbül",
+      "adSoyad": "Sefa Emre Sünbül",
       "unvan": "Doç. Dr.",
       "kategori": "Proje Ekip Liderleri",
       "gorev": "Proje Koordinatörü",
@@ -48,7 +48,7 @@
     },
     {
       "id": "sumran-bilgin",
-      "adSoyad": "Arş. Gör. Sümran Bilgin",
+      "adSoyad": "Sümran Bilgin",
       "unvan": "Arş. Gör.",
       "kategori": "Akademik Personel",
       "gorev": "Araştırmacı",
@@ -66,7 +66,7 @@
     },
     {
       "id": "ismail-ozcelik",
-      "adSoyad": "Arş. Gör. İsmail Can Özçelik",
+      "adSoyad": "İsmail Can Özçelik",
       "unvan": "Arş. Gör.",
       "kategori": "Akademik Personel",
       "gorev": "Araştırmacı",
@@ -84,7 +84,7 @@
     },
     {
       "id": "hamit-reis",
-      "adSoyad": "Arş. Gör. Hamit Ali Reis",
+      "adSoyad": "Hamit Ali Reis",
       "unvan": "Arş. Gör.",
       "kategori": "Akademik Personel",
       "gorev": "Araştırmacı",
