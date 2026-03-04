@@ -26,6 +26,8 @@ body {
   font-family: "Work Sans", system-ui, sans-serif;
   background: var(--cw-bg);
   color: var(--cw-text);
+  position: relative;
+  min-height: 100%;
 }
 
 body.drawerLocked { overflow: hidden; }
@@ -175,7 +177,10 @@ body.drawerLocked { overflow: hidden; }
 
 /* ─── Overlay ─── */
 .drawerOverlay {
-  position: fixed; inset: 0;
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
   background: rgba(8, 59, 138, 0.18);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
@@ -191,7 +196,7 @@ body.drawerLocked { overflow: hidden; }
 
 /* ─── Drawer Shell ─── */
 .drawer {
-  position: fixed;
+  position: absolute;
   top: 12px;
   right: 12px;
   width: 420px;
@@ -282,16 +287,19 @@ body.drawerLocked { overflow: hidden; }
 /* ─── Hero Image ─── */
 .drawerHero {
   width: 100%;
-  aspect-ratio: 16 / 11;
+  max-height: 360px;
   overflow: hidden;
   background: linear-gradient(145deg, #f0f6ff, #e4efff);
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .drawerHero img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
+  max-height: 360px;
+  object-fit: contain;
+  object-position: center;
   display: block;
 }
 .drawerHero .avatarPH {
@@ -314,22 +322,6 @@ body.drawerLocked { overflow: hidden; }
 @keyframes settleIn {
   from { opacity: 0; transform: translateY(8px); }
   to   { opacity: 1; transform: translateY(0); }
-}
-
-/* ─── Drawer Chips ─── */
-.drawerChips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-bottom: 18px;
-}
-.drawerChips .chip {
-  font-size: 0.74rem;
-  padding: 4px 10px;
-  background: var(--cw-accent-soft);
-  border-color: rgba(11, 94, 215, 0.18);
-  color: var(--cw-accent-dark);
-  font-weight: 600;
 }
 
 /* ─── Drawer Section ─── */
@@ -445,8 +437,7 @@ body.drawerLocked { overflow: hidden; }
 
 /* ─── Copy Toast ─── */
 .copyToast {
-  position: fixed;
-  bottom: 28px;
+  position: absolute;
   left: 50%;
   transform: translateX(-50%) translateY(20px);
   background: var(--cw-accent-dark);
@@ -472,12 +463,9 @@ body.drawerLocked { overflow: hidden; }
    ═══════════════════════════════════════════════ */
 @media (max-width: 520px) {
   .drawer {
-    top: auto;
-    bottom: 0;
     left: 0;
     right: 0;
     width: 100%;
-    height: 88vh;
     border-radius: 20px 20px 0 0;
     transform: translateY(100%);
   }
@@ -485,7 +473,10 @@ body.drawerLocked { overflow: hidden; }
     transform: translateY(0);
   }
   .drawerHero {
-    aspect-ratio: 4 / 3;
+    max-height: 280px;
+  }
+  .drawerHero img {
+    max-height: 280px;
   }
   .teamBody { padding: 10px 10px 12px; }
   .teamName { font-size: 0.93rem; }
