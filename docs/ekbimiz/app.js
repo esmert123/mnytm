@@ -25,7 +25,35 @@ let toastTimer = null;
 
 /* ─── Iframe-aware Drawer Positioning ─── */
 const isInIframe = window.self !== window.top;
+codex/update-drawer-styles-and-functionality-0buv46
 if (isInIframe) document.body.classList.add("inIframe");
+=======
+const hostMetrics = {
+  parentScrollY: null,
+  parentInnerHeight: null,
+  iframeTopInParent: null
+};
+
+const trustedParentOrigins = new Set([window.location.origin]);
+if (document.referrer) {
+  try {
+    trustedParentOrigins.add(new URL(document.referrer).origin);
+  } catch (e) {
+    /* ignore invalid referrer URL */
+  }
+}
+
+function isValidHostMetricsPayload(data) {
+  if (!data || data.type !== "mnytm-host-metrics" || typeof data.metrics !== "object") {
+    return false;
+  }
+
+  const { parentScrollY, parentInnerHeight, iframeTopInParent } = data.metrics;
+  return [parentScrollY, parentInnerHeight, iframeTopInParent].every(
+    (value) => typeof value === "number" && Number.isFinite(value)
+  );
+}
+ main
 
 function getVisibleArea() {
   if (isInIframe) {
@@ -40,7 +68,24 @@ function getVisibleArea() {
       return { top: visibleStart, height: Math.max(400, visibleEnd - visibleStart) };
     } catch (e) {
       /* Cross-origin fallback */
+ codex/enhance-getvisiblearea-with-metrics
+      if (
+        Number.isFinite(hostMetrics.parentScrollY) &&
+        Number.isFinite(hostMetrics.parentInnerHeight) &&
+        Number.isFinite(hostMetrics.iframeTopInParent)
+      ) {
+        const visibleStart = Math.max(0, hostMetrics.parentScrollY - hostMetrics.iframeTopInParent);
+        const visibleEnd = Math.min(
+          document.documentElement.scrollHeight,
+          visibleStart + hostMetrics.parentInnerHeight
+        );
+        return { top: visibleStart, height: Math.max(400, visibleEnd - visibleStart) };
+      }
+
       return { top: window.scrollY || 0, height: Math.min(window.innerHeight, 900) };
+=======
+      return { top: 0, height: Math.min(window.innerHeight, 900) };
+main
     }
   }
   return { top: 0, height: window.innerHeight };
@@ -51,6 +96,7 @@ function positionDrawerElements() {
   const pad = 12;
   const isMobile = window.matchMedia("(max-width: 520px)").matches;
 
+ codex/update-drawer-styles-and-functionality-0buv46
   if (isInIframe) {
     /* Iframe modunda overlay görünür viewport segmentini kapsasın */
     drawerOverlay.style.top = "0px";
@@ -61,6 +107,9 @@ function positionDrawerElements() {
   }
 
   /* Drawer: visible alana göre konumlanır */
+=======
+  /* Drawer: inside the visible area */
+ main
   if (isMobile) {
     const drawerH = Math.min(area.height * 0.88, area.height - pad);
     drawer.style.top = (area.top + area.height - drawerH) + "px";
@@ -85,12 +134,43 @@ function onParentScroll() {
   });
 }
 
+function updateHostMetrics(metrics) {
+  hostMetrics.parentScrollY = metrics.parentScrollY;
+  hostMetrics.parentInnerHeight = metrics.parentInnerHeight;
+  hostMetrics.iframeTopInParent = metrics.iframeTopInParent;
+}
+
+function postHostMetricsFromParentContext() {
+  if (!isInIframe || !window.frameElement) return;
+
+  const payload = {
+    type: "mnytm-host-metrics",
+    metrics: {
+      parentScrollY: window.parent.scrollY || 0,
+      parentInnerHeight: window.parent.innerHeight || 0,
+      iframeTopInParent: window.frameElement.getBoundingClientRect().top
+    }
+  };
+
+  window.postMessage(payload, window.location.origin);
+}
+
+window.addEventListener("message", (event) => {
+  if (!trustedParentOrigins.has(event.origin)) return;
+  if (!isValidHostMetricsPayload(event.data)) return;
+
+  updateHostMetrics(event.data.metrics);
+  onParentScroll();
+});
+
 /* Scroll/resize listeners */
 if (isInIframe) {
   try {
-    window.parent.addEventListener("scroll", onParentScroll, { passive: true });
-    window.parent.addEventListener("resize", onParentScroll, { passive: true });
+    window.parent.addEventListener("scroll", postHostMetricsFromParentContext, { passive: true });
+    window.parent.addEventListener("resize", postHostMetricsFromParentContext, { passive: true });
+    postHostMetricsFromParentContext();
   } catch (e) {
+    window.parent.postMessage({ type: "mnytm-host-metrics-request" }, "*");
     window.addEventListener("scroll", onParentScroll, { passive: true });
     window.addEventListener("resize", onParentScroll, { passive: true });
   }
@@ -343,10 +423,13 @@ function closeDrawer() {
   drawer.style.top = "";
   drawer.style.height = "";
   copyToast.style.top = "";
+ codex/update-drawer-styles-and-functionality-0buv46
   if (isInIframe) {
     drawerOverlay.style.top = "";
     drawerOverlay.style.height = "";
   }
+
+ main
 }
 
 /* ═══════════════════════════════════════════════
