@@ -53,7 +53,7 @@ function isValidHostMetricsPayload(data) {
     (value) => typeof value === "number" && Number.isFinite(value)
   );
 }
- main
+ 
 
 function getVisibleArea() {
   if (isInIframe) {
@@ -83,9 +83,9 @@ function getVisibleArea() {
       }
 
       return { top: window.scrollY || 0, height: Math.min(window.innerHeight, 900) };
-=======
+
       return { top: 0, height: Math.min(window.innerHeight, 900) };
-main
+
     }
   }
   return { top: 0, height: window.innerHeight };
@@ -107,7 +107,7 @@ function positionDrawerElements() {
   }
 
   /* Drawer: visible alana göre konumlanır */
-=======
+
   /* Drawer: inside the visible area */
  main
   if (isMobile) {
