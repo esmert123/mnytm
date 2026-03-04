@@ -145,17 +145,20 @@ body {
   transform: translateX(100%);
   transition: transform 0.24s ease;
   padding: 20px;
+  padding-top: 60px;
   overflow-y: auto;
 }
 .panel.open { pointer-events: auto; }
 .panel.open .panelBackdrop { opacity: 1; }
 .panel.open .panelSheet { transform: translateX(0); }
-.panelClose { border: 1px solid var(--cw-border); background: #fff; border-radius: 8px; width: 32px; height: 32px; cursor: pointer; float: right; }
-.panelPhoto { margin-top: 20px; border-radius: 14px; overflow: hidden; border: 1px solid var(--cw-border); aspect-ratio: 4/5; background: #eef5ff; }
+.panelClose { border: 1px solid var(--cw-border); background: #fff; border-radius: 8px; width: 32px; height: 32px; cursor: pointer; position: absolute; top: 16px; right: 16px; }
+.panelHeader { display: flex; gap: 14px; align-items: flex-start; margin-top: 8px; }
+.panelPhoto { flex-shrink: 0; width: 96px; height: 96px; border-radius: 12px; overflow: hidden; border: 1px solid var(--cw-border); background: #eef5ff; aspect-ratio: 1/1; }
 .panelPhoto img { width: 100%; height: 100%; object-fit: cover; object-position: center 22%; }
-.panelName { margin: 14px 0 4px; font-size: 1.25rem; font-weight: 800; }
-.panelTitle { margin: 0; color: var(--cw-muted); }
-.panelChipRow { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
+.panelHeaderInfo { flex: 1; min-width: 0; }
+.panelName { margin: 0 0 3px; font-size: 1.05rem; font-weight: 800; line-height: 1.3; }
+.panelTitle { margin: 0; color: var(--cw-muted); font-size: 0.88rem; }
+.panelChipRow { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 6px; }
 .panelBio { margin-top: 12px; color: #314a68; line-height: 1.55; }
 .panelSection { margin-top: 14px; }
 .panelSection h3 { margin: 0 0 6px; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--cw-muted); }
@@ -166,5 +169,37 @@ body {
   .teamBody { padding: 10px 10px 12px; }
   .teamName { font-size: 0.93rem; }
   .chip { max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+}
+
+/* === IMAGE CRISPNESS PATCH (append at end of style.css) === */
+/* Kart hover transform + fractional pixel render yüzünden oluşan pütür/jaggies fix */
+.teamCard {
+  will-change: transform;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.teamCard:hover,
+.teamCard:focus-visible {
+  /* Z'i koruyarak hareket (daha stabil render) */
+  transform: translate3d(0,-3px,0);
+}
+/* Foto alanı ve overlay'yi aynı render yolunda tut */
+.photoPH {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  isolation: isolate;
+}
+.photoPH img,
+.photoPH::after {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+/* Overlay'i biraz düşür: köşe artefaktları azalır */
+.photoPH::after {
+  background: rgba(30, 99, 217, 0.06);
 }
 
