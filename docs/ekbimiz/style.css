@@ -201,7 +201,7 @@ body.drawerLocked { overflow: hidden; }
 /* ─── Drawer Shell ─── */
 .drawer {
   position: fixed;
-  top: 12px;
+  top: var(--drawer-top, 12px);
   right: 12px;
   width: 420px;
   height: var(--drawer-height, calc(100vh - 24px));
@@ -482,8 +482,8 @@ body.inIframe .drawer {
    ═══════════════════════════════════════════════ */
 @media (max-width: 520px) {
   .drawer {
-    top: auto;
-    bottom: 0;
+    top: var(--drawer-top, auto);
+    bottom: var(--drawer-bottom, 0);
     left: 0;
     right: 0;
     width: 100%;
