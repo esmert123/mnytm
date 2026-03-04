@@ -12,7 +12,7 @@
 </head>
 <body>
   <main class="teamWrap py-4">
-    <div class="container">
+    <div class="container-xl">
       <header class="teamHeader">
         <p id="teamDescription" class="teamKickerText"></p>
         <h1 id="teamTitle" class="teamTitle"></h1>
@@ -41,7 +41,7 @@
         </div>
         <span class="groupBadge"></span>
       </div>
-      <div class="memberGrid"></div>
+      <div class="memberGrid row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-3 align-items-start teamGridRow"></div>
     </section>
   </template>
 
@@ -54,14 +54,17 @@
             <p class="teamName"></p>
             <p class="teamRole"></p>
           </div>
-          <button class="expandBtn" type="button" aria-expanded="false" aria-label="Üye detayını göster">
+          <button class="expandBtn teamDetailBtn" type="button" data-action="open-detail" aria-expanded="false" aria-label="Üye detayını göster">
             <span>Detay</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
           </button>
         </div>
         <div class="chipRow"></div>
         <div class="accentLine"></div>
-        <div class="cardDetail" hidden></div>
+      </div>
+      <div class="teamOverlay" aria-hidden="true">
+        <button class="teamOverlayClose" type="button" data-action="close-detail" aria-label="Kapat">✕</button>
+        <div class="teamOverlayBody"></div>
       </div>
     </article>
   </template>

@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════
-   MANYETAM Ekibimiz — Inline Detail Cards
+   MANYETAM Ekibimiz — Card Overlay Detail
    ═══════════════════════════════════════════════ */
 
 const titleEl = document.getElementById("teamTitle");
@@ -194,33 +194,31 @@ function createDetail(person) {
   return wrap;
 }
 
-function toggleCardDetails(card, person, expandBtn) {
-  const currentOpen = card.classList.contains("expanded");
-  document.querySelectorAll(".teamCard.expanded").forEach((openCard) => {
-    openCard.classList.remove("expanded");
-    const detail = openCard.querySelector(".cardDetail");
-    const button = openCard.querySelector(".expandBtn");
-    if (detail) {
-      detail.hidden = true;
-      detail.innerHTML = "";
-    }
-    if (button) button.setAttribute("aria-expanded", "false");
+function closeAll() {
+  document.querySelectorAll(".teamCard.is-open").forEach((card) => {
+    card.classList.remove("is-open");
+    const overlay = card.querySelector(".teamOverlay");
+    const btn = card.querySelector('[data-action="open-detail"]');
+    if (overlay) overlay.setAttribute("aria-hidden", "true");
+    if (btn) btn.setAttribute("aria-expanded", "false");
   });
+}
 
-  if (currentOpen) return;
+function openCardDetail(card) {
+  const overlay = card.querySelector(".teamOverlay");
+  const btn = card.querySelector('[data-action="open-detail"]');
+  if (!overlay) return;
 
-  const detailContainer = card.querySelector(".cardDetail");
-  detailContainer.hidden = false;
-  detailContainer.replaceWith(createDetail(person));
-
-  card.classList.add("expanded");
-  expandBtn.setAttribute("aria-expanded", "true");
+  closeAll();
+  card.classList.add("is-open");
+  overlay.setAttribute("aria-hidden", "false");
+  if (btn) btn.setAttribute("aria-expanded", "true");
 }
 
 function createCard(person) {
   const fragment = memberTpl.content.cloneNode(true);
   const card = fragment.querySelector(".teamCard");
-  const expandBtn = card.querySelector(".expandBtn");
+  const overlayBody = card.querySelector(".teamOverlayBody");
 
   card.querySelector(".photoPH").replaceWith(createPhotoBox(person));
   card.querySelector(".teamName").textContent = person.adSoyad;
@@ -230,19 +228,27 @@ function createCard(person) {
   chipRow.appendChild(makeChip(person.kategori));
   (person.etiketler || []).slice(0, 2).forEach((t) => chipRow.appendChild(makeChip(t)));
 
-  expandBtn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    toggleCardDetails(card, person, expandBtn);
-  });
+  if (overlayBody) {
+    overlayBody.innerHTML = "";
+    overlayBody.appendChild(createDetail(person));
+  }
 
   card.addEventListener("keydown", (e) => {
-    if (e.key === "Enter" || e.key === " ") {
+    if ((e.key === "Enter" || e.key === " ") && !e.target.closest("button, a")) {
       e.preventDefault();
-      toggleCardDetails(card, person, expandBtn);
+      const willOpen = !card.classList.contains("is-open");
+      if (willOpen) {
+        openCardDetail(card);
+      } else {
+        closeAll();
+      }
     }
   });
 
-  return fragment;
+  const col = document.createElement("div");
+  col.className = "col";
+  col.appendChild(card);
+  return col;
 }
 
 function render(filter = "") {
@@ -297,7 +303,42 @@ async function init() {
   render();
 }
 
-categoryFilter.addEventListener("change", () => render(categoryFilter.value));
+categoryFilter.addEventListener("change", () => {
+  closeAll();
+  render(categoryFilter.value);
+});
+
+document.addEventListener("click", (e) => {
+  const openBtn = e.target.closest('[data-action="open-detail"]');
+  const closeBtn = e.target.closest('[data-action="close-detail"]');
+
+  if (openBtn) {
+    e.stopPropagation();
+    const card = openBtn.closest(".teamCard");
+    if (!card) return;
+    const willOpen = !card.classList.contains("is-open");
+    if (willOpen) {
+      openCardDetail(card);
+    } else {
+      closeAll();
+    }
+  }
+
+  if (closeBtn) {
+    e.stopPropagation();
+    const card = closeBtn.closest(".teamCard");
+    if (!card) return;
+    card.classList.remove("is-open");
+    const overlay = card.querySelector(".teamOverlay");
+    const btn = card.querySelector('[data-action="open-detail"]');
+    if (overlay) overlay.setAttribute("aria-hidden", "true");
+    if (btn) btn.setAttribute("aria-expanded", "false");
+  }
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closeAll();
+});
 
 init().catch((err) => {
   groupsEl.innerHTML = `<p>Veri yüklenirken bir hata oluştu: ${err.message}</p>`;
