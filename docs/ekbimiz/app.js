@@ -27,10 +27,32 @@ function createPhotoBox(person, panelMode = false) {
   const holder = document.createElement("div");
   holder.className = panelMode ? "panelPhoto" : "photoPH";
 
-  if (person.fotografUrl) {
+  // === RESPONSIVE IMAGE (1x/2x) BLOCK ===
+  const url1 =
+    person.photo_800 ||
+    person.fotografUrl ||
+    person.photo ||
+    person.image ||
+    person.img ||
+    "";
+  const url2 =
+    person.photo_1600 ||
+    person.photo2x ||
+    person.image2x ||
+    person.img2x ||
+    "";
+
+  if (url1) {
     const img = document.createElement("img");
-    img.src = person.fotografUrl;
+    img.decoding = "async";
+    img.loading = "lazy";
+    img.src = url1;
     img.alt = person.adSoyad;
+    if (url2) {
+      img.srcset = `${url1} 800w, ${url2} 1600w`;
+      img.sizes = "(min-width:1100px) 25vw, (min-width:760px) 50vw, 100vw";
+    }
+    holder.innerHTML = "";
     holder.appendChild(img);
   } else {
     const avatar = document.createElement("div");
@@ -59,18 +81,25 @@ function makeChip(text) {
 function openPanel(person) {
   panelContent.innerHTML = "";
 
+  const header = document.createElement("div");
+  header.className = "panelHeader";
+
   const photo = createPhotoBox(person, true);
-  const name = `<h2 id="panelName" class="panelName">${person.adSoyad}</h2>`;
-  const title = `<p class="panelTitle">${person.unvan || person.gorev || ""}</p>`;
+  header.appendChild(photo);
+
+  const info = document.createElement("div");
+  info.className = "panelHeaderInfo";
+  info.insertAdjacentHTML("beforeend", `<h2 id="panelName" class="panelName">${person.adSoyad}</h2>`);
+  info.insertAdjacentHTML("beforeend", `<p class="panelTitle">${person.unvan || person.gorev || ""}</p>`);
 
   const chips = document.createElement("div");
   chips.className = "panelChipRow";
   chips.appendChild(makeChip(person.kategori));
   (person.etiketler || []).forEach((etiket) => chips.appendChild(makeChip(etiket)));
+  info.appendChild(chips);
 
-  panelContent.appendChild(photo);
-  panelContent.insertAdjacentHTML("beforeend", name + title);
-  panelContent.appendChild(chips);
+  header.appendChild(info);
+  panelContent.appendChild(header);
 
   if (person.bioKisa) {
     panelContent.insertAdjacentHTML("beforeend", `<p class="panelBio">${person.bioKisa}</p>`);
