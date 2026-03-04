@@ -23,6 +23,81 @@ let members = [];
 let kategoriSirasi = [];
 let toastTimer = null;
 
+/* ─── Iframe-aware Drawer Positioning ─── */
+const isInIframe = window.self !== window.top;
+
+function getVisibleArea() {
+  if (isInIframe) {
+    try {
+      const frameRect = window.frameElement.getBoundingClientRect();
+      const parentVH = window.parent.innerHeight;
+      const visibleStart = Math.max(0, -frameRect.top);
+      const visibleEnd = Math.min(
+        document.documentElement.scrollHeight,
+        -frameRect.top + parentVH
+      );
+      return { top: visibleStart, height: Math.max(400, visibleEnd - visibleStart) };
+    } catch (e) {
+      /* Cross-origin fallback */
+      return { top: window.scrollY || 0, height: Math.min(window.innerHeight, 900) };
+    }
+  }
+  return { top: window.scrollY || 0, height: window.innerHeight };
+}
+
+function positionDrawerElements() {
+  const area = getVisibleArea();
+  const pad = 12;
+  const isMobile = window.matchMedia("(max-width: 520px)").matches;
+
+  /* Overlay: covers the full document */
+  drawerOverlay.style.top = "0px";
+  drawerOverlay.style.height = Math.max(
+    document.documentElement.scrollHeight,
+    document.body.scrollHeight
+  ) + "px";
+
+  /* Drawer: inside the visible area */
+  if (isMobile) {
+    const drawerH = Math.min(area.height * 0.88, area.height - pad);
+    drawer.style.top = (area.top + area.height - drawerH) + "px";
+    drawer.style.height = drawerH + "px";
+    drawer.style.bottom = "auto";
+  } else {
+    drawer.style.top = (area.top + pad) + "px";
+    drawer.style.height = (area.height - pad * 2) + "px";
+  }
+
+  /* Toast: near the bottom of the visible area */
+  copyToast.style.top = (area.top + area.height - 70) + "px";
+  copyToast.style.bottom = "auto";
+}
+
+let _scrollRAF = null;
+function onParentScroll() {
+  if (_scrollRAF) return;
+  _scrollRAF = requestAnimationFrame(() => {
+    _scrollRAF = null;
+    if (drawer.classList.contains("open")) {
+      positionDrawerElements();
+    }
+  });
+}
+
+/* Scroll/resize listeners */
+if (isInIframe) {
+  try {
+    window.parent.addEventListener("scroll", onParentScroll, { passive: true });
+    window.parent.addEventListener("resize", onParentScroll, { passive: true });
+  } catch (e) {
+    window.addEventListener("scroll", onParentScroll, { passive: true });
+    window.addEventListener("resize", onParentScroll, { passive: true });
+  }
+} else {
+  window.addEventListener("scroll", onParentScroll, { passive: true });
+  window.addEventListener("resize", onParentScroll, { passive: true });
+}
+
 /* ─── Helpers ─── */
 function initialsFromName(name) {
   return (name || "")
@@ -166,27 +241,12 @@ function openDrawer(person) {
   const content = document.createElement("div");
   content.className = "drawerContent";
 
-  /* Chips */
-  const chips = document.createElement("div");
-  chips.className = "drawerChips";
-  chips.appendChild(makeChip(person.kategori));
-  (person.etiketler || []).forEach((t) => chips.appendChild(makeChip(t)));
-  content.appendChild(chips);
-
   /* Bio / Hakkında */
   if (person.bioKisa) {
     const bioP = document.createElement("p");
     bioP.className = "drawerBio";
     bioP.textContent = person.bioKisa;
     content.appendChild(buildSection("Hakkında", bioP));
-  }
-
-  /* Uzmanlık / Alanlar */
-  if (person.etiketler?.length) {
-    const tagChips = document.createElement("div");
-    tagChips.className = "drawerChips";
-    person.etiketler.forEach((t) => tagChips.appendChild(makeChip(t)));
-    content.appendChild(buildSection("Uzmanlık Alanları", tagChips));
   }
 
   /* Bağlantılar — ghost buttons */
@@ -258,6 +318,9 @@ function openDrawer(person) {
   /* Settle micro-animation */
   requestAnimationFrame(() => content.classList.add("settle"));
 
+  /* Position drawer in visible area (iframe-safe) */
+  positionDrawerElements();
+
   /* Show */
   drawer.classList.add("open");
   drawerOverlay.classList.add("open");
@@ -274,6 +337,13 @@ function closeDrawer() {
   drawerOverlay.classList.remove("open");
   drawer.setAttribute("aria-hidden", "true");
   document.body.classList.remove("drawerLocked");
+
+  /* Clear dynamic positioning */
+  drawer.style.top = "";
+  drawer.style.height = "";
+  drawer.style.bottom = "";
+  copyToast.style.top = "";
+  copyToast.style.bottom = "";
 }
 
 /* ═══════════════════════════════════════════════
