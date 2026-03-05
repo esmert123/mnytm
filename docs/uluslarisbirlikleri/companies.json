@@ -8,7 +8,7 @@
       "name": "University of Belgrade / Vinca Institute of Nuclear Science",
       "contact": "Dr. Katarina Batalovic",
       "website": "https://www.vin.bg.ac.rs/en/",
-      "logo": "./images/belgrad.png"
+      "logo": "docs/uluslarisbirlikleri/images/belgrad.png"
     },
     {
       "id": "slovak-academy",
@@ -26,3 +26,4 @@
     }
   ]
 }
+
