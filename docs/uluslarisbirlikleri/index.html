@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Uluslararasi Is Birlikleri | MANYETAM</title>
+  <meta name="description" content="MANYETAM uluslararasi is birlikleri — partner kurumlar." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+
+  <main class="container main-wrap">
+
+    <!-- Stats Bar -->
+    <div class="stats-bar">
+      <div class="stats-left">
+        <span class="stats-dot"></span>
+        <span>Toplam <strong id="countTotal">0</strong> uluslararasi is birligi partneri</span>
+      </div>
+    </div>
+
+    <!-- Company Grid -->
+    <section id="companyGrid" class="company-grid" aria-live="polite"></section>
+
+    <!-- Empty State -->
+    <template id="tplEmpty">
+      <div class="state-box">
+        <div class="state-ico">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+            <rect x="8" y="12" width="32" height="24" rx="3" stroke="#94a3b8" stroke-width="2.5"/>
+            <path d="M8 20h32" stroke="#94a3b8" stroke-width="2"/>
+            <circle cx="24" cy="30" r="4" stroke="#cbd5e1" stroke-width="2"/>
+          </svg>
+        </div>
+        <h3>Partner bulunamadi</h3>
+        <p>Henuz uluslararasi is birligi verisi eklenmemis.</p>
+      </div>
+    </template>
+
+    <!-- Error State -->
+    <template id="tplError">
+      <div class="state-box state-box--err">
+        <div class="state-ico">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+            <path d="M24 8L4 40h40L24 8z" stroke="#dc2626" stroke-width="2.5" fill="none"/>
+            <path d="M24 20v10M24 34v2" stroke="#dc2626" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>Veri yuklenemedi</h3>
+        <p><code>companies.json</code> dosyasini kontrol edin.</p>
+      </div>
+    </template>
+
+    <footer class="site-foot">
+      <div class="foot-rule"></div>
+      <p>&copy; MANYETAM &middot; Uluslararasi Is Birlikleri</p>
+    </footer>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+  <script src="./app.js" defer></script>
+</body>
+</html>

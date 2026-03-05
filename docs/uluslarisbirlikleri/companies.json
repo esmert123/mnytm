@@ -1,0 +1,28 @@
+{
+  "meta": {
+    "lastUpdated": "2026-03-05"
+  },
+  "companies": [
+    {
+      "id": "belgrade-vinca",
+      "name": "University of Belgrade / Vinca Institute of Nuclear Science",
+      "contact": "Dr. Katarina Batalovic",
+      "website": "",
+      "logo": ""
+    },
+    {
+      "id": "slovak-academy",
+      "name": "Slovak Academy of Sciences",
+      "contact": "Dr. Peter Svec",
+      "website": "",
+      "logo": ""
+    },
+    {
+      "id": "sao-paulo",
+      "name": "University of Sao Paulo",
+      "contact": "",
+      "website": "",
+      "logo": ""
+    }
+  ]
+}
