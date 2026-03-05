@@ -348,6 +348,11 @@ a:focus-visible {
   display: block;
 }
 
+.mny-map-standalone {
+  border-radius: var(--radius);
+  margin-top: 0;
+}
+
 /* ── Toast ── */
 .mny-copy-toast {
   position: fixed;
