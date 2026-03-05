@@ -1,55 +1,99 @@
-<div class="container py-5">
-  <div class="row justify-content-center">
-    <div class="col-lg-8">
+<div style="max-width:720px; margin:0 auto; padding:24px 0;">
 
-      <h2 class="text-center fw-bold mb-2">Bize Yazin</h2>
-      <p class="text-center text-muted mb-4">Sorulariniz ve onerileriniz icin bize ulasabilirsiniz.</p>
-
-      <form>
-        <div class="row mb-3">
-          <div class="col-md-6 mb-3 mb-md-0">
-            <label class="form-label fw-semibold" for="fullName">Ad Soyad *</label>
-            <input type="text" class="form-control" id="fullName" placeholder="Adiniz Soyadiniz" required />
-          </div>
-          <div class="col-md-6">
-            <label class="form-label fw-semibold" for="email">E-posta *</label>
-            <input type="email" class="form-control" id="email" placeholder="ornek@mail.com" required />
-          </div>
-        </div>
-
-        <div class="row mb-3">
-          <div class="col-md-6 mb-3 mb-md-0">
-            <label class="form-label fw-semibold" for="phone">Telefon</label>
-            <input type="tel" class="form-control" id="phone" placeholder="05XX XXX XX XX" />
-          </div>
-          <div class="col-md-6">
-            <label class="form-label fw-semibold" for="subject">Konu *</label>
-            <select class="form-select" id="subject" required>
-              <option value="" selected disabled>Konu seciniz...</option>
-              <option value="genel">Genel Bilgi</option>
-              <option value="isbirligi">Isbirligi Talebi</option>
-              <option value="proje">Proje Basvurusu</option>
-              <option value="staj">Staj Basvurusu</option>
-              <option value="diger">Diger</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label fw-semibold" for="message">Mesajiniz *</label>
-          <textarea class="form-control" id="message" rows="5" placeholder="Mesajinizi buraya yaziniz..." required></textarea>
-        </div>
-
-        <div class="mb-3 form-check">
-          <input type="checkbox" class="form-check-input" id="kvkk" required />
-          <label class="form-check-label" for="kvkk">Kisisel verilerimin islenmesine iliskin aydinlatma metnini okudum ve kabul ediyorum. *</label>
-        </div>
-
-        <div class="text-end">
-          <button type="submit" class="btn btn-primary px-4 py-2 fw-semibold">Gonder</button>
-        </div>
-      </form>
-
-    </div>
+  <!-- Baslik -->
+  <div style="border:1px solid #dbe7f5; border-radius:18px; padding:28px 24px; background:linear-gradient(180deg,#fff,#f5f9ff); box-shadow:0 10px 26px rgba(23,53,97,0.08); margin-bottom:20px;">
+    <p style="margin:0 0 4px; font-size:0.78rem; font-weight:700; color:#5c7190; text-transform:uppercase; letter-spacing:0.1em;">Iletisim</p>
+    <h2 style="margin:0; font-size:1.6rem; font-weight:800; color:#10243e;">Bize Yazin</h2>
+    <p style="margin:8px 0 0; font-size:0.92rem; color:#5c7190;">Sorulariniz, onerileriniz veya isbirligi talepleriniz icin bize ulasabilirsiniz.</p>
   </div>
+
+  <!-- Form Karti -->
+  <div style="border:1px solid #dbe7f5; border-radius:18px; padding:28px 24px; background:#fff; box-shadow:0 10px 26px rgba(23,53,97,0.08);">
+
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+
+      <!-- Ad Soyad + E-posta -->
+      <tr>
+        <td style="padding:0 8px 16px 0; width:50%; vertical-align:top;">
+          <label style="display:block; font-size:0.78rem; font-weight:700; color:#5c7190; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:6px;">Ad Soyad *</label>
+          <input type="text" placeholder="Adiniz Soyadiniz" style="width:100%; border:1px solid #dbe7f5; border-radius:10px; padding:10px 12px; font-size:0.92rem; color:#10243e; background:#fff; outline:none;" />
+        </td>
+        <td style="padding:0 0 16px 8px; width:50%; vertical-align:top;">
+          <label style="display:block; font-size:0.78rem; font-weight:700; color:#5c7190; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:6px;">E-posta *</label>
+          <input type="email" placeholder="ornek@mail.com" style="width:100%; border:1px solid #dbe7f5; border-radius:10px; padding:10px 12px; font-size:0.92rem; color:#10243e; background:#fff; outline:none;" />
+        </td>
+      </tr>
+
+      <!-- Telefon + Konu -->
+      <tr>
+        <td style="padding:0 8px 16px 0; width:50%; vertical-align:top;">
+          <label style="display:block; font-size:0.78rem; font-weight:700; color:#5c7190; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:6px;">Telefon</label>
+          <input type="tel" placeholder="05XX XXX XX XX" style="width:100%; border:1px solid #dbe7f5; border-radius:10px; padding:10px 12px; font-size:0.92rem; color:#10243e; background:#fff; outline:none;" />
+        </td>
+        <td style="padding:0 0 16px 8px; width:50%; vertical-align:top;">
+          <label style="display:block; font-size:0.78rem; font-weight:700; color:#5c7190; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:6px;">Konu *</label>
+          <select style="width:100%; border:1px solid #dbe7f5; border-radius:10px; padding:10px 12px; font-size:0.92rem; color:#10243e; background:#fff; outline:none;">
+            <option value="">Konu seciniz...</option>
+            <option value="genel">Genel Bilgi</option>
+            <option value="isbirligi">Isbirligi Talebi</option>
+            <option value="proje">Proje Basvurusu</option>
+            <option value="staj">Staj Basvurusu</option>
+            <option value="diger">Diger</option>
+          </select>
+        </td>
+      </tr>
+
+      <!-- Mesaj -->
+      <tr>
+        <td colspan="2" style="padding:0 0 16px 0;">
+          <label style="display:block; font-size:0.78rem; font-weight:700; color:#5c7190; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:6px;">Mesajiniz *</label>
+          <textarea rows="5" placeholder="Mesajinizi buraya yaziniz..." style="width:100%; border:1px solid #dbe7f5; border-radius:10px; padding:10px 12px; font-size:0.92rem; color:#10243e; background:#fff; outline:none; resize:vertical; min-height:120px;"></textarea>
+        </td>
+      </tr>
+
+      <!-- KVKK -->
+      <tr>
+        <td colspan="2" style="padding:0 0 20px 0;">
+          <label style="font-size:0.85rem; color:#5c7190; cursor:pointer;">
+            <input type="checkbox" style="margin-right:6px;" />
+            Kisisel verilerimin islenmesine iliskin aydinlatma metnini okudum ve kabul ediyorum. *
+          </label>
+        </td>
+      </tr>
+
+      <!-- Gonder Butonu -->
+      <tr>
+        <td colspan="2" style="text-align:right;">
+          <button type="submit" style="display:inline-block; padding:11px 28px; background:#0B5ED7; color:#fff; border:none; border-radius:10px; font-size:0.92rem; font-weight:700; cursor:pointer; letter-spacing:0.02em;">Gonder</button>
+        </td>
+      </tr>
+
+    </table>
+  </div>
+
+  <!-- Iletisim Bilgileri -->
+  <div style="margin-top:20px; display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+
+    <div style="border:1px solid #dbe7f5; border-radius:14px; padding:16px; background:#fff;">
+      <p style="margin:0 0 2px; font-size:0.75rem; font-weight:700; color:#5c7190; text-transform:uppercase; letter-spacing:0.08em;">Adres</p>
+      <p style="margin:0; font-size:0.88rem; color:#10243e;">Inonu Universitesi, Muhendislik Fakultesi, 44280 Malatya</p>
+    </div>
+
+    <div style="border:1px solid #dbe7f5; border-radius:14px; padding:16px; background:#fff;">
+      <p style="margin:0 0 2px; font-size:0.75rem; font-weight:700; color:#5c7190; text-transform:uppercase; letter-spacing:0.08em;">Telefon</p>
+      <p style="margin:0; font-size:0.88rem; color:#10243e;">+90 (422) 377 00 00</p>
+    </div>
+
+    <div style="border:1px solid #dbe7f5; border-radius:14px; padding:16px; background:#fff;">
+      <p style="margin:0 0 2px; font-size:0.75rem; font-weight:700; color:#5c7190; text-transform:uppercase; letter-spacing:0.08em;">E-posta</p>
+      <p style="margin:0; font-size:0.88rem; color:#10243e;">manyetam@inonu.edu.tr</p>
+    </div>
+
+    <div style="border:1px solid #dbe7f5; border-radius:14px; padding:16px; background:#fff;">
+      <p style="margin:0 0 2px; font-size:0.75rem; font-weight:700; color:#5c7190; text-transform:uppercase; letter-spacing:0.08em;">Calisma Saatleri</p>
+      <p style="margin:0; font-size:0.88rem; color:#10243e;">Pazartesi - Cuma, 08:30 - 17:30</p>
+    </div>
+
+  </div>
+
 </div>
