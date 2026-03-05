@@ -1,0 +1,30 @@
+﻿{
+  "orgName": "MANYETAM",
+  "email": "manyetam@ktu.edu.tr",
+  "emailSecondary": "ktumanyetam@gmail.com",
+  "phone": "+90 532 137 55 19",
+  "addressLines": [
+    "Karadeniz Teknik Universitesi, Kanuni Kampusu",
+    "Bilimsel Arastirma Merkezi, 61080 Ortahisar / Trabzon"
+  ],
+  "workingHours": "Hafta ici 08:00 - 17:00",
+  "map": {
+    "lat": 40.9929,
+    "lng": 39.7773,
+    "zoom": 16,
+    "apiKey": "",
+    "mapId": ""
+  },
+  "form": {
+    "provider": "formspree",
+    "endpoint": "https://formspree.io/f/XXXXXXXX"
+  },
+  "quickLinks": {
+    "mapsUrl": "https://maps.app.goo.gl/pYBkfwi7VwQZvv2G7"
+  },
+  "notes": {
+    "formEndpoint": "TODO: Formspree endpoint degerini endpoint alanina girin.",
+    "mapApi": "TODO: Google Maps mavi tema icin apiKey (ve varsa mapId) ekleyin.",
+    "coordinates": "TODO: lat/lng degerlerini tam pin konumuna gore dogrulayin."
+  }
+}

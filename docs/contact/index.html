@@ -1,1 +1,188 @@
+﻿<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Iletisim | MANYETAM</title>
+  <meta name="description" content="MANYETAM ile iletisime gecin. Sorulariniz, isbirligi talepleriniz ve bilgi istekleriniz icin bize yazin." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Iletisim | MANYETAM" />
+  <meta property="og:description" content="MANYETAM ile iletisime gecin. Sorulariniz, isbirligi talepleriniz ve bilgi istekleriniz icin bize yazin." />
+  <meta property="og:url" content="/contact/" />
+  <meta property="og:site_name" content="MANYETAM" />
+  <meta name="theme-color" content="#0B5ED7" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+    crossorigin="anonymous"
+  />
+  <link rel="stylesheet" href="./contact.css" />
+  <script type="application/ld+json" id="orgSchema"></script>
+</head>
+<body class="mny-page">
+  <header class="mny-topbar">
+    <div class="container mny-container d-flex flex-wrap align-items-center justify-content-between gap-3">
+      <a class="mny-brand" href="../index.html" aria-label="MANYETAM ana sayfa">
+        <span class="mny-brand-dot" aria-hidden="true"></span>
+        <span>MANYETAM</span>
+      </a>
+      <nav aria-label="Ana menu">
+        <ul class="mny-menu">
+          <li><a href="../index.html">Ana Sayfa</a></li>
+          <li><a href="../sci-yayinlar.html">SCI Yayinlar</a></li>
+          <li><a class="active" href="./index.html" aria-current="page">Iletisim</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
+  <main class="container mny-container py-4 py-lg-5">
+    <section class="mny-hero mny-card mb-4 mb-lg-5" aria-labelledby="contact-title">
+      <p class="mny-kicker"><span class="mny-kicker-dot" aria-hidden="true"></span>Iletisim</p>
+      <h1 id="contact-title" class="mny-hero-title">Bize Yazin</h1>
+      <p class="mny-hero-text">Sorulariniz, onerileriniz veya isbirligi talepleriniz icin formu doldurun. En kisa surede size donus yapalim.</p>
+      <nav aria-label="Breadcrumb">
+        <ol class="breadcrumb mb-0 mt-3">
+          <li class="breadcrumb-item"><a href="../index.html">Ana Sayfa</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Iletisim</li>
+        </ol>
+      </nav>
+    </section>
+
+    <section class="row g-4 align-items-start" aria-label="Iletisim icerigi">
+      <div class="col-12 col-xl-7">
+        <article class="mny-card mny-form-card" aria-labelledby="form-title">
+          <div class="d-flex align-items-start justify-content-between gap-3 flex-wrap">
+            <div>
+              <h2 id="form-title" class="mny-card-title">Bize Yazin Formu</h2>
+              <p class="mny-card-subtitle">Tum zorunlu alanlari doldurup mesajinizi iletebilirsiniz.</p>
+            </div>
+            <span class="mny-chip">Gizlilik ve KVKK uyumlu</span>
+          </div>
+
+          <form id="contactForm" class="row g-3 mt-1" novalidate>
+            <div class="col-12 col-md-6">
+              <label class="form-label" for="fullName">Ad Soyad <span aria-hidden="true">*</span></label>
+              <input class="form-control" id="fullName" name="fullName" autocomplete="name" required />
+            </div>
+            <div class="col-12 col-md-6">
+              <label class="form-label" for="email">E-posta <span aria-hidden="true">*</span></label>
+              <input class="form-control" id="email" name="email" type="email" autocomplete="email" required />
+            </div>
+            <div class="col-12 col-md-6">
+              <label class="form-label" for="phone">Telefon</label>
+              <input class="form-control" id="phone" name="phone" type="tel" autocomplete="tel" />
+            </div>
+            <div class="col-12 col-md-6">
+              <label class="form-label" for="subject">Konu <span aria-hidden="true">*</span></label>
+              <select class="form-select" id="subject" name="subject" required>
+                <option value="" selected disabled>Konu seciniz...</option>
+                <option value="Genel Bilgi">Genel Bilgi</option>
+                <option value="Isbirligi Talebi">Isbirligi Talebi</option>
+                <option value="Proje Basvurusu">Proje Basvurusu</option>
+                <option value="Akademik Danisma">Akademik Danisma</option>
+                <option value="Diger">Diger</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <label class="form-label" for="message">Mesaj <span aria-hidden="true">*</span></label>
+              <textarea class="form-control" id="message" name="message" rows="6" required></textarea>
+            </div>
+            <div class="col-12">
+              <div class="form-check mny-check-wrap">
+                <input class="form-check-input" type="checkbox" value="accepted" id="consent" name="consent" required />
+                <label class="form-check-label" for="consent">
+                  Kisisel verilerimin iletisim sureci kapsaminda islenmesini kabul ediyorum.
+                </label>
+              </div>
+            </div>
+            <div class="col-12 d-flex flex-wrap align-items-center gap-3 pt-1">
+              <button id="submitBtn" type="submit" class="btn mny-btn-primary">
+                <span class="spinner-border spinner-border-sm me-2 d-none" id="submitSpinner" aria-hidden="true"></span>
+                <span id="submitLabel">Mesaji Gonder</span>
+              </button>
+              <p class="mny-form-note mb-0">Formspree endpoint'i girildiginde form canli calisir.</p>
+            </div>
+            <div class="col-12">
+              <div id="formStatus" class="mny-form-status d-none" role="status" aria-live="polite"></div>
+            </div>
+          </form>
+        </article>
+      </div>
+
+      <div class="col-12 col-xl-5">
+        <article class="mny-card mny-info-card mb-4" aria-labelledby="info-title">
+          <h2 id="info-title" class="mny-card-title">Iletisim Bilgileri</h2>
+          <p class="mny-card-subtitle">Direkt ulasim icin asagidaki kanallari kullanabilirsiniz.</p>
+
+          <ul class="mny-contact-list list-unstyled mb-0">
+            <li class="mny-contact-item">
+              <p class="mny-label">Kurum</p>
+              <p class="mny-value mb-2" data-org-name>MANYETAM</p>
+            </li>
+            <li class="mny-contact-item">
+              <p class="mny-label">E-posta</p>
+              <a id="contactEmailPrimary" class="mny-link" href="mailto:manyetam@ktu.edu.tr">manyetam@ktu.edu.tr</a>
+              <a id="contactEmailSecondary" class="mny-link" href="mailto:ktumanyetam@gmail.com">ktumanyetam@gmail.com</a>
+              <div class="d-flex flex-wrap gap-2 mt-2">
+                <button type="button" class="btn mny-btn-outline btn-sm" data-copy="#contactEmailPrimary">E-posta Kopyala</button>
+                <a id="emailQuickLink" class="btn mny-btn-outline btn-sm" href="mailto:manyetam@ktu.edu.tr">Hemen Mail At</a>
+              </div>
+            </li>
+            <li class="mny-contact-item">
+              <p class="mny-label">Telefon</p>
+              <a id="contactPhone" class="mny-link" href="tel:+905321375519">+90 532 137 55 19</a>
+              <div class="d-flex flex-wrap gap-2 mt-2">
+                <button type="button" class="btn mny-btn-outline btn-sm" data-copy="#contactPhone">Telefon Kopyala</button>
+                <a id="phoneQuickLink" class="btn mny-btn-outline btn-sm" href="tel:+905321375519">Hemen Ara</a>
+              </div>
+            </li>
+            <li class="mny-contact-item">
+              <p class="mny-label">Adres</p>
+              <div id="addressLines" class="mny-value mb-2">
+                <span>Karadeniz Teknik Universitesi, Kanuni Kampusu</span>
+                <span>Bilimsel Arastirma Merkezi, Ortahisar / Trabzon</span>
+              </div>
+              <div class="d-flex flex-wrap gap-2">
+                <button type="button" class="btn mny-btn-outline btn-sm" data-copy="#addressLines">Adresi Kopyala</button>
+                <a id="mapQuickLink" class="btn mny-btn-outline btn-sm" href="https://maps.app.goo.gl/pYBkfwi7VwQZvv2G7" target="_blank" rel="noopener">Yol Tarifi</a>
+              </div>
+            </li>
+            <li class="mny-contact-item">
+              <p class="mny-label">Calisma Saatleri</p>
+              <p id="workingHours" class="mny-value mb-0">Hafta ici 08:00 - 17:00</p>
+            </li>
+          </ul>
+        </article>
+
+        <article class="mny-card mny-map-card" aria-labelledby="map-title">
+          <h2 id="map-title" class="mny-card-title">Konum</h2>
+          <p class="mny-card-subtitle">API key eklendiginde mavi tema ile Google Maps yuklenir.</p>
+
+          <div id="mnyMap" class="mny-map" aria-label="MANYETAM konum haritasi"></div>
+          <div id="mnyMapFallbackWrap" class="mny-map-fallback d-none">
+            <iframe id="mnyMapFallback" title="MANYETAM konum fallback harita" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+
+          <p id="mapStatus" class="mny-form-note mt-3 mb-0">Harita yukleniyor...</p>
+        </article>
+      </div>
+    </section>
+
+    <footer class="mny-footer mt-5">
+      <p class="mb-0">&copy; <span id="yearNow"></span> MANYETAM - Tum haklari saklidir.</p>
+    </footer>
+  </main>
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"
+  ></script>
+  <script src="./contact.js" defer></script>
+</body>
+</html>
