@@ -8,22 +8,23 @@
       "name": "University of Belgrade / Vinca Institute of Nuclear Science",
       "contact": "Dr. Katarina Batalovic",
       "website": "https://www.vin.bg.ac.rs/en/",
-      "logo": "docs/uluslarisbirlikleri/images/belgrad.png"
+      "logo": "https://esmert123.github.io/mnytm/docs/uluslarisbirlikleri/images/belgrad.png"
     },
     {
       "id": "slovak-academy",
       "name": "Slovak Academy of Sciences",
       "contact": "Dr. Peter Svec",
       "website": "https://www.sav.sk/?lang=en",
-      "logo": "./images/slovak.jpg"
+      "logo": "https://esmert123.github.io/mnytm/docs/uluslarisbirlikleri/images/slovak.jpg"
     },
     {
       "id": "sao-paulo",
       "name": "University of Sao Paulo",
       "contact": "",
       "website": "https://portal.unifesp.br",
-      "logo": "./images/saupaulo.jpg"
+      "logo": "https://esmert123.github.io/mnytm/docs/uluslarisbirlikleri/images/saupaulo.jpg"
     }
   ]
 }
+
 
