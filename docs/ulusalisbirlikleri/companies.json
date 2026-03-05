@@ -2,5 +2,62 @@
   "meta": {
     "lastUpdated": "2026-03-05"
   },
-  "companies": []
+  "companies": [
+    {
+      "id": "cukurova-uni",
+      "name": "Çukurova Üniversitesi",
+      "contact": "",
+      "website": "https://www.cu.edu.tr",
+      "logo": "./images/çukurova.png"
+    },
+    {
+      "id": "ataturk-uni",
+      "name": "Atatürk Üniversitesi",
+      "contact": "",
+      "website": "https://atauni.edu.tr",
+      "logo": "./images/atatürk üni.png"
+    },
+    {
+      "id": "gazi-uni",
+      "name": "Gazi Üniversitesi",
+      "contact": "",
+      "website": "https://gazi.edu.tr",
+      "logo": "./images/Gazi.png"
+    },
+    {
+      "id": "gaziantep-uni",
+      "name": "Gaziantep Üniversitesi",
+      "contact": "",
+      "website": "https://www.gaziantep.edu.tr",
+      "logo": "./images/Gaziantep.jpg"
+    },
+    {
+      "id": "bartin-uni",
+      "name": "Bartın Üniversitesi",
+      "contact": "",
+      "website": "https://www.bartin.edu.tr",
+      "logo": "./images/bartın üni.jpg"
+    },
+    {
+      "id": "bayburt-uni",
+      "name": "Bayburt Üniversitesi",
+      "contact": "",
+      "website": "https://bayburt.edu.tr/tr",
+      "logo": "./images/Bayburt.png"
+    },
+    {
+      "id": "ondokuzmayis-uni",
+      "name": "Ondokuz Mayıs Üniversitesi",
+      "contact": "",
+      "website": "https://www.omu.edu.tr/tr",
+      "logo": "./images/ondokuz mayız üni.png"
+    },
+    {
+      "id": "gumushane-uni",
+      "name": "Gümüşhane Üniversitesi",
+      "contact": "",
+      "website": "https://www.gumushane.edu.tr",
+      "logo": "./images/gümüşhane.png"
+    }
+  ]
 }
