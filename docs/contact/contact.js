@@ -79,6 +79,8 @@ function applyContent(cfg) {
   const emailAction = document.getElementById("emailAction");
   if (emailAction) {
     emailAction.href = primaryEmail ? `mailto:${primaryEmail}` : "#";
+    emailAction.target = "_blank";
+    emailAction.rel = "noopener";
   }
 
   const phoneHref = `tel:${sanitizePhone(cfg.phone)}`;
@@ -127,7 +129,9 @@ function setupCopyActions() {
   const buttons = document.querySelectorAll("[data-copy-source]");
 
   buttons.forEach((button) => {
-    button.addEventListener("click", async () => {
+    button.addEventListener("click", async (e) => {
+      e.preventDefault();
+      e.stopPropagation();
       const key = button.getAttribute("data-copy-source");
       const text = getCopyText(key);
       if (!text) {
@@ -158,19 +162,30 @@ function getCopyText(key) {
 }
 
 async function copyToClipboard(text) {
-  if (navigator.clipboard?.writeText) {
-    return navigator.clipboard.writeText(text);
+  try {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      await navigator.clipboard.writeText(text);
+      return;
+    }
+  } catch {
+    // clipboard API failed, use fallback
   }
 
   const textArea = document.createElement("textarea");
   textArea.value = text;
+  textArea.setAttribute("readonly", "");
   textArea.style.position = "fixed";
+  textArea.style.left = "-9999px";
   textArea.style.opacity = "0";
   document.body.appendChild(textArea);
   textArea.focus();
   textArea.select();
-  document.execCommand("copy");
-  document.body.removeChild(textArea);
+
+  try {
+    document.execCommand("copy");
+  } finally {
+    document.body.removeChild(textArea);
+  }
 }
 
 function showCopyToast(message) {
