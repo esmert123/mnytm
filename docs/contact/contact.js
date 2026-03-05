@@ -87,7 +87,6 @@ function applyContent(cfg) {
 
   const phoneHref = `tel:${sanitizePhone(cfg.phone)}`;
   setLink("infoPhone", phoneHref, cfg.phone);
-  setLink("phoneAction", phoneHref, "Ara");
 
   const addressNode = document.getElementById("infoAddress");
   if (addressNode) {
