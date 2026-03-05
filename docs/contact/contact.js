@@ -77,15 +77,16 @@ function applyContent(cfg) {
 
   const primaryEmail = cfg.emails[0] || "";
   const emailAction = document.getElementById("emailAction");
-  if (emailAction) {
-    emailAction.href = primaryEmail ? `mailto:${primaryEmail}` : "#";
-    emailAction.target = "_blank";
-    emailAction.rel = "noopener";
+  if (emailAction && primaryEmail) {
+    emailAction.href = `mailto:${primaryEmail}`;
+    emailAction.addEventListener("click", (e) => {
+      e.preventDefault();
+      window.open(`mailto:${primaryEmail}`, "_blank");
+    });
   }
 
   const phoneHref = `tel:${sanitizePhone(cfg.phone)}`;
   setLink("infoPhone", phoneHref, cfg.phone);
-  setLink("phoneAction", phoneHref, "Ara");
 
   const addressNode = document.getElementById("infoAddress");
   if (addressNode) {
@@ -150,7 +151,8 @@ function setupCopyActions() {
 
 function getCopyText(key) {
   if (key === "emails") {
-    return (appConfig.emails || []).join("\n");
+    const gmail = (appConfig.emails || []).find((e) => e.includes("gmail.com"));
+    return gmail || (appConfig.emails || [])[0] || "";
   }
   if (key === "phone") {
     return appConfig.phone || "";
