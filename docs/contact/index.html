@@ -34,7 +34,48 @@
     </section>
 
     <section class="row g-4" aria-label="İletişim içeriği">
-      <div class="col-12 col-lg-7">
+      <div class="col-12 col-lg-6">
+        <article class="mny-card mny-info-card" aria-labelledby="infoCardTitle">
+          <h2 id="infoCardTitle" class="mny-card-title">Doğrudan Ulaşın</h2>
+          <p class="mny-card-subtitle">Aşağıdaki kanallardan bize ulaşabilirsiniz.</p>
+
+          <p id="infoOrgName" class="d-none">MANYETAM</p>
+
+          <div class="mny-info-row">
+            <p class="mny-info-label">E-posta</p>
+            <div id="infoEmails" class="mny-info-value mny-stack"></div>
+            <div class="mny-action-row">
+              <button type="button" class="btn mny-btn mny-btn-outline btn-sm" data-copy-source="emails">Kopyala</button>
+              <a id="emailAction" class="btn mny-btn mny-btn-outline btn-sm" href="#">E-posta Gönder</a>
+            </div>
+          </div>
+
+          <div class="mny-info-row">
+            <p class="mny-info-label">Telefon</p>
+            <a id="infoPhone" class="mny-info-value-link" href="#">-</a>
+            <div class="mny-action-row">
+              <button type="button" class="btn mny-btn mny-btn-outline btn-sm" data-copy-source="phone">Kopyala</button>
+              <a id="phoneAction" class="btn mny-btn mny-btn-outline btn-sm" href="#">Ara</a>
+            </div>
+          </div>
+
+          <div class="mny-info-row">
+            <p class="mny-info-label">Adres</p>
+            <div id="infoAddress" class="mny-info-value mny-stack"></div>
+            <div class="mny-action-row">
+              <button type="button" class="btn mny-btn mny-btn-outline btn-sm" data-copy-source="address">Kopyala</button>
+              <a id="directionsAction" class="btn mny-btn mny-btn-outline btn-sm" href="#" target="_blank" rel="noopener">Yol Tarifi</a>
+            </div>
+          </div>
+
+          <div class="mny-info-row">
+            <p class="mny-info-label">Çalışma Saatleri</p>
+            <p id="infoWorkingHours" class="mny-info-value mb-0">-</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="col-12 col-lg-6">
         <article class="mny-card mny-form-card" aria-labelledby="formCardTitle">
           <h2 id="formCardTitle" class="mny-card-title">Mesaj Gönderin</h2>
           <p class="mny-card-subtitle">Formu doldurun, size en kısa sürede dönelim.</p>
@@ -97,58 +138,10 @@
         </article>
       </div>
 
-      <div class="col-12 col-lg-5">
-        <article class="mny-card mny-info-card" aria-labelledby="infoCardTitle">
-          <h2 id="infoCardTitle" class="mny-card-title">Doğrudan Ulaşın</h2>
-          <p class="mny-card-subtitle">Aşağıdaki kanallardan bize ulaşabilirsiniz.</p>
-
-          <div class="mny-info-row">
-            <p class="mny-info-label">Kurum</p>
-            <p id="infoOrgName" class="mny-info-value mb-0">MANYETAM</p>
-          </div>
-
-          <div class="mny-info-row">
-            <p class="mny-info-label">E-posta</p>
-            <div id="infoEmails" class="mny-info-value mny-stack"></div>
-            <div class="mny-action-row">
-              <button type="button" class="btn mny-btn mny-btn-outline btn-sm" data-copy-source="emails">Kopyala</button>
-              <a id="emailAction" class="btn mny-btn mny-btn-outline btn-sm" href="#">E-posta Gönder</a>
-            </div>
-          </div>
-
-          <div class="mny-info-row">
-            <p class="mny-info-label">Telefon</p>
-            <a id="infoPhone" class="mny-info-value-link" href="#">-</a>
-            <div class="mny-action-row">
-              <button type="button" class="btn mny-btn mny-btn-outline btn-sm" data-copy-source="phone">Kopyala</button>
-              <a id="phoneAction" class="btn mny-btn mny-btn-outline btn-sm" href="#">Ara</a>
-            </div>
-          </div>
-
-          <div class="mny-info-row">
-            <p class="mny-info-label">Adres</p>
-            <div id="infoAddress" class="mny-info-value mny-stack"></div>
-            <div class="mny-action-row">
-              <button type="button" class="btn mny-btn mny-btn-outline btn-sm" data-copy-source="address">Kopyala</button>
-              <a id="directionsAction" class="btn mny-btn mny-btn-outline btn-sm" href="#" target="_blank" rel="noopener">Yol Tarifi</a>
-            </div>
-          </div>
-
-          <div class="mny-info-row">
-            <p class="mny-info-label">Çalışma Saatleri</p>
-            <p id="infoWorkingHours" class="mny-info-value mb-0">-</p>
-          </div>
-        </article>
-      </div>
-
       <div class="col-12">
-        <article class="mny-card mny-map-card" aria-labelledby="mapCardTitle">
-          <h2 id="mapCardTitle" class="mny-card-title">Konumumuz</h2>
-          <p class="mny-card-subtitle">Kampüs içindeki konumumuzu haritadan görüntüleyebilirsiniz.</p>
-          <div class="mny-map-frame">
-            <iframe id="mapEmbed" title="MANYETAM Konum Haritası" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-          </div>
-        </article>
+        <div class="mny-map-frame mny-map-standalone">
+          <iframe id="mapEmbed" title="MANYETAM Konum Haritası" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
       </div>
     </section>
 
