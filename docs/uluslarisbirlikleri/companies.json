@@ -7,21 +7,21 @@
       "id": "belgrade-vinca",
       "name": "University of Belgrade / Vinca Institute of Nuclear Science",
       "contact": "Dr. Katarina Batalovic",
-      "website": "https://www.vin.bg.ac.rs/en/",
+      "website": "https://www.vin.bg.ac.rs/en/science/researchers/katarina-batalovic",
       "logo": "./images/belgrad.png"
     },
     {
       "id": "slovak-academy",
       "name": "Slovak Academy of Sciences",
       "contact": "Dr. Peter Svec",
-      "website": "https://www.sav.sk/?lang=en",
+      "website": "https://www.sav.sk/?lang=en&doc=user-org-user&user_no=7558",
       "logo": "./images/slovak.jpg"
     },
     {
       "id": "sao-paulo",
       "name": "University of Sao Paulo",
       "contact": "Prof. Dr. Cristina Bormio Nunes",
-      "website": "https://portal.unifesp.br",
+      "website": "http://www.ppgem.eel.usp.br/en/docentes/cristina-bormio-nunes.html",
       "logo": "./images/saupaulo.jpg"
     }
   ]
