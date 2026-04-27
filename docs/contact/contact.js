@@ -96,6 +96,14 @@ function applyContent(cfg) {
       lineNode.textContent = line;
       addressNode.appendChild(lineNode);
     });
+
+    const shippingNote = document.createElement("small");
+    shippingNote.className = "mny-shipping-note";
+    shippingNote.innerHTML =
+      "<strong>Numune ve kargo gönderimleri için:</strong> " +
+      "Karadeniz Teknik Üniversitesi, Mühendislik Fakültesi, " +
+      "Metalurji ve Malzeme Mühendisliği Bölümü 61080, TRABZON adresini kullanınız.";
+    addressNode.appendChild(shippingNote);
   }
 
   const directions = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(cfg.addressLines.join(", "))}`;
